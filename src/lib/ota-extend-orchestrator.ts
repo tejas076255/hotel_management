@@ -1270,9 +1270,9 @@ export async function previewOtaExtendOrchestrator(params: {
   const checkedInBlocker = blockers.find((row) => row.checked_in);
 
   if (blockerIsCheckedIn && (checkedInBlocker?.room_number ?? "").trim()) {
-    warnings.push(`แขกห้อง ${checkedInBlocker?.room_number} check-in อยู่ ย้ายจะต้องแจ้งแขก`);
+    warnings.push(`Guest in room ${checkedInBlocker?.room_number} is currently checked-in. Moving requires notifying the guest.`);
   } else if (blockerIsCheckedIn) {
-    warnings.push("แขก blocker check-in อยู่ ย้ายจะต้องแจ้งแขก");
+    warnings.push("Blocker guest is currently checked-in. Moving requires notifying the guest.");
   }
 
   const swapCandidates = input.strategy === "same_room"
@@ -1297,7 +1297,7 @@ export async function previewOtaExtendOrchestrator(params: {
   let canCommit = true;
   if (input.strategy === "same_room" && blockers.length > 0 && swapCandidates.length === 0) {
     canCommit = false;
-    warnings.push("ไม่มีห้องว่างสำหรับย้าย blocker — ให้เลือก strategy Different Room แทน");
+    warnings.push("No available room to move blocker — select Different Room strategy instead.");
   }
 
   const availableTargetRooms = await listAvailableTargetRooms({ supabase, ctx, input });

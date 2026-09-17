@@ -40,7 +40,7 @@ export function ExpenseSummary({ summary }: ExpenseSummaryProps) {
       <div className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div>
-            <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-tight">ยอดรวมทั้งหมด</p>
+            <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-tight">TotalAll</p>
             <div className="flex items-baseline gap-2">
               <span className="text-2xl font-black text-slate-900 dark:text-slate-50">
                 {formatNumber(summary.total_pieces)}
@@ -54,7 +54,7 @@ export function ExpenseSummary({ summary }: ExpenseSummaryProps) {
 
           <div className="space-y-3">
             <div>
-              <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">หมวดหมู่ผ้า</p>
+              <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Chapterหมู่ผ้า</p>
             </div>
             <div className="flex items-center justify-between text-sm">
               <span className="text-slate-600 dark:text-slate-400">ผ้าใหม่</span>
@@ -80,7 +80,7 @@ export function ExpenseSummary({ summary }: ExpenseSummaryProps) {
                 </div>
               ))}
               {summary.extras.length === 0 && (
-                <p className="text-xs text-slate-400 italic">ไม่มีรายการเพิ่มเติม</p>
+                <p className="text-xs text-slate-400 italic">No ItemsAddเติม</p>
               )}
             </div>
           </div>

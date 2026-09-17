@@ -408,7 +408,7 @@ function addReportNote(noteMap: Map<string, ReportNote>, label: string, title?: 
 function isHiddenByReason(reason: string | null): boolean {
   const text = String(reason ?? "").toLowerCase();
   if (!text) return false;
-  return /block|reno|renovat|ปรับปรุง|ซ่อม/.test(text);
+  return /block|reno|renovat|ปReceiveปรุง|ซ่อม/.test(text);
 }
 
 const SOURCE_LABELS: Record<string, string> = {

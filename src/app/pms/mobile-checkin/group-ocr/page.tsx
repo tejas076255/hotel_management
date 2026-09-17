@@ -87,7 +87,7 @@ export default function GroupSelectorPage() {
             <div className="w-16 h-16 bg-[var(--bg-surface)] rounded-full flex items-center justify-center text-[var(--text-muted)] mb-4">
               <Users className="w-8 h-8 opacity-50" />
             </div>
-            <h3 className="text-lg font-bold text-[var(--text-primary)]">ไม่มี Group ที่มีห้อง Due-in วันนี้</h3>
+            <h3 className="text-lg font-bold text-[var(--text-primary)]">ไม่มี Group ที่มีRoom Due-in Daysนี้</h3>
             <p className="text-sm font-medium text-[var(--text-secondary)] mt-1">
               Groups scheduled for check-in today will appear here.
             </p>

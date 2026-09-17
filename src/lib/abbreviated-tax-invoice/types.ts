@@ -315,7 +315,7 @@ export type AbbreviatedRenderData = {
 export type PosProduct = {
   id: string;
   name: string;                           // English master name
-  name_th: string | null;                 // Thai label printed on ใบกำกับภาษีอย่างย่อ
+  name_th: string | null;                 // Thai label printed on Abbreviated Tax Invoice
   sku: string | null;
   category: "amenity" | "pos" | "both";
   unit: string;

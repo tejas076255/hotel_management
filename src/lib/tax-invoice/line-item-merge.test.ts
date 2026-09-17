@@ -16,9 +16,9 @@ function assertDeepEqual(actual: unknown, expected: unknown, message?: string) {
 const sameRateItems: TaxInvoiceLineItem[] = [
   {
     kind: "room_charge",
-    description: "ค่าห้องพัก (11-12/5/2569)",
+    description: "ค่าRoom (11-12/5/2569)",
     quantity: 2,
-    unit: "คืน",
+    unit: "Return",
     unit_price: 500,
     gross_amount: 1000,
     discount_amount: 100,
@@ -29,9 +29,9 @@ const sameRateItems: TaxInvoiceLineItem[] = [
   },
   {
     kind: "room_charge",
-    description: "ค่าห้องพัก (11-12/5/2569)",
+    description: "ค่าRoom (11-12/5/2569)",
     quantity: 2,
-    unit: "คืน",
+    unit: "Return",
     unit_price: 500,
     gross_amount: 1000,
     discount_amount: 0,
@@ -42,9 +42,9 @@ const sameRateItems: TaxInvoiceLineItem[] = [
   },
   {
     kind: "room_charge",
-    description: "ค่าห้องพัก (11-12/5/2569)",
+    description: "ค่าRoom (11-12/5/2569)",
     quantity: 2,
-    unit: "คืน",
+    unit: "Return",
     unit_price: 600,
     gross_amount: 1200,
     discount_amount: 0,
@@ -62,7 +62,7 @@ assertDeepEqual(
   merged.map((item) => item.room_number),
   ["201,202", "203"]
 );
-assertEqual(merged[0].description, "ค่าห้องพัก 2 ห้อง (11-12/5/2569)");
+assertEqual(merged[0].description, "ค่าRoom 2 Room (11-12/5/2569)");
 assertEqual(merged[0].quantity, 4);
 assertEqual(merged[0].unit_price, 500);
 assertEqual(merged[0].gross_amount, 2000);

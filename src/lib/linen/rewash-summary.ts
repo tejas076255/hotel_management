@@ -260,7 +260,7 @@ export function formatReturnSummaryLines(rows: Array<{ name: string; qty: number
   const lines: string[] = [];
 
   if (pendingRows.length > 0) {
-    lines.push(...pendingRows.map((row) => `${row.name}: ${row.qty} ชิ้น (คืนผ้าค้าง)`));
+    lines.push(...pendingRows.map((row) => `${row.name}: ${row.qty} ชิ้น (Returnผ้าค้าง)`));
   }
   if (pendingRows.length > 0 && normalRows.length > 0) {
     lines.push("--------------------");
@@ -278,10 +278,10 @@ export function formatReturnSummarySections(rows: Array<{ name: string; qty: num
   const sections: string[] = [];
 
   if (normalRows.length > 0) {
-    sections.push(`--- รับคืนผ้าซักปกติ ---\n${formatLinenSummaryLines(normalRows)}`);
+    sections.push(`--- ReceiveReturnผ้าซักปกติ ---\n${formatLinenSummaryLines(normalRows)}`);
   }
   if (pendingRows.length > 0) {
-    sections.push(`--- รับคืนผ้าค้างเก่า ---\n${formatLinenSummaryLines(pendingRows)}`);
+    sections.push(`--- ReceiveReturnผ้าค้างเก่า ---\n${formatLinenSummaryLines(pendingRows)}`);
   }
 
   return sections.join("\n\n");
@@ -289,7 +289,7 @@ export function formatReturnSummarySections(rows: Array<{ name: string; qty: num
 
 export function formatReturnSummaryRowsForDisplay(rows: ReturnSummaryRow[]): ReturnSummaryDisplayRow[] {
   return rows.map((row) => ({
-    name: row.source === "pending_resolved" ? `${row.name} (คืนผ้าค้าง)` : row.name,
+    name: row.source === "pending_resolved" ? `${row.name} (Returnผ้าค้าง)` : row.name,
     qty: row.qty,
     source: row.source,
   }));
@@ -303,7 +303,7 @@ export function splitReturnSummaryRowsForDisplay(rows: ReturnSummaryDisplayRow[]
     if (row.source === "pending_resolved") {
       pending.push({
         ...row,
-        name: row.name.replace(/\s*\(คืนผ้าค้าง\)\s*$/, ""),
+        name: row.name.replace(/\s*\(Returnผ้าค้าง\)\s*$/, ""),
       });
     } else {
       normal.push(row);

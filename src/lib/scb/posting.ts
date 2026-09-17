@@ -285,7 +285,7 @@ export async function processMatchedScbTransaction(
   }
 
   if (transactionRowId) {
-    const title = `ยอดโอนเข้า ฿${Number(actual).toLocaleString("th-TH", {
+    const title = `ยอดTransferเข้า ฿${Number(actual).toLocaleString("th-TH", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     })}`;

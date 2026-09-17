@@ -178,8 +178,8 @@ export function MobileRewashModal({ isOpen, onClose, onAdd, batchId }: MobileRew
                     
                     <div className="px-6 pb-4 border-b border-slate-50 dark:border-slate-800 flex justify-between items-center">
                         <div>
-                            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 font-thai">เพิ่มผ้าซักใหม่ (Rewash)</h2>
-                            <p className="text-sm text-slate-400 dark:text-slate-500 font-thai">ส่งซักใหม่ฟรี กรณีพบผ้าสกปรก</p>
+                            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 font-thai">Addผ้าซักใหม่ (Rewash)</h2>
+                            <p className="text-sm text-slate-400 dark:text-slate-500 font-thai">Sendซักใหม่ฟรี กรณีพบผ้าDirty</p>
                         </div>
                         <button onClick={onClose} className="w-10 h-10 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400 active:scale-95 transition-all">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -190,7 +190,7 @@ export function MobileRewashModal({ isOpen, onClose, onAdd, batchId }: MobileRew
                         {/* Item Selection */}
                         <section>
 	                            <div className="mb-2 flex items-center justify-between gap-3">
-	                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest font-thai">เลือกรายการผ้า</label>
+	                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest font-thai">Selectรายการผ้า</label>
 	                                {moreItems.length > 0 && (
 	                                    <button
 	                                        type="button"
@@ -203,7 +203,7 @@ export function MobileRewashModal({ isOpen, onClose, onAdd, batchId }: MobileRew
 	                            </div>
 	                            <div className="grid grid-cols-2 gap-2">
 	                                {isLoadingItems ? (
-	                                    <div className="col-span-2 py-4 text-center text-slate-400 animate-pulse font-thai text-sm">กำลังโหลด...</div>
+	                                    <div className="col-span-2 py-4 text-center text-slate-400 animate-pulse font-thai text-sm">Loading...</div>
 	                                ) : (
 	                                    visibleItems.map(item => (
 		                                        <button
@@ -225,7 +225,7 @@ export function MobileRewashModal({ isOpen, onClose, onAdd, batchId }: MobileRew
                         {/* Quantity & Options */}
                         <div className="grid grid-cols-2 gap-4">
 	                            <section>
-	                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 font-thai">จำนวน</label>
+	                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 font-thai">Quantity</label>
 	                                <div className="flex items-center gap-1 rounded-2xl border border-slate-200/70 bg-slate-50 p-1.5">
 	                                    <button
 	                                        type="button"
@@ -263,7 +263,7 @@ export function MobileRewashModal({ isOpen, onClose, onAdd, batchId }: MobileRew
 	                                </div>
 	                            </section>
                             <section>
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 font-thai">ประเภท</label>
+                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 font-thai">Category</label>
                                 <button
                                     onClick={() => setIsDayuse(!isDayuse)}
                                     className={`w-full p-4 rounded-2xl font-bold font-thai border transition-all flex items-center justify-center gap-2 ${
@@ -279,7 +279,7 @@ export function MobileRewashModal({ isOpen, onClose, onAdd, batchId }: MobileRew
 
                         {/* Note */}
                         <section>
-                            <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 font-thai">หมายเหตุ (ถ้ามี)</label>
+                            <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 font-thai">Notes (ถ้ามี)</label>
                             <textarea
                                 value={note}
                                 onChange={(e) => setNote(e.target.value)}
@@ -318,7 +318,7 @@ export function MobileRewashModal({ isOpen, onClose, onAdd, batchId }: MobileRew
                                         className="aspect-square rounded-xl bg-slate-50 border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400 active:bg-slate-100 active:border-purple-300 active:text-purple-400 transition-all"
                                     >
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6 mb-1"><path d="M12 5v14M5 12h14" /></svg>
-                                        <span className="text-[10px] font-bold font-thai">เพิ่มรูป</span>
+                                        <span className="text-[10px] font-bold font-thai">Addรูป</span>
                                     </button>
                                 )}
                             </div>
@@ -349,7 +349,7 @@ export function MobileRewashModal({ isOpen, onClose, onAdd, batchId }: MobileRew
                                     กำลังอัปโหลด...
                                 </>
                             ) : (
-                                <>บันทึกผ้าซักใหม่</>
+                                <>Saveผ้าซักใหม่</>
                             )}
                         </button>
                     </div>

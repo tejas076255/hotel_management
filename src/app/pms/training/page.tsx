@@ -7,8 +7,8 @@ const CHAPTERS = [
         id: "chapter1",
         src: "/manual-chapter1.html",
         num: "01",
-        title: "ทำความรู้จักโปรแกรม",
-        desc: "ภาพรวม PMS, การล็อกอิน, และเมนูต่างๆ",
+        title: "Introduction & Overview",
+        desc: "PMS Overview, Sign in, and Navigation Menu",
         icon: "🖥️",
         color: "blue",
     },
@@ -16,8 +16,8 @@ const CHAPTERS = [
         id: "chapter2",
         src: "/manual-chapter2.html",
         num: "02",
-        title: "การจอง → เช็คอิน → เช็คเอาท์",
-        desc: "ขั้นตอนงาน Front Desk ตั้งแต่ต้นจนจบ",
+        title: "Reservation → Check-in → Check-out",
+        desc: "End-to-end Front Desk operations workflow",
         icon: "🏨",
         color: "green",
     },
@@ -25,8 +25,8 @@ const CHAPTERS = [
         id: "chapter3",
         src: "/manual-chapter3.html",
         num: "03",
-        title: "งานแม่บ้าน (Housekeeping)",
-        desc: "การรับงาน, อัพเดทสถานะห้อง, Extra Tasks",
+        title: "Housekeeping Operations",
+        desc: "Task assignments, room status updates & extra tasks",
         icon: "🧹",
         color: "purple",
     },
@@ -34,8 +34,8 @@ const CHAPTERS = [
         id: "chapter4",
         src: "/manual-chapter4.html",
         num: "04",
-        title: "การชำระเงินและ Folio",
-        desc: "การรับชำระ, แก้ไข Folio, ออกใบเสร็จ",
+        title: "Payments & Folios",
+        desc: "Accepting payments, folio edits, and issuing receipts",
         icon: "💳",
         color: "amber",
     },
@@ -85,12 +85,12 @@ export default function TrainingPage() {
                         <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
                             <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
                         </svg>
-                        กลับ
+                        Back
                     </button>
                     <span className="text-lg">{activeChapter.icon}</span>
                     <div className="flex-1 min-w-0">
                         <p className="text-sm font-semibold truncate" style={{ color: "var(--text-primary)" }}>
-                            หมวด {activeChapter.num} — {activeChapter.title}
+                            Chapter {activeChapter.num} — {activeChapter.title}
                         </p>
                     </div>
                     {/* Chapter nav pills */}
@@ -130,10 +130,10 @@ export default function TrainingPage() {
                     ADMIN
                 </p>
                 <h1 className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>
-                    Training
+                    Training & Staff Manual
                 </h1>
                 <p className="text-sm mt-1" style={{ color: "var(--text-muted)" }}>
-                    คู่มือการใช้งานระบบ Hotel PMS สำหรับพนักงาน — {CHAPTERS.length} หมวด
+                    Hotel PMS Staff User Guide — {CHAPTERS.length} Chapters
                 </p>
             </div>
 
@@ -155,7 +155,7 @@ export default function TrainingPage() {
                     ))}
                 </div>
                 <p className="text-sm ml-2" style={{ color: "var(--text-muted)" }}>
-                    เลือก หมวดที่ต้องการอ่านได้เลย
+                    Select a chapter to read
                 </p>
             </div>
 
@@ -175,7 +175,7 @@ export default function TrainingPage() {
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-center gap-2 mb-2">
                                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${styles.badge}`}>
-                                            หมวด {ch.num}
+                                            Chapter {ch.num}
                                         </span>
                                     </div>
                                     <h3 className="font-bold text-base leading-snug mb-1" style={{ color: "var(--text-primary)" }}>
@@ -188,7 +188,7 @@ export default function TrainingPage() {
                             </div>
                             <div className="mt-4 flex justify-end">
                                 <span className={`text-xs font-semibold text-white px-3 py-1.5 rounded-lg transition-colors ${styles.btn}`}>
-                                    เปิดอ่าน →
+                                    Read Chapter →
                                 </span>
                             </div>
                         </button>
@@ -198,7 +198,7 @@ export default function TrainingPage() {
 
             {/* Footer note */}
             <p className="text-xs text-center mt-8" style={{ color: "var(--text-muted)" }}>
-                คู่มือนี้ใช้ภายในโรงแรมเท่านั้น • OpenHotel PMS
+                Internal Hotel Staff Guide • OpenHotel PMS
             </p>
         </div>
     );

@@ -111,7 +111,7 @@ function getLineItemDiscountAmount(item: TaxInvoiceLineItem): number {
 /* ─── Amount in Words (Thai + English) ─── */
 
 function numberToThaiWords(n: number): string {
-  if (n === 0) return "ศูนย์บาทถ้วน";
+  if (n === 0) return "ศูนย์THBถ้วน";
   const units = ["", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า"];
   const positions = ["", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน"];
 
@@ -148,7 +148,7 @@ function numberToThaiWords(n: number): string {
     return convert(millions) + "ล้าน" + (remainder > 0 ? convert(remainder) : "");
   }
 
-  let result = convert(intPart) + "บาท";
+  let result = convert(intPart) + "THB";
   if (decPart === 0) {
     result += "ถ้วน";
   } else {
@@ -345,7 +345,7 @@ function invoiceCopy(
   const l = getLabels(lang);
   const copyLabel = labelType === "original" ? l.original : l.copy;
   const amountWords = amountInWords(data.totals.grand_total, lang);
-  const amountLabel = lang === "th" ? "จำนวนเงิน :" : "Amount :";
+  const amountLabel = lang === "th" ? "Quantityเงิน :" : "Amount :";
   const isFinalPage = pageIndex === pageCount - 1;
   const remarkText = String(data.remark ?? "").trim();
   const remarkHtml = remarkText

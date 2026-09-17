@@ -157,7 +157,7 @@ export function PrepaymentRulesSettings() {
         <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-4 space-y-4">
             <div className="flex items-center justify-between">
                 <h2 className="text-sm font-bold text-[var(--text-table-cell)] uppercase tracking-wide">Pre-payment Rules</h2>
-                <button type="button" className="btn btn-secondary btn-sm" onClick={handleAdd}>+ เพิ่ม Rule</button>
+                <button type="button" className="btn btn-secondary btn-sm" onClick={handleAdd}>+ Add Rule</button>
             </div>
 
             {loading ? (
@@ -187,11 +187,11 @@ export function PrepaymentRulesSettings() {
                                 </div>
                             </div>
                             <div className="flex gap-2">
-                                <button type="button" className="text-xs text-brand-600 hover:underline" onClick={() => handleEdit(rule)}>แก้ไข</button>
+                                <button type="button" className="text-xs text-brand-600 hover:underline" onClick={() => handleEdit(rule)}>Edit</button>
                                 <button type="button" className="text-xs text-[var(--text-muted)] hover:underline" onClick={() => handleToggleActive(rule)}>
-                                    {rule.is_active ? 'ปิด' : 'เปิด'}
+                                    {rule.is_active ? 'Close' : 'เClose'}
                                 </button>
-                                <button type="button" className="text-xs text-rose-600 hover:underline" onClick={() => handleDelete(rule.id)}>ลบ</button>
+                                <button type="button" className="text-xs text-rose-600 hover:underline" onClick={() => handleDelete(rule.id)}>Delete</button>
                             </div>
                         </div>
                     ))}

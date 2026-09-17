@@ -16,8 +16,8 @@ import type {
 // ============================================================
 
 const MONTHS = [
-  "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-  "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม",
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
 ];
 
 function getBangkokNow(): { year: number; month: number } {
@@ -57,7 +57,7 @@ function emptyPriceSummaryGroup(label: string): RR3PriceSummaryGroup {
     rows: [],
     total_quantity: 0,
     total_amount: 0,
-    copy_text: `${label}\nยอดรวม = 0`,
+    copy_text: `${label}\nTotal = 0`,
   };
 }
 
@@ -78,7 +78,7 @@ function blankOverrideForm(): OverrideForm {
     nationality: "",
     id_or_passport: "",
     current_address: "",
-    occupation: "รับจ้าง",
+    occupation: "Receiveจ้าง",
     coming_from: "",
     going_to: "ตัวอย่าง",
     checkout_datetime: "",
@@ -95,7 +95,7 @@ function baseRowForm(entry: RR3GuestRecord): OverrideForm {
     nationality: entry.nationality_code || "",
     id_or_passport: entry.id_number || entry.passport_no || "",
     current_address: currentAddress || "",
-    occupation: "รับจ้าง",
+    occupation: "Receiveจ้าง",
     coming_from: currentAddress || "",
     going_to: "ตัวอย่าง",
     checkout_datetime: fmtDateOnly(entry.checked_out_at || entry.checkout_date),
@@ -137,7 +137,7 @@ function PriceSummaryPanel({
         <div>
           <h3 className="text-sm font-bold text-[var(--text-primary)]">{group.label}</h3>
           <p className="mt-0.5 text-xs text-[var(--text-muted)]">
-            {group.total_quantity.toLocaleString("en-US")} คืน · ฿ {fmtMoney(group.total_amount)}
+            {group.total_quantity.toLocaleString("en-US")} Return · ฿ {fmtMoney(group.total_amount)}
           </p>
         </div>
         <button
@@ -432,17 +432,17 @@ export default function RR3Page() {
             )}
 
             <div className="grid gap-3 md:grid-cols-12">
-              <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-3" placeholder="วันเวลาที่มาเข้าพัก" value={overrideForm.checkin_datetime} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("checkin_datetime", e.target.value)} />
-              <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-2" placeholder="ห้องพักเลขที่" value={overrideForm.room_number} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("room_number", e.target.value)} />
+              <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-3" placeholder="DaysTimeที่มาเข้าพัก" value={overrideForm.checkin_datetime} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("checkin_datetime", e.target.value)} />
+              <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-2" placeholder="Roomเลขที่" value={overrideForm.room_number} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("room_number", e.target.value)} />
               <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-4" placeholder="ชื่อตัวและชื่อสกุล" value={overrideForm.full_name} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("full_name", e.target.value)} required />
               <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-3" placeholder="สัญชาติ" value={overrideForm.nationality} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("nationality", e.target.value)} />
               <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-4" placeholder="เลขบัตร / Passport" value={overrideForm.id_or_passport} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("id_or_passport", e.target.value)} />
-              <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-5" placeholder="ที่อยู่ปัจจุบัน" value={overrideForm.current_address} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("current_address", e.target.value)} />
+              <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-5" placeholder="Addressปัจจุบัน" value={overrideForm.current_address} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("current_address", e.target.value)} />
               <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-3" placeholder="อาชีพ" value={overrideForm.occupation} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("occupation", e.target.value)} />
               <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-4" placeholder="มาจาก" value={overrideForm.coming_from} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("coming_from", e.target.value)} />
               <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-4" placeholder="จะไปที่" value={overrideForm.going_to} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("going_to", e.target.value)} />
-              <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-2" placeholder="วันเวลาที่ออกไป" value={overrideForm.checkout_datetime} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("checkout_datetime", e.target.value)} />
-              <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-6" placeholder="หมายเหตุ" value={overrideForm.remarks} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("remarks", e.target.value)} />
+              <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-2" placeholder="DaysTimeที่ออกไป" value={overrideForm.checkout_datetime} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("checkout_datetime", e.target.value)} />
+              <input className="rounded-md border border-black/10 bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] dark:border-white/10 md:col-span-6" placeholder="Notes" value={overrideForm.remarks} disabled={!overrideCanEdit} onChange={(e) => updateOverrideField("remarks", e.target.value)} />
             </div>
 
             <div className="mt-5 flex flex-wrap justify-end gap-2 border-t border-black/10 pt-4 dark:border-white/10">
@@ -600,7 +600,7 @@ export default function RR3Page() {
             <div>
               <h2 className="text-sm font-bold text-[var(--text-primary)]">RR3 Document Price Summary</h2>
               <p className="mt-0.5 text-xs text-[var(--text-muted)]">
-                สรุปจากใบกำกับภาษีอย่างย่อที่ออกแล้ว และ Full Tax Invoice ที่ออกแล้ว เรียงราคาต่อคืนจากต่ำไปสูง
+                สรุปจากAbbreviated Tax Invoiceที่ออกแล้ว และ Full Tax Invoice ที่ออกแล้ว เรียงPriceต่อReturnจากต่ำไปสูง
               </p>
             </div>
             <div className="text-right text-xs text-[var(--text-muted)]">

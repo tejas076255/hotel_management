@@ -45,7 +45,7 @@ export default function NoServiceModal({
             </div>
             <div>
               <p className="text-xs font-black uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
-                งดทำห้อง
+                งดทำRoom
               </p>
               <h3 className="mt-1 text-2xl font-black text-slate-900 dark:text-white">{roomNumber}</h3>
             </div>
@@ -64,22 +64,22 @@ export default function NoServiceModal({
         <div className="relative z-10 space-y-4 px-5 py-5">
           <div className="rounded-[24px] border border-rose-200 bg-[linear-gradient(180deg,rgba(255,241,242,0.98),rgba(255,228,230,0.84))] p-4 dark:border-rose-500/20 dark:bg-rose-500/10">
             <p className="text-sm font-black leading-relaxed text-rose-700 dark:text-rose-300">
-              ลูกค้างดทำความสะอาดหรือแขวนป้ายห้ามรบกวน
+              Customerงดทำความสะอาดหรือแขวนป้ายห้ามรบกวน
             </p>
             <p className="mt-2 text-sm font-bold leading-relaxed text-rose-700/80 dark:text-rose-300/75">
-              กดทำต่อเพื่อเปิดเช็กลิสต์และบันทึกของที่เติมจริง
+              กดทำต่อเพื่อเCloseเช็กลิสต์และSaveของที่เติมจริง
             </p>
           </div>
 
           <div>
             <label className="mb-2 block text-base font-black text-slate-800 dark:text-slate-200">
-              หมายเหตุ
+              Notes
             </label>
             <textarea
               value={note}
               onChange={(event) => setNote(event.target.value)}
               disabled={isSubmitting}
-              placeholder="เช่น แขวนป้ายหน้าห้อง"
+              placeholder="เช่น แขวนป้ายหน้าRoom"
               className="h-28 w-full resize-none rounded-[24px] border border-rose-200/70 bg-[linear-gradient(180deg,rgba(251,241,245,0.96),rgba(254,242,248,0.88))] px-4 py-3 text-base font-bold text-slate-900 outline-none transition focus:border-rose-400 dark:border-white/10 dark:bg-slate-900 dark:text-white"
             />
           </div>
@@ -92,7 +92,7 @@ export default function NoServiceModal({
             disabled={isSubmitting}
             className="flex-1 rounded-[20px] border border-rose-200/70 bg-[linear-gradient(180deg,rgba(248,239,243,0.96),rgba(242,231,237,0.88))] px-4 py-4 text-base font-black text-slate-700 transition-colors hover:bg-rose-100/70 disabled:opacity-50 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
           >
-            ยกเลิก
+            Cancel
           </button>
           <button
             type="button"

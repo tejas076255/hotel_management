@@ -76,7 +76,7 @@ export default function MobileBatchWizardPage() {
 
     const handleDeleteDraft = () => {
         if (!activeDraftKey) return;
-        if (!confirm("ลบรายการร่างนี้หรือไม่?")) return;
+        if (!confirm("Deleteรายการร่างนี้หรือไม่?")) return;
         localStorage.removeItem(activeDraftKey);
         setDraftData(null);
         setActiveDraftKey(null);
@@ -88,7 +88,7 @@ export default function MobileBatchWizardPage() {
 
     const handleDeleteBatch = async () => {
         if (!batchId || !canDeleteBatch) return;
-        if (!confirm("ลบ Batch นี้หรือไม่? ข้อมูลรอบนี้จะถูกลบออกและย้อนยอดรับคืนที่บันทึกไว้แล้ว")) return;
+        if (!confirm("Delete Batch นี้หรือไม่? ข้อมูลรอบนี้จะถูกDeleteออกและย้อนยอดReceiveReturnที่Saveไว้แล้ว")) return;
         setIsDeletingBatch(true);
         try {
             const res = await fetch(`/api/linen/batches/${batchId}`, { method: "DELETE" });
@@ -100,7 +100,7 @@ export default function MobileBatchWizardPage() {
         } catch (error) {
             console.error(error);
             const message = error instanceof Error ? error.message : "Unknown error";
-            alert(`ลบ Batch ไม่สำเร็จ: ${message}`);
+            alert(`Delete Batch ไม่Success: ${message}`);
         } finally {
             setIsDeletingBatch(false);
         }
@@ -117,7 +117,7 @@ export default function MobileBatchWizardPage() {
         if (!batchId || !batchDetail?.batch) return;
         const status = String(batchDetail.batch.status ?? "");
         if (["fo_return_signed", "closed", "partial"].includes(status)) {
-            alert("รอบนี้จบงานแล้ว ถ้าต้องแก้ไขย้อนหลังให้ Admin Reopen ครับ");
+            alert("รอบนี้จบงานแล้ว ถ้าต้องEditย้อนหลังให้ Admin Reopen คReceive");
             return;
         }
         setIsReopening(true);
@@ -133,7 +133,7 @@ export default function MobileBatchWizardPage() {
         } catch (error) {
             console.error(error);
             const message = error instanceof Error ? error.message : "Unknown error";
-            alert(`ย้อนกลับเพื่อแก้ไขไม่สำเร็จ: ${message}`);
+            alert(`ย้อนกลับเพื่อEditไม่Success: ${message}`);
         } finally {
             setIsReopening(false);
         }
@@ -172,10 +172,10 @@ export default function MobileBatchWizardPage() {
                 ? returnSummary
                 : items.filter(i => i.received_back > 0).map(i => ({ name: i.name_th ?? `Item ${i.linen_item_id}`, qty: i.received_back }));
 
-        let text = `สรุปรายการผ้า [รอบ ${batchDetail.batch.pickup_round}]\nวันที่: ${batchDetail.batch.business_date}\n`;
+        let text = `สรุปรายการผ้า [รอบ ${batchDetail.batch.pickup_round}]\nDate: ${batchDetail.batch.business_date}\n`;
         
         if (dirty.length > 0) {
-            text += `\n--- ผ้าวันนี้ ---\n` + dirty.map(i => `${i.name_th}: ${i.sent_by_hotel} ชิ้น`).join("\n");
+            text += `\n--- ผ้าDaysนี้ ---\n` + dirty.map(i => `${i.name_th}: ${i.sent_by_hotel} ชิ้น`).join("\n");
         }
         if (dayuse.length > 0) {
             text += `\n\n--- ผ้าเก่า ---\n` + dayuse.map(i => `${i.name_th}: ${i.sent_by_hotel} ชิ้น`).join("\n");
@@ -187,7 +187,7 @@ export default function MobileBatchWizardPage() {
             text += `\n\n` + formatReturnSummarySections(returns);
         }
         if (rewashReturns.length > 0) {
-            text += `\n\n--- รับคืนผ้าซักใหม่ ---\n` + formatLinenSummaryLines(rewashReturns);
+            text += `\n\n--- ReceiveReturnผ้าซักใหม่ ---\n` + formatLinenSummaryLines(rewashReturns);
         }
         if (pending.length > 0) {
             text += `\n\n--- ผ้าค้าง ---\n` + formatPendingSummaryLines(pending);
@@ -208,7 +208,7 @@ export default function MobileBatchWizardPage() {
         : returnSummary;
 
     if (isLoading && params.id !== "new") {
-        return <div className="p-10 text-center text-slate-400 font-thai">กำลังโหลดข้อมูลรอบ...</div>;
+        return <div className="p-10 text-center text-slate-400 font-thai">กำลังLoading data...รอบ...</div>;
     }
 
     return (
@@ -233,7 +233,7 @@ export default function MobileBatchWizardPage() {
                         disabled={isDeletingBatch || isReopening}
                         className="rounded-full border border-rose-100 bg-rose-50 px-3 py-2 text-xs font-bold text-rose-600 shadow-sm active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        {isDeletingBatch ? "..." : "ลบ Batch"}
+                        {isDeletingBatch ? "..." : "Delete Batch"}
                     </button>
                 ) : (
                     <div className="w-10" />
@@ -294,7 +294,7 @@ export default function MobileBatchWizardPage() {
                                 onClick={() => router.push("/linen-mobile")}
                                 className="w-full py-4 bg-slate-100 text-slate-500 font-bold rounded-2xl border border-slate-200 active:bg-slate-200 transition-colors"
                              >
-                                กลับหน้าหลัก
+                                Back to Home
                              </button>
                         </div>
                     </div>

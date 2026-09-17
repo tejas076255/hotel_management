@@ -155,7 +155,7 @@ function shiftDate(dateStr: string, diffDays: number): string {
 
 function isDirtyCarryoverPrepareProduct(productName: string): boolean {
   const raw = String(productName ?? "").trim().toLowerCase();
-  if (raw.includes("น้ำ") || raw.includes("กาแฟ")) return true;
+  if (raw.includes("น้ำ") || raw.includes("Coffee")) return true;
   const normalized = normalizeTemplateProductName(productName);
   return (
     normalized.includes("water") ||

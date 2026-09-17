@@ -61,7 +61,7 @@ export default function MaidMockupPage() {
       target_ms: 45 * 60000,
       has_loan: true,
       has_maintenance: false,
-      note: "ขอผ้าขนหนูเพิ่ม",
+      note: "ขอผ้าขนหนูAdd",
     },
     {
       id: "2",
@@ -87,13 +87,13 @@ export default function MaidMockupPage() {
     {
       id: "4",
       room_number: "402",
-      guest_name: "ไม่ประสงค์รับบริการ",
+      guest_name: "ไม่ประสงค์Receiveบริการ",
       status: "no_service",
       accumulated_ms: 0,
       target_ms: 0,
       has_loan: false,
       has_maintenance: false,
-      note: "ลูกค้าแขวนป้ายตัดกวน (DND)",
+      note: "Customerแขวนป้ายตัดกวน (DND)",
     },
     {
       id: "5",
@@ -111,7 +111,7 @@ export default function MaidMockupPage() {
     {
       id: "e1",
       task_name: "แพ็คเซ็ตผ้าห่มเสริม",
-      location: "จุดประจำชั้น 3",
+      location: "จุดประจำFloor 3",
       status: "dirty", // works same as pending
       accumulated_ms: 0,
       target_ms: 15 * 60000,
@@ -206,7 +206,7 @@ export default function MaidMockupPage() {
 
   const submitLfReport = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("จำลองการส่งข้อมูล Lost & Found สำเร็จ!");
+    alert("จำลองการSendข้อมูล Lost & Found Success!");
     setIsLfModalOpen(false);
     setLfRoomId("");
     setLfDescription("");
@@ -407,7 +407,7 @@ export default function MaidMockupPage() {
           {/* ROOMS LIST */}
           <section>
             <h3 className="text-xl font-black mb-4 flex items-center gap-2 text-slate-500 dark:text-slate-400">
-               รายการห้องในกะ
+               รายการRoomในกะ
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {rooms.map((room) => {
@@ -433,7 +433,7 @@ export default function MaidMockupPage() {
                         <div className="flex flex-wrap justify-end gap-2 mt-2">
                           {room.has_loan && (
                             <span className="dark:bg-black/30 bg-amber-100 dark:text-amber-400 text-amber-700 border dark:border-amber-500/30 border-amber-300/50 px-2.5 py-1 rounded-full text-[11px] font-black flex items-center gap-1">
-                              <Package size={12} strokeWidth={2.5} /> เก็บคืน
+                              <Package size={12} strokeWidth={2.5} /> เก็บReturn
                             </span>
                           )}
                           {room.has_maintenance && (
@@ -561,25 +561,25 @@ export default function MaidMockupPage() {
                 <div className="flex-1 overflow-y-auto p-6">
                     <div className="bg-sky-50 dark:bg-sky-900/20 text-sky-800 dark:text-sky-300 p-4 rounded-2xl flex gap-3 text-sm mb-6 border border-sky-100 dark:border-sky-900/50">
                         <Info className="w-5 h-5 shrink-0 mt-0.5" />
-                        <p className="font-bold">หากพบสิ่งของที่ลูกค้าลืมทิ้งไว้ กรุณาถ่ายภาพและระบุรายละเอียดเพื่อแจ้ง Front Desk ทันที</p>
+                        <p className="font-bold">หากพบสิ่งของที่Customerลืมทิ้งไว้ กรุณาถ่ายภาพและระบุDetailsเพื่อแจ้ง Front Desk ทันที</p>
                     </div>
 
                     <form id="lf-report-form" onSubmit={submitLfReport} className="space-y-5">
                         {/* Room Selection */}
                         <div>
-                            <label className="block text-base font-bold dark:text-slate-200 text-slate-800 mb-2">พบที่ห้องไหน? <span className="text-rose-500">*</span></label>
+                            <label className="block text-base font-bold dark:text-slate-200 text-slate-800 mb-2">พบที่Roomไหน? <span className="text-rose-500">*</span></label>
                             <select 
                                 className="w-full dark:bg-slate-900 bg-slate-50 border dark:border-white/10 border-slate-200 rounded-2xl px-5 py-4 text-lg dark:text-white text-slate-900 font-bold focus:ring-2 focus:ring-amber-500 outline-none appearance-none"
                                 value={lfRoomId}
                                 onChange={e => setLfRoomId(e.target.value)}
                                 required
                             >
-                                <option value="" disabled>เลือกห้อง...</option>
-                                <option value="1">ห้อง 304 - คุณวรรณวิสา พ.</option>
-                                <option value="2">ห้อง 305 - คุณศิริวัฒน์ น.</option>
-                                <option value="3">ห้อง 401 - คุณณรงค์ชัย ส.</option>
-                                <option value="4">ห้อง 402 - ลูกค้างดทำ</option>
-                                <option value="5">ห้อง 405 - คุณจิราภรณ์ ม.</option>
+                                <option value="" disabled>SelectRoom...</option>
+                                <option value="1">Room 304 - คุณวรรณวิสา พ.</option>
+                                <option value="2">Room 305 - คุณศิริวัฒน์ น.</option>
+                                <option value="3">Room 401 - คุณณรงค์ชัย ส.</option>
+                                <option value="4">Room 402 - Customerงดทำ</option>
+                                <option value="5">Room 405 - คุณจิราภรณ์ ม.</option>
                             </select>
                         </div>
 
@@ -636,7 +636,7 @@ export default function MaidMockupPage() {
 
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-base font-bold dark:text-slate-200 text-slate-800 mb-2">หมวดหมู่</label>
+                                <label className="block text-base font-bold dark:text-slate-200 text-slate-800 mb-2">Chapterหมู่</label>
                                 <select 
                                     className="w-full dark:bg-slate-900 bg-slate-50 border dark:border-white/10 border-slate-200 rounded-2xl px-4 py-3.5 text-base dark:text-white text-slate-900 font-bold focus:ring-2 focus:ring-amber-500 outline-none appearance-none"
                                     value={lfCategory}

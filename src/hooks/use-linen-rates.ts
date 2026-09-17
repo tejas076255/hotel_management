@@ -71,7 +71,7 @@ export function useLinenRateHistory(itemId: number) {
 
 function generateMockRates(month: string): LinenItemRate[] {
   const items = [
-    { id: 1, num: 1, th: "ปลอกหมอน", rate: 3 },
+    { id: 1, num: 1, th: "Pillowcase", rate: 3 },
     { id: 2, num: 2, th: "ผ้าขนหนู", rate: 5 },
     { id: 3, num: 3, th: "ผ้าเช็ดเท้า", rate: 3 },
     { id: 4, num: 4, th: "ผ้าปูเล็ก", rate: 8 },

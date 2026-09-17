@@ -335,7 +335,7 @@ export default function GroupCheckinWizardPrototypePage() {
           <div>
             <h1 className="text-4xl font-black tracking-tight text-[var(--text-primary)]">Group Check-in Payment</h1>
             <p className="mt-2 max-w-3xl text-sm text-[var(--text-secondary)]">
-              ทดลอง composition ใหม่ที่เน้นยอดเงินเป็นหลัก แยก room charge กับ deposit ชัด และลองกดเล่นได้โดยไม่เซฟจริง
+              ทดลอง composition ใหม่ที่เน้นAmountเป็นหลัก แยก room charge กับ deposit ชัด และลองกดเล่นได้โดยไม่เซฟจริง
             </p>
           </div>
         </div>
@@ -360,13 +360,13 @@ export default function GroupCheckinWizardPrototypePage() {
         <SummaryBand
           label="Room Balance"
           amount={roomBalance}
-          sub="ยอดค้างค่าห้องทั้งหมดของกลุ่ม"
+          sub="ยอดค้างค่าRoomAllของกลุ่ม"
           tone="room"
         />
         <SummaryBand
           label="Deposit Outstanding"
           amount={depositBalance}
-          sub="ยอดมัดจำที่ยังต้องเก็บ แยกจากค่าห้อง"
+          sub="ยอดDepositที่ยังต้องเก็บ แยกจากค่าRoom"
           tone="deposit"
         />
         <SummaryBand

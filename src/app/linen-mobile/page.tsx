@@ -32,7 +32,7 @@ export default function LinenMobileDashboard() {
     const handleDeleteDraft = (e: React.MouseEvent, key: string) => {
         e.preventDefault();
         e.stopPropagation();
-        if (confirm("ลบรายการร่างนี้หรือไม่?")) {
+        if (confirm("Deleteรายการร่างนี้หรือไม่?")) {
             localStorage.removeItem(key);
             setDrafts(prev => prev.filter(d => d.key !== key));
         }
@@ -41,7 +41,7 @@ export default function LinenMobileDashboard() {
     const todayDisplay = format(new Date(), "EEEE d MMMM", { locale: th });
 
     if (isLoading) {
-        return <div className="p-8 text-center text-slate-400 font-thai animate-pulse">กำลังโหลด...</div>;
+        return <div className="p-8 text-center text-slate-400 font-thai animate-pulse">Loading...</div>;
     }
 
     return (
@@ -88,7 +88,7 @@ export default function LinenMobileDashboard() {
                                         </div>
                                         <div>
                                             <p className="font-bold text-slate-800 dark:text-slate-200 font-thai uppercase">รอบที่ {draft.round}</p>
-                                            <p className="text-xs text-slate-400 dark:text-slate-500 font-thai">รอยืนยัน • {new Date(draft.timestamp).toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' })} น.</p>
+                                            <p className="text-xs text-slate-400 dark:text-slate-500 font-thai">รอConfirm • {new Date(draft.timestamp).toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' })} น.</p>
                                         </div>
                                     </div>
                                     <button
@@ -107,7 +107,7 @@ export default function LinenMobileDashboard() {
             <section>
                 <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    รายการวันนี้ ({dashboard?.batches_today?.length || 0})
+                    รายการDaysนี้ ({dashboard?.batches_today?.length || 0})
                 </h2>
                 <div className="space-y-3">
                     {dashboard?.batches_today?.map(batch => (
@@ -134,7 +134,7 @@ export default function LinenMobileDashboard() {
                     ))}
                     {!dashboard?.batches_today?.length && (
                         <div className="py-10 text-center bg-slate-50/50 dark:bg-slate-900/50 rounded-[2rem] border-2 border-dashed border-slate-200 dark:border-slate-800">
-                            <p className="text-sm text-slate-400 dark:text-slate-600 font-thai tracking-tight font-medium">ไม่มีรายการรับ-ส่งย้อนหลังของวันนี้</p>
+                            <p className="text-sm text-slate-400 dark:text-slate-600 font-thai tracking-tight font-medium">No ItemsReceive-Sendย้อนหลังของDaysนี้</p>
                         </div>
                     )}
                 </div>

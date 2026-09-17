@@ -129,13 +129,13 @@ export function ScbTransactionDetailDrawer({ item, onClose, onRefresh }: Props) 
                   </button>
                   <span>ยอด</span>
                   <span>฿{Number(detail.transaction?.amount ?? detail.request?.request_amount_total ?? 0).toLocaleString("th-TH", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                  <span>ผู้โอน</span>
+                  <span>ผู้Transfer</span>
                   <span>{detail.transaction?.payer_name || "—"}</span>
                   <span>บัญชี</span>
                   <span>{detail.transaction?.payer_account || "—"}</span>
-                  <span>เวลาโอน</span>
+                  <span>TimeTransfer</span>
                   <span>{detail.transaction?.paid_at ? new Date(detail.transaction.paid_at).toLocaleString("en-GB") : "—"}</span>
-                  <span>สถานะ SCB</span>
+                  <span>Status SCB</span>
                   <span>{detail.transaction?.status || detail.request?.status || "—"}</span>
                 </div>
               </section>
@@ -143,7 +143,7 @@ export function ScbTransactionDetailDrawer({ item, onClose, onRefresh }: Props) 
               <section>
                 <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">การจับคู่</h4>
                 <div className="grid grid-cols-[120px_1fr] gap-y-2 text-sm">
-                  <span>สถานะ</span>
+                  <span>Status</span>
                   <span>{detail.transaction?.match_status || detail.request?.status || "—"}</span>
                   <span>Target</span>
                   <span>{detail.target?.code || "—"}</span>
@@ -197,7 +197,7 @@ export function ScbTransactionDetailDrawer({ item, onClose, onRefresh }: Props) 
           <button type="button" className="btn btn-secondary flex items-center gap-2" onClick={handleRecheck} disabled={!requestId || loading}>
             <RefreshCw className="h-4 w-4" /> Recheck
           </button>
-          <button type="button" className="btn btn-ghost" onClick={onClose}>ปิด</button>
+          <button type="button" className="btn btn-ghost" onClick={onClose}>Close</button>
         </div>
       </div>
     </>

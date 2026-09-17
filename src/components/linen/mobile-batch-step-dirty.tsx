@@ -125,7 +125,7 @@ export function MobileBatchStepDirty({ onNext, initialData, draftKey, batchId, b
             timestamp: Date.now()
         };
         localStorage.setItem(draftKey, JSON.stringify(draftData));
-        alert("บันทึกร่างเรียบร้อยแล้ว");
+        alert("Saveร่างเรียบร้อยแล้ว");
         router.push("/linen-mobile");
     };
 
@@ -259,24 +259,24 @@ export function MobileBatchStepDirty({ onNext, initialData, draftKey, batchId, b
         } catch (error) {
             console.error(error);
             const message = error instanceof Error ? error.message : "Unknown error";
-            alert(`เกิดข้อผิดพลาดในการบันทึก: ${message}`);
+            alert(`เกิดข้อErrorในการSave: ${message}`);
         } finally {
             setIsSubmitting(false);
         }
     };
 
     if (isExpectedLoading || isDashboardLoading || isDayuseLoading) {
-        return <div className="py-20 text-center text-slate-400 animate-pulse font-thai">กำลังโหลดข้อมูล...</div>;
+        return <div className="py-20 text-center text-slate-400 animate-pulse font-thai">กำลังLoading data......</div>;
     }
 
-    if (!expected) return <div className="p-8 text-center text-rose-500 font-thai">ไม่พบข้อมูล Expected</div>;
+    if (!expected) return <div className="p-8 text-center text-rose-500 font-thai">No Data Found Expected</div>;
 
     return (
         <div className="flex flex-col h-full bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden mb-24">
             <div className="p-5 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
                 <div>
-                    <h2 className="text-2xl font-bold text-slate-900 font-thai">1. นับผ้าส่งซัก</h2>
-                    <p className="text-sm text-slate-500 font-thai">วันที่ {expected.business_date} รอบ {pickupRound}</p>
+                    <h2 className="text-2xl font-bold text-slate-900 font-thai">1. นับผ้าSendซัก</h2>
+                    <p className="text-sm text-slate-500 font-thai">Date {expected.business_date} รอบ {pickupRound}</p>
                 </div>
             </div>
 
@@ -312,7 +312,7 @@ export function MobileBatchStepDirty({ onNext, initialData, draftKey, batchId, b
                                             onClick={() => handleRemoveExtra(item.linen_item_id)}
                                             className="absolute -top-1 right-0 text-xs text-rose-500 font-bold px-2 py-1"
                                         >
-                                            ลบ
+                                            Delete
                                         </button>
                                     </div>
                                 ))}
@@ -327,7 +327,7 @@ export function MobileBatchStepDirty({ onNext, initialData, draftKey, batchId, b
                             className="flex-1 mt-6 py-4 border-2 border-dashed border-slate-200 rounded-2xl text-slate-500 font-bold flex items-center justify-center gap-2 active:bg-slate-50 transition-all font-thai"
                         >
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5"><path d="M12 5v14M5 12h14" /></svg>
-                            เพิ่มรายการพิเศษ
+                            Addรายการพิเศษ
                         </button>
 
                         <button
@@ -336,7 +336,7 @@ export function MobileBatchStepDirty({ onNext, initialData, draftKey, batchId, b
                             className="flex-1 mt-6 py-4 border-2 border-dashed border-purple-200 bg-purple-50/30 rounded-2xl text-purple-600 font-bold flex items-center justify-center gap-2 active:bg-purple-50 transition-all font-thai"
                         >
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5"><path d="M12 5v14M5 12h14" /></svg>
-                            เพิ่มผ้าซักใหม่
+                            Addผ้าซักใหม่
                         </button>
                     </div>
 
@@ -357,14 +357,14 @@ export function MobileBatchStepDirty({ onNext, initialData, draftKey, batchId, b
                                             </div>
                                             <div>
                                                 <p className="font-bold text-purple-900 font-thai">{item.name_th}</p>
-                                                <p className="text-xs text-purple-500 font-thai">จำนวน: {item.qty} ชิ้น {item.is_dayuse && " (Day Use)"}</p>
+                                                <p className="text-xs text-purple-500 font-thai">Quantity: {item.qty} ชิ้น {item.is_dayuse && " (Day Use)"}</p>
                                             </div>
                                         </div>
                                         <button 
                                             onClick={() => handleRemoveRewash(idx)}
                                             className="text-xs text-rose-500 font-bold"
                                         >
-                                            ลบ
+                                            Delete
                                         </button>
                                     </div>
                                 ))}
@@ -393,7 +393,7 @@ export function MobileBatchStepDirty({ onNext, initialData, draftKey, batchId, b
                         disabled={isSubmitting}
                         className="py-4 px-4 bg-rose-50 text-rose-600 font-bold rounded-2xl active:scale-95 transition-all text-sm border border-rose-100 font-thai disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        ลบร่าง
+                        Deleteร่าง
                     </button>
                 )}
                 <button
@@ -401,7 +401,7 @@ export function MobileBatchStepDirty({ onNext, initialData, draftKey, batchId, b
                     onClick={handleSaveDraft}
                     className="flex-1 py-4 bg-slate-100 text-slate-700 font-bold rounded-2xl active:scale-95 transition-all text-base border border-slate-200 font-thai flex items-center justify-center gap-2"
                 >
-                    💾 บันทึกร่าง
+                    💾 Saveร่าง
                 </button>
                 <button
                     type="button"

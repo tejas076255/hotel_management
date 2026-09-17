@@ -116,7 +116,7 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
   };
 
   const handleGenerate = async () => {
-    if (!confirm("ยืนยันสร้างใบกำกับภาษีอย่างย่อ? จะไม่สามารถแก้ไขยอดเงินได้อีกหลังจากอัพเดตเข้าฐานข้อมูล")) return;
+    if (!confirm("Confirmสร้างAbbreviated Tax Invoice? จะไม่สามารถEditAmountได้อีกหลังจากอัพเดตเข้าฐานข้อมูล")) return;
     setGenerating(true);
     try {
       const res = await fetch(`/api/tax-invoice/abbreviated/generate`, {
@@ -150,9 +150,9 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
                <div className="h-12 w-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center dark:bg-green-900/50 dark:text-green-400">
                  <CheckCircle className="h-6 w-6" />
                </div>
-               <h3 className="text-lg font-bold text-[var(--text-primary)]">สร้างใบกำกับภาษีสำเร็จ!</h3>
+               <h3 className="text-lg font-bold text-[var(--text-primary)]">สร้างTax InvoiceSuccess!</h3>
                <p className="text-sm text-[var(--text-secondary)]">
-                 สร้างใหม่ {successModal.created} ใบ / อัปเดตใบเดิม {successModal.updated} ใบ / ปิดใบเก่าค้าง {successModal.cancelled} ใบ
+                 สร้างใหม่ {successModal.created} ใบ / อัปเดตใบเดิม {successModal.updated} ใบ / Closeใบเก่าค้าง {successModal.cancelled} ใบ
                </p>
              </div>
              
@@ -162,20 +162,20 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
                  target="_blank"
                  className="flex items-center justify-center gap-2 bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900/40 dark:text-blue-300 px-4 py-3 rounded-lg font-medium transition-colors border border-blue-200 dark:border-blue-800"
                >
-                 <FileText className="h-4 w-4" /> พิมพ์ทั้งเดือน (OTA)
+                 <FileText className="h-4 w-4" /> Printทั้งเดือน (OTA)
                </Link>
                <Link 
                  href={`/pms/tax-invoice/abbreviated/print/period/${year}/${month}?channel_group=walkin_direct`}
                  target="_blank"
                  className="flex items-center justify-center gap-2 bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-900/40 dark:text-green-300 px-4 py-3 rounded-lg font-medium transition-colors border border-green-200 dark:border-green-800"
                >
-                 <FileText className="h-4 w-4" /> พิมพ์ทั้งเดือน (Walk-in/Direct)
+                 <FileText className="h-4 w-4" /> Printทั้งเดือน (Walk-in/Direct)
                </Link>
              </div>
 
              <div className="mt-6 pt-4 border-t border-[var(--border)] flex justify-end">
                <button onClick={() => setSuccessModal(null)} className="px-4 py-2 text-sm text-[var(--text-secondary)] hover:bg-[var(--bg-muted)] rounded-lg transition-colors">
-                 ปิดหน้าต่าง
+                 Closeหน้าต่าง
                </button>
              </div>
           </div>
@@ -188,7 +188,7 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
           <div className="bg-[var(--bg-surface)] p-5 rounded-xl shadow-2xl w-full max-w-sm border border-[var(--border)]">
              <div className="flex justify-between items-start mb-4">
                <div>
-                 <h3 className="font-bold text-[var(--text-primary)]">เลือกคืนที่ต้องการนำรวบ</h3>
+                 <h3 className="font-bold text-[var(--text-primary)]">SelectReturnที่ต้องการนำรวบ</h3>
                  <p className="text-xs text-[var(--text-secondary)] truncate w-[250px]">{nightOverrideModal.guestName}</p>
                </div>
                <button onClick={() => setNightOverrideModal(null)} className="p-1 hover:bg-[var(--bg-muted)] rounded"><X className="h-4 w-4"/></button>
@@ -207,11 +207,11 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
                      <span className="text-sm font-medium text-[var(--text-primary)]">{fmtDate(date)}</span>
                    </label>
                  ))}
-                 {nightOverrideModal.dates.length === 0 && <p className="text-sm text-amber-600">ไม่มีข้อมูลวันที่พักแยกคืน หรือไม่รองรับ Partial</p>}
+                 {nightOverrideModal.dates.length === 0 && <p className="text-sm text-amber-600">ไม่มีข้อมูลDateพักแยกReturn หรือไม่รองReceive Partial</p>}
                </div>
 
                <div className="flex justify-end gap-2">
-                 <button type="button" onClick={() => setNightOverrideModal(null)} className="px-4 py-2 text-sm rounded bg-gray-100 dark:bg-gray-800 text-[var(--text-secondary)]">ยกเลิก</button>
+                 <button type="button" onClick={() => setNightOverrideModal(null)} className="px-4 py-2 text-sm rounded bg-gray-100 dark:bg-gray-800 text-[var(--text-secondary)]">Cancel</button>
                  <button type="submit" disabled={nightOverrideModal.dates.length === 0} className="px-4 py-2 text-sm rounded bg-amber-600 text-white hover:bg-amber-700 disabled:opacity-50">Force Include Nights</button>
                </div>
              </form>
@@ -225,11 +225,11 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
           <div className="bg-[var(--bg-surface)] p-5 rounded-xl shadow-2xl w-full max-w-lg border border-[var(--border)]">
              <div className="flex justify-between items-start mb-4">
                <div>
-                 <h3 className="font-bold text-[var(--text-primary)]">ย้ายรายการข้ามวัน (Row Shift)</h3>
+                 <h3 className="font-bold text-[var(--text-primary)]">ย้ายรายการข้ามDays (Row Shift)</h3>
                  <p className="text-xs text-[var(--text-secondary)] flex items-center gap-2">
-                   <span>กลุ่มราคา: {rowShiftModal.taxGroup}</span>
+                   <span>กลุ่มPrice: {rowShiftModal.taxGroup}</span>
                    <span>|</span>
-                   <span>จากวันที่: {fmtDate(rowShiftModal.origDate)}</span>
+                   <span>จากDate: {fmtDate(rowShiftModal.origDate)}</span>
                  </p>
                </div>
                <button onClick={() => setRowShiftModal(null)} className="p-1 hover:bg-[var(--bg-muted)] rounded"><X className="h-4 w-4"/></button>
@@ -241,7 +241,7 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
                const shifts: any[] = [];
                
                let targetDate = fd.get("target_date") as string;
-               if (!targetDate) return alert("กรุณาเลือกวันที่ปลายทาง");
+               if (!targetDate) return alert("กรุณาSelectDateปลายทาง");
 
                rowShiftModal.entries.forEach((ent, idx) => {
                  const qtyToShift = parseInt(fd.get(`qty_${idx}`) as string || "0");
@@ -257,11 +257,11 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
                  }
                });
 
-               if (shifts.length === 0) return alert("กรุณาระบุจำนวนที่จะย้ายอย่างน้อย 1 รายการ");
+               if (shifts.length === 0) return alert("กรุณาระบุQuantityที่จะย้ายอย่างน้อย 1 รายการ");
                submitRowShift(shifts);
              }}>
                <div className="flex flex-col gap-1 mb-4 pb-4 border-b border-[var(--border)]">
-                 <label className="text-sm font-semibold">วันที่ปลายทาง (Target Date):</label>
+                 <label className="text-sm font-semibold">Dateปลายทาง (Target Date):</label>
                  <input type="date" name="target_date" required className="border border-[var(--border)] bg-[var(--bg-primary)] px-3 py-2 rounded text-sm w-full max-w-[200px]" />
                </div>
 
@@ -273,7 +273,7 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
                        <p className="text-xs text-[var(--text-muted)]">{fmtDate(ent.checkin_date)} &gt; {fmtDate(ent.checkout_date)}</p>
                      </div>
                      <div className="text-right">
-                       <p className="text-xs text-[var(--text-muted)] mb-1">จำนวนที่ย้ายได้ (สุด {ent.quantity})</p>
+                       <p className="text-xs text-[var(--text-muted)] mb-1">Quantityที่ย้ายได้ (สุด {ent.quantity})</p>
                        <input 
                          type="number" 
                          name={`qty_${idx}`} 
@@ -291,8 +291,8 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
                </div>
 
                <div className="flex justify-end gap-2">
-                 <button type="button" onClick={() => setRowShiftModal(null)} className="px-4 py-2 text-sm rounded bg-gray-100 dark:bg-gray-800 text-[var(--text-secondary)] hover:bg-gray-200 dark:hover:bg-gray-700">ยกเลิก</button>
-                 <button type="submit" disabled={!rowShiftModal.entries || rowShiftModal.entries.length === 0} className="px-4 py-2 text-sm rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50">ยืนยันการย้าย</button>
+                 <button type="button" onClick={() => setRowShiftModal(null)} className="px-4 py-2 text-sm rounded bg-gray-100 dark:bg-gray-800 text-[var(--text-secondary)] hover:bg-gray-200 dark:hover:bg-gray-700">Cancel</button>
+                 <button type="submit" disabled={!rowShiftModal.entries || rowShiftModal.entries.length === 0} className="px-4 py-2 text-sm rounded bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50">Confirmการย้าย</button>
                </div>
              </form>
           </div>
@@ -332,7 +332,7 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
             className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50 transition"
           >
             <Save className="h-4 w-4" />
-            {generating ? "Generating..." : "บันทึกและสร้างรันเลขอินวอยซ์ (Generate)"}
+            {generating ? "Generating..." : "Saveและสร้างรันเลขอินวอยซ์ (Generate)"}
           </button>
         </div>
       </div>
@@ -357,7 +357,7 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
               </h2>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-[var(--text-muted)]">จำนวนใบกำกับฯ</span>
+                  <span className="text-[var(--text-muted)]">Quantityใบกำกับฯ</span>
                   <span className="font-medium text-[var(--text-primary)]">{data.summary.total_invoices} ใบ</span>
                 </div>
                 <div className="flex justify-between text-xs pl-2">
@@ -378,7 +378,7 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
                   <span>{fmtMoney(data.summary.vat_total)}</span>
                 </div>
                 <div className="flex justify-between font-bold text-[var(--text-primary)] mt-1 text-base">
-                  <span>จำนวนเงินรวม</span>
+                  <span>Quantityเงินรวม</span>
                   <span>{fmtMoney(data.summary.grand_total_inc_vat)}</span>
                 </div>
               </div>
@@ -418,7 +418,7 @@ export default function AbbreviatedPreviewPage({ params }: { params: { year: str
             {data.excluded.length > 0 && (
               <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-muted)] p-4 shadow-sm dark:border-white/10">
                 <h3 className="font-semibold text-[var(--text-primary)] text-xs mb-2 flex items-center gap-1">
-                  <CheckCircle className="h-3 w-3 text-emerald-500" /> ลบออกจากอย่างย่ออัตโนมัติ ({data.excluded.length})
+                  <CheckCircle className="h-3 w-3 text-emerald-500" /> Deleteออกจากอย่างย่ออัตโนมัติ ({data.excluded.length})
                 </h3>
                 <p className="text-[10px] text-[var(--text-muted)] mb-2">ออกบิลเต็มรูป / DayUse ไปแล้ว</p>
               </div>

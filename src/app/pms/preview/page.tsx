@@ -14,7 +14,7 @@ const EXPORT_OPTIONS: Array<{ value: SalesTaxExportCategory; label: string }> = 
   { value: "abbreviated_ota", label: "OTA" },
   { value: "abbreviated_walkin_direct", label: "Walk-in + Direct" },
   { value: "abbreviated_pos", label: "POS" },
-  { value: "full_tax_invoice", label: "Tax Invoice เต็มรูปแบบ" },
+  { value: "full_tax_invoice", label: "Full Tax Invoice" },
 ];
 
 export default function PreviewIndexPage() {
@@ -29,8 +29,8 @@ export default function PreviewIndexPage() {
   for (let y = 2025; y <= new Date().getFullYear() + 1; y++) yearOptions.push(y);
 
   const MONTHS = [
-    "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-    "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม",
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
   ];
 
   function toggleExportCategory(value: SalesTaxExportCategory) {
@@ -54,8 +54,8 @@ export default function PreviewIndexPage() {
   return (
     <div className="mx-auto max-w-5xl space-y-8 p-6">
       <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold text-[var(--text-primary)]">ใบกำกับภาษีอย่างย่อ (Abbreviated Tax Invoices)</h1>
-        <p className="text-[var(--text-secondary)]">เลือกหมวดหมู่ที่ต้องการดูรายการก่อนการเจเนอเรตและพิมพ์</p>
+        <h1 className="text-3xl font-bold text-[var(--text-primary)]">Abbreviated Tax Invoices Preview</h1>
+        <p className="text-[var(--text-secondary)]">Select a category to view and preview records before generating and printing</p>
       </div>
 
       <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-5 shadow-sm dark:border-white/10">
@@ -66,8 +66,8 @@ export default function PreviewIndexPage() {
                 <FileSpreadsheet className="h-5 w-5" />
               </div>
               <div>
-                <h2 className="font-bold text-[var(--text-primary)]">Export รายงานภาษีขาย Excel</h2>
-                <p className="text-xs text-[var(--text-secondary)]">รูปแบบเดียวกับ Tax bill: 1 row = 1 ใบ</p>
+                <h2 className="font-bold text-[var(--text-primary)]">Export Sales Tax Report (Excel)</h2>
+                <p className="text-xs text-[var(--text-secondary)]">Tax bill format: 1 row = 1 invoice</p>
               </div>
             </div>
 
@@ -108,8 +108,8 @@ export default function PreviewIndexPage() {
             <Bed className="h-6 w-6" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-[var(--text-primary)]">ห้องพัก (Room)</h2>
-            <p className="text-xs text-[var(--text-secondary)] mt-1">ออกใบกำกับภาษีอย่างย่อรายวัน ผูกตาม Monthly Audit หักใบเต็มรูป</p>
+            <h2 className="text-lg font-bold text-[var(--text-primary)]">Rooms</h2>
+            <p className="text-xs text-[var(--text-secondary)] mt-1">Daily abbreviated tax invoices based on Monthly Audit</p>
           </div>
           
           <div className="flex w-full gap-2 mt-auto pt-4 border-t border-[var(--border)] dark:border-white/10">
@@ -132,7 +132,7 @@ export default function PreviewIndexPage() {
             href={`/pms/tax-invoice/abbreviated/preview/${selectedYear}/${selectedMonth}`}
             className="flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--bg-muted)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border)] px-4 py-2 font-medium text-[var(--text-primary)] transition dark:border-white/10"
           >
-            เปิดตาราง Preview <ArrowRight className="h-4 w-4" />
+            Open Preview <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
@@ -143,7 +143,7 @@ export default function PreviewIndexPage() {
           </div>
           <div>
             <h2 className="text-lg font-bold text-[var(--text-primary)]">Day Use</h2>
-            <p className="text-xs text-[var(--text-secondary)] mt-1">ใบกำกับภาษีรวม 1 ใบต่อเดือน สำหรับลูกค้า Walk-in เท่านั้น</p>
+            <p className="text-xs text-[var(--text-secondary)] mt-1">Consolidated monthly tax invoices for Walk-in Day Use</p>
           </div>
           
           <div className="flex w-full gap-2 mt-auto pt-4 border-t border-[var(--border)] dark:border-white/10">
@@ -166,7 +166,7 @@ export default function PreviewIndexPage() {
             href={`/pms/preview/dayuse/${selectedYear}/${selectedMonth}`}
             className="flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--bg-muted)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border)] px-4 py-2 font-medium text-[var(--text-primary)] transition dark:border-white/10"
           >
-            เปิดตาราง Preview <ArrowRight className="h-4 w-4" />
+            Open Preview <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
@@ -177,7 +177,7 @@ export default function PreviewIndexPage() {
           </div>
           <div>
             <h2 className="text-lg font-bold text-[var(--text-primary)]">POS</h2>
-            <p className="text-xs text-[var(--text-secondary)] mt-1">ใบกำกับภาษีแยกรายวัน สำหรับรายการขายแบบ POS (Walk-in)</p>
+            <p className="text-xs text-[var(--text-secondary)] mt-1">Daily breakdown tax invoices for Walk-in POS sales</p>
           </div>
           
           <div className="flex w-full mt-auto pt-4 border-t border-[var(--border)] dark:border-white/10">
@@ -192,7 +192,7 @@ export default function PreviewIndexPage() {
             href={`/pms/preview/pos/${selectedDate}`}
             className="flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--bg-muted)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border)] px-4 py-2 font-medium text-[var(--text-primary)] transition dark:border-white/10"
           >
-            เปิดตาราง Preview <ArrowRight className="h-4 w-4" />
+            Open Preview <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>

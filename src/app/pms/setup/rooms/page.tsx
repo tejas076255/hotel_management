@@ -70,7 +70,7 @@ const BED_TYPES: BedType[] = [
 const CONDITION_CATEGORIES = [
     { key: "ac", label: "🌬 แอร์", base_key: "ac_base", deduct_key: "ac_deduct" },
     { key: "furniture", label: "🛋 เฟอร์นิเจอร์", base_key: "furniture_base", deduct_key: "furniture_deduct" },
-    { key: "bathroom", label: "🚿 ห้องน้ำ", base_key: "bathroom_base", deduct_key: "bathroom_deduct" },
+    { key: "bathroom", label: "🚿 Roomน้ำ", base_key: "bathroom_base", deduct_key: "bathroom_deduct" },
     { key: "wifi", label: "📶 WiFi", base_key: "wifi_base", deduct_key: "wifi_deduct" },
 ] as const;
 
@@ -290,7 +290,7 @@ function RoomCard({
             {/* ── Beds panel ── */}
             {open === "beds" && (
                 <div className="p-4 space-y-3">
-                    <p className="text-xs text-[var(--text-secondary)]">เลือกประเภทเตียงและจำนวนในห้องนี้</p>
+                    <p className="text-xs text-[var(--text-secondary)]">SelectCategoryเตียงและQuantityในRoomนี้</p>
                     {BED_TYPES.map(bt => {
                         const existing = beds.find(b => b.bed_type_code === bt.code);
                         const checked = !!existing;
@@ -471,7 +471,7 @@ function RoomCard({
                                 {/* Add deduction */}
                                 {deductPicker === cat.key ? (
                                     <div className="border border-[var(--border-default)] rounded-lg p-3 bg-[var(--bg-surface)] space-y-2">
-                                        <p className="text-xs font-semibold text-[var(--text-secondary)]">เลือก Preset หรือพิมพ์ใหม่</p>
+                                        <p className="text-xs font-semibold text-[var(--text-secondary)]">Select Preset หรือPrintใหม่</p>
                                         {catTemplates.length > 0 && (
                                             <div className="flex flex-wrap gap-1.5">
                                                 {catTemplates.map(t => (
@@ -486,7 +486,7 @@ function RoomCard({
                                             </div>
                                         )}
                                         <div className="space-y-2 pt-1 border-t border-[var(--border-subtle)] mt-1">
-                                            <p className="text-xs text-[var(--text-secondary)]">หรือพิมพ์รายการใหม่:</p>
+                                            <p className="text-xs text-[var(--text-secondary)]">หรือPrintรายการใหม่:</p>
                                             <input
                                                 className="form-input text-sm w-full"
                                                 placeholder="เช่น ผนังมีรอยแตก, พื้นลื่น..."
@@ -511,8 +511,8 @@ function RoomCard({
                                                     className="btn btn-primary text-sm px-4"
                                                     disabled={!customLabel.trim() || addingDeduct}
                                                     onClick={() => addDeduction(cat.key, customLabel.trim(), customPts)}
-                                                >{addingDeduct ? "..." : "เพิ่ม"}</button>
-                                                <button className="text-sm text-[var(--text-muted)] hover:text-[var(--text-secondary)]" onClick={() => { setDeductPicker(null); setCustomLabel(""); }}>ยกเลิก</button>
+                                                >{addingDeduct ? "..." : "Add"}</button>
+                                                <button className="text-sm text-[var(--text-muted)] hover:text-[var(--text-secondary)]" onClick={() => { setDeductPicker(null); setCustomLabel(""); }}>Cancel</button>
                                             </div>
                                         </div>
                                     </div>
@@ -535,7 +535,7 @@ function RoomCard({
                                 onChange={e => setDetail(prev => ({ ...prev, ac_model: e.target.value }))} />
                         </div>
                         <div>
-                            <label className="form-label text-xs">ปีปรับปรุงล่าสุด</label>
+                            <label className="form-label text-xs">ปีปReceiveปรุงล่าสุด</label>
                             <input className="form-input text-sm" type="date"
                                 value={detail.last_renovated ?? ""}
                                 onChange={e => setDetail(prev => ({ ...prev, last_renovated: e.target.value }))} />
@@ -547,15 +547,15 @@ function RoomCard({
                                 onChange={e => setDetail(prev => ({ ...prev, tv_size_inch: Number(e.target.value) || undefined }))} />
                         </div>
                         <div>
-                            <label className="form-label text-xs">ชั้น</label>
+                            <label className="form-label text-xs">Floor</label>
                             <input className="form-input text-sm" type="number"
                                 value={detail.floor_number ?? ""}
                                 onChange={e => setDetail(prev => ({ ...prev, floor_number: Number(e.target.value) || undefined }))} />
                         </div>
                         <div className="col-span-2">
-                            <label className="form-label text-xs">หมายเหตุ (Admin)</label>
+                            <label className="form-label text-xs">Notes (Admin)</label>
                             <textarea className="form-textarea text-sm" rows={2}
-                                placeholder="บันทึกสิ่งที่ต้องจำ เช่น ประตูฝืดนิดหน่อย..."
+                                placeholder="Saveสิ่งที่ต้องจำ เช่น ประตูฝืดนิดหน่อย..."
                                 value={detail.extra_notes ?? ""}
                                 onChange={e => setDetail(prev => ({ ...prev, extra_notes: e.target.value }))} />
                         </div>
@@ -1070,10 +1070,10 @@ export default function RoomsSetupPage() {
             <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 text-sm text-blue-800">
                 <h3 className="font-bold mb-1">💡 วิธีใช้ Room Condition Scoring</h3>
                 <ul className="list-disc list-inside space-y-0.5 text-xs">
-                    <li>Base score 5/5 = สภาพสมบูรณ์ — ลดลงโดยการเพิ่ม Deduction items</li>
-                    <li>Deduction items สามารถเลือก preset หรือพิมพ์รายการเองได้ และจะบันทึกเป็น preset อัตโนมัติ</li>
-                    <li>Quality &lt; 6/10 → ห้องจะถูก Auto-Assign ท้ายสุด และ Usage Balance ไม่นับ</li>
-                    <li>Usage bar แสดงจำนวน nights สะสมเทียบกับค่าเฉลี่ย — ใช้กระจาย wear ของห้อง</li>
+                    <li>Base score 5/5 = สภาพสมบูรณ์ — ลดลงโดยการAdd Deduction items</li>
+                    <li>Deduction items สามารถSelect preset หรือPrintรายการเองได้ และจะSaveเป็น preset อัตโนมัติ</li>
+                    <li>Quality &lt; 6/10 → Roomจะถูก Auto-Assign ท้ายสุด และ Usage Balance ไม่นับ</li>
+                    <li>Usage bar แสดงQuantity nights สะสมเทียบกับค่าเฉลี่ย — ใช้กระจาย wear ของRoom</li>
                 </ul>
             </div>
 

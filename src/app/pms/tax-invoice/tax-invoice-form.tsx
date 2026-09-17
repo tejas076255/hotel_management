@@ -594,10 +594,10 @@ export default function TaxInvoiceForm({
         <div className="flex items-start gap-3 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/30 rounded-xl p-4">
           <span className="text-lg leading-none mt-0.5">ℹ️</span>
           <div className="text-sm text-amber-800 dark:text-amber-300 leading-relaxed">
-            <p className="font-bold mb-0.5">การแก้ไขใบกำกับภาษีที่ออกแล้ว</p>
+            <p className="font-bold mb-0.5">การEditTax Invoiceที่ออกแล้ว</p>
             <p>
-              ระบบต้อง Issue ใบครบทุกรายการก่อน ค่อยกลับมาที่นี่เพื่อเลือกช่วงวันที่ต้องการ
-              ระบบจะคำนวณยอดจากช่วงวันที่เลือกเท่านั้น พร้อมระบุเหตุผลก่อนบันทึก
+              ระบบต้อง Issue ใบครบทุกรายการก่อน ค่อยกลับมาที่นี่เพื่อSelectช่วงDateต้องการ
+              ระบบจะคำนวณยอดจากช่วงDateSelectเท่านั้น พร้อมระบุเหตุผลก่อนSave
             </p>
           </div>
         </div>
@@ -675,11 +675,11 @@ export default function TaxInvoiceForm({
                 return;
               }
               if (mode === "edit" && !updateReason.trim()) {
-                alert("กรุณาระบุเหตุผลการแก้ไข");
+                alert("กรุณาระบุเหตุผลการEdit");
                 return;
               }
               if (invoiceKind !== "standard" && !viewerIsAdmin) {
-                alert("เฉพาะ Admin เท่านั้นที่ออกหรือแก้ไขใบ Prepayment / Balance ได้");
+                alert("เฉพาะ Admin เท่านั้นที่ออกหรือEditใบ Prepayment / Balance ได้");
                 return;
               }
               if (invoiceKind === "prepayment" && Number(coverageAmount || 0) <= 0) {
@@ -687,11 +687,11 @@ export default function TaxInvoiceForm({
                 return;
               }
               if (invoiceKind !== "standard" && !manualIssueDateReason.trim()) {
-                alert("กรุณาระบุเหตุผลวันที่ Manual สำหรับใบ Split");
+                alert("กรุณาระบุเหตุผลDate Manual สำหReceiveใบ Split");
                 return;
               }
               if (mode === "edit" && filteredLineItems.length === 0) {
-                alert("ไม่มีรายการในช่วงวันที่เลือก กรุณาปรับช่วงวันที่");
+                alert("No Itemsในช่วงDateSelect กรุณาปReceiveช่วงDate");
                 return;
               }
               setShowConfirm(true);
@@ -872,14 +872,14 @@ export default function TaxInvoiceForm({
                 <textarea
                   value={remark}
                   onChange={(e) => setRemark(e.target.value)}
-                  placeholder={language === "th" ? "ข้อความที่ต้องการพิมพ์ในช่องหมายเหตุ" : "Text to print in the remark box"}
+                  placeholder={language === "th" ? "ข้อความที่ต้องการPrintในช่องNotes" : "Text to print in the remark box"}
                   rows={3}
                   maxLength={2000}
                   className="form-input min-h-[80px]"
                 />
                 <p className="text-[10px] text-[var(--text-muted)] mt-1">
                   {language === "th"
-                    ? "ข้อความนี้จะแสดงบนใบกำกับภาษี"
+                    ? "ข้อความนี้จะแสดงบนTax Invoice"
                     : "This text will appear on the printed tax invoice."}
                 </p>
               </div>
@@ -887,18 +887,18 @@ export default function TaxInvoiceForm({
               {mode === "edit" && (
                 <div className="pt-2 border-t border-[var(--border-subtle)]">
                   <label className="form-label text-amber-700 dark:text-amber-400">
-                    เหตุผลการแก้ไข{" "}
+                    เหตุผลการEdit{" "}
                     <span className="text-rose-500">*</span>
                   </label>
                   <textarea
                     value={updateReason}
                     onChange={(e) => setUpdateReason(e.target.value)}
-                    placeholder="ระบุเหตุผล เช่น แก้ไขที่อยู่, ตัดรายการบางคืน..."
+                    placeholder="ระบุเหตุผล เช่น EditAddress, ตัดรายการบางReturn..."
                     rows={2}
                     className="form-input min-h-[60px] resize-none border-amber-200 dark:border-amber-500/30 focus:ring-amber-400"
                   />
                   <p className="text-[10px] text-[var(--text-muted)] mt-1">
-                    หมายเหตุนี้บันทึกใน system เท่านั้น ไม่แสดงบนกระดาษ
+                    Notesนี้Saveใน system เท่านั้น ไม่แสดงบนกระดาษ
                   </p>
                 </div>
               )}
@@ -915,16 +915,16 @@ export default function TaxInvoiceForm({
               {/* Header */}
               <div className="px-5 py-3.5 bg-[var(--bg-muted)] border-b border-[var(--border-default)] flex items-center justify-between">
                 <h2 className="text-sm font-bold text-[var(--text-primary)] flex items-center gap-2">
-                  <span>📅</span> ช่วงวันที่ออกใบ / Invoice Period
+                  <span>📅</span> ช่วงDateออกใบ / Invoice Period
                 </h2>
                 <div className="flex items-center gap-3">
                   {excludedNights > 0 ? (
                     <span className="text-xs font-bold text-amber-600 dark:text-amber-400">
-                      ตัดออก {excludedNights} คืน
+                      ตัดออก {excludedNights} Return
                     </span>
                   ) : (
                     <span className="text-[10px] font-bold text-emerald-600">
-                      ✓ ครบทุกคืน
+                      ✓ ครบทุกReturn
                     </span>
                   )}
                   {reservationId && (
@@ -1005,7 +1005,7 @@ export default function TaxInvoiceForm({
 
                 {/* Full stay reference */}
                 <p className="mt-2.5 text-[10px] text-[var(--text-muted)] text-center">
-                  Full stay: {fmtDisplayDate(fullCheckin)} → {fmtDisplayDate(fullCheckout)} ({fullNights} คืน)
+                  Full stay: {fmtDisplayDate(fullCheckin)} → {fmtDisplayDate(fullCheckout)} ({fullNights} Return)
                 </p>
               </div>
             </div>
@@ -1048,11 +1048,11 @@ export default function TaxInvoiceForm({
               <div className="border-b border-[var(--border-default)] bg-[var(--bg-surface)] p-4">
                 <div className="mb-2 flex items-center justify-between">
                   <p className="text-xs font-bold text-[var(--text-primary)]">Available extra charges</p>
-                  <p className="text-[10px] text-[var(--text-muted)]">เพิ่มแยกบรรทัด หรือรวมเข้า Room charge เฉพาะใบนี้</p>
+                  <p className="text-[10px] text-[var(--text-muted)]">Addแยกบรรทัด หรือรวมเข้า Room charge เฉพาะใบนี้</p>
                 </div>
                 <div className="grid gap-2 sm:grid-cols-2">
                   {availableExtraItems.length === 0 ? (
-                    <p className="text-xs text-[var(--text-muted)]">ไม่มี Extra charge สำหรับ folio นี้</p>
+                    <p className="text-xs text-[var(--text-muted)]">ไม่มี Extra charge สำหReceive folio นี้</p>
                   ) : (
                     availableExtraItems.map((extra) => {
                       const selected = selectedExtraIds.has(extra.id);
@@ -1195,7 +1195,7 @@ export default function TaxInvoiceForm({
                       colSpan={5}
                       className="px-5 py-10 text-center text-[var(--text-muted)] text-sm"
                     >
-                      ไม่มีรายการในช่วงวันที่เลือก
+                      No Itemsในช่วงDateSelect
                     </td>
                   </tr>
                 ) : (
@@ -1261,7 +1261,7 @@ export default function TaxInvoiceForm({
               <div className="w-64 space-y-3">
                 {excludedNights > 0 && (
                   <p className="text-xs text-amber-600 font-bold text-right mb-1">
-                    คำนวณจาก {selectedNights} คืน (ตัด {excludedNights} คืน)
+                    คำนวณจาก {selectedNights} Return (ตัด {excludedNights} Return)
                   </p>
                 )}
                 <div className="flex justify-between text-sm text-[var(--text-secondary)]">
@@ -1331,7 +1331,7 @@ export default function TaxInvoiceForm({
                   </p>
                   {excludedNights > 0 && (
                     <p className="text-xs text-amber-700 dark:text-amber-400 font-bold">
-                      Invoice period: {fmtDisplayDate(editFrom)} → {fmtDisplayDate(editTo)} ({selectedNights} คืน)
+                      Invoice period: {fmtDisplayDate(editFrom)} → {fmtDisplayDate(editTo)} ({selectedNights} Return)
                     </p>
                   )}
                   <ul className="text-[10px] space-y-1 text-rose-600 dark:text-rose-400 font-bold list-disc pl-4">
@@ -1343,18 +1343,18 @@ export default function TaxInvoiceForm({
               ) : (
                 <div className="space-y-2">
                   <p className="text-sm font-bold text-[var(--text-primary)]">
-                    ยืนยันการแก้ไข
+                    ConfirmการEdit
                   </p>
                   <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
-                    ออกใบสำหรับ{" "}
+                    ออกใบสำหReceive{" "}
                     <strong>
                       {fmtDisplayDate(editFrom)} → {fmtDisplayDate(editTo)}
                     </strong>{" "}
-                    ({selectedNights} คืน)
+                    ({selectedNights} Return)
                     {excludedNights > 0 && (
                       <span className="text-amber-600 font-bold">
                         {" "}
-                        · ตัดออก {excludedNights} คืน
+                        · ตัดออก {excludedNights} Return
                       </span>
                     )}
                   </p>
@@ -1416,7 +1416,7 @@ export default function TaxInvoiceForm({
                       ฿{fmtMoney(splitCoveragePreview ?? totals.grand_total)}
                     </span>
                     <span className="block text-[10.35px] text-[var(--text-muted)] uppercase tracking-widest font-bold">
-                      (ราคาที่แสดง รวม VAT 7% แล้ว)
+                      (Priceที่แสดง รวม VAT 7% แล้ว)
                     </span>
                   </div>
                 </div>

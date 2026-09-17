@@ -36,11 +36,11 @@ export function useLinenMonthlySummary(year: number, month: number) {
     total_baht: 18989,
     items: generateMockSummaryRows(month),
     extras: [
-      { item_name: "ขนหนูเพิ่ม", linen_item_id: 2, qty: 174 },
-      { item_name: "ปลอกหมอนเพิ่ม", linen_item_id: 1, qty: 67 }
+      { item_name: "ขนหนูAdd", linen_item_id: 2, qty: 174 },
+      { item_name: "PillowcaseAdd", linen_item_id: 1, qty: 67 }
     ],
     dayuse: [
-      { linen_item_id: 1, item_number: 1, name_th: "ปลอกหมอน (เก่า)", qty: 20 },
+      { linen_item_id: 1, item_number: 1, name_th: "Pillowcase (เก่า)", qty: 20 },
       { linen_item_id: 2, item_number: 2, name_th: "ผ้าขนหนู (เก่า)", qty: 45 }
     ]
   } : undefined;
@@ -118,7 +118,7 @@ export function useLinenMonthlyVariance(year: number, month: number) {
 
 function generateMockSummaryRows(month: number): LinenMonthlySummaryRow[] {
   const items = [
-    { id: 1, num: 1, th: "ปลอกหมอน", en: "Pillow Case", rate: 3 },
+    { id: 1, num: 1, th: "Pillowcase", en: "Pillow Case", rate: 3 },
     { id: 2, num: 2, th: "ผ้าขนหนู", en: "Towel", rate: 5 },
     { id: 3, num: 3, th: "ผ้าเช็ดเท้า", en: "Foot Towel", rate: 3 },
     { id: 4, num: 4, th: "ผ้าปูเล็ก", en: "Single Sheet", rate: 8 },
@@ -173,7 +173,7 @@ function generateMockDailyCells(year: number, month: number): LinenMonthlyDailyC
 
 function generateMockVarianceRows(): LinenMonthlyVarianceRow[] {
   const items = [
-    { id: 1, num: 1, th: "ปลอกหมอน" },
+    { id: 1, num: 1, th: "Pillowcase" },
     { id: 2, num: 2, th: "ผ้าขนหนู" },
     { id: 3, num: 3, th: "ผ้าเช็ดเท้า" },
     { id: 4, num: 4, th: "ผ้าปูเล็ก" },

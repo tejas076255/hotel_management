@@ -196,7 +196,7 @@ export default function AlertsCenterPage() {
                     <div className="flex flex-col items-center justify-center py-24 text-center">
                         <div className="text-6xl mb-4 opacity-50">✨</div>
                         <h3 className="text-lg font-bold text-[var(--text-secondary)]">
-                            {isPreview ? "ไม่มีแจ้งเตือนสำหรับวันที่เลือก" : "ไม่มีแจ้งเตือนวันนี้"}
+                            {isPreview ? "ไม่มีแจ้งเตือนสำหReceiveDateSelect" : "ไม่มีแจ้งเตือนDaysนี้"}
                         </h3>
                         <p className="text-[var(--text-muted)] text-sm">
                             {isPreview ? "No alerts were materialized for this date." : "All clear! Relax and enjoy the day."}

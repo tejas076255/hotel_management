@@ -749,7 +749,7 @@ function RoomCard({
                     {(room.alert_count ?? 0) > 0 && (
                         <span className="absolute bottom-0 left-1/2 -translate-x-1/2">
                             <span className="relative flex h-4 w-4">
-                                {/* วงขยายออก (ping layer) - เพิ่มความแรง 2 เท่า */}
+                                {/* วงขยายออก (ping layer) - Addความแรง 2 เท่า */}
                                 <span
                                     className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-100 ${room.alert_severity === "critical"
                                         ? "bg-red-400"

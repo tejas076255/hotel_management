@@ -110,7 +110,7 @@ export default function RoomCard({
               {dueLoanCollections.length > 0 && (
                 <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-black ${palette.pill}`}>
                   <Package size={12} strokeWidth={2.5} />
-                  เก็บคืน
+                  เก็บReturn
                 </span>
               )}
               {maintenanceAssignments.length > 0 && (
@@ -185,7 +185,7 @@ export default function RoomCard({
         {dueLoanCollections.length > 0 && (
           <div className="mt-4 rounded-[20px] border border-amber-200/80 bg-amber-50 px-4 py-3 dark:border-amber-500/20 dark:bg-amber-500/10">
             <p className="text-sm font-black text-amber-700 dark:text-amber-300">
-              เก็บคืน {dueLoanCollections.length} รายการ · {loanCollectionUnitCount} ชิ้น
+              เก็บReturn {dueLoanCollections.length} รายการ · {loanCollectionUnitCount} ชิ้น
             </p>
             <p className="mt-1 truncate text-xs font-bold text-amber-700/80 dark:text-amber-300/75">
               {dueLoanCollections
@@ -301,7 +301,7 @@ export default function RoomCard({
           <div className="flex items-center justify-between gap-3">
             <span className="inline-flex items-center gap-2">
               <Clock size={14} />
-              ใช้เวลา {formatDuration(room.accumulated_ms ?? 0)}
+              ใช้Time {formatDuration(room.accumulated_ms ?? 0)}
             </span>
             {room.finished_at && (
               <span>

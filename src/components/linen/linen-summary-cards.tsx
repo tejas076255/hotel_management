@@ -23,7 +23,7 @@ export function LinenSummaryCards({ data, isLoading }: LinenSummaryCardsProps) {
                         <Send className="w-6 h-6" />
                     </div>
                     <div>
-                        <p className="text-sm font-semibold text-emerald-800/70 dark:text-emerald-500/70">วันนี้ส่งออก</p>
+                        <p className="text-sm font-semibold text-emerald-800/70 dark:text-emerald-500/70">Daysนี้Sendออก</p>
                         {isLoading ? (
                             <div className="h-8 w-24 bg-emerald-200/50 animate-pulse rounded mt-1" />
                         ) : (
@@ -44,7 +44,7 @@ export function LinenSummaryCards({ data, isLoading }: LinenSummaryCardsProps) {
                         <Clock className="w-6 h-6" />
                     </div>
                     <div>
-                        <p className="text-sm font-semibold text-amber-800/70 dark:text-amber-500/70">ค้างรับคืน</p>
+                        <p className="text-sm font-semibold text-amber-800/70 dark:text-amber-500/70">ค้างReceiveReturn</p>
                         {isLoading ? (
                             <div className="h-8 w-20 bg-amber-200/50 animate-pulse rounded mt-1" />
                         ) : (

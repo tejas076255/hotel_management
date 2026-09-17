@@ -63,9 +63,9 @@ export interface TM30Validation {
 export interface RR3ExportRow {
   /** เลขลำดับ (auto-increment) */
   seq_no: number;
-  /** วันเวลาที่มาเข้าพัก */
+  /** DaysTimeที่มาเข้าพัก */
   checkin_datetime: string;
-  /** ห้องพักเลขที่ */
+  /** Roomเลขที่ */
   room_number: string;
   /** ชื่อตัวและชื่อสกุล */
   full_name: string;
@@ -73,19 +73,19 @@ export interface RR3ExportRow {
   nationality: string;
   /** เลขประจำตัวประชาชน / passport */
   id_or_passport: string;
-  /** ที่อยู่ปัจจุบัน — foreigner: country, Thai: province */
+  /** Addressปัจจุบัน — foreigner: country, Thai: province */
   current_address: string;
-  /** อาชีพ — always "รับจ้าง" */
+  /** อาชีพ — always "Receiveจ้าง" */
   occupation: string;
   /** มาจาก — same logic as current_address */
   coming_from: string;
   /** จะไปที่ — always the default destination province */
   going_to: string;
-  /** วันเวลาที่ออกไป */
+  /** DaysTimeที่ออกไป */
   checkout_datetime: string;
-  /** หมายเหตุ — auto-list missing required fields */
+  /** Notes — auto-list missing required fields */
   remarks: string;
-  /** ราคา — full folio total (primary only, accompanying = 0) */
+  /** Price — full folio total (primary only, accompanying = 0) */
   price: number;
 }
 

@@ -69,7 +69,7 @@ export default function PermissionsPage() {
       });
       const data = await res.json();
       if (data.success) {
-        setSuccessMsg("บันทึกแล้ว");
+        setSuccessMsg("Saveแล้ว");
         setUsers((prev) => prev.map((u) => u.user_id === selectedUser.user_id ? { ...u, allowed_pages: editPages } : u));
         setTimeout(() => setSuccessMsg(null), 2000);
       }
@@ -95,7 +95,7 @@ export default function PermissionsPage() {
       </div>
 
       {loading ? (
-        <div className="text-sm text-[var(--text-muted)]">กำลังโหลด...</div>
+        <div className="text-sm text-[var(--text-muted)]">Loading...</div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* User list */}
@@ -148,7 +148,7 @@ export default function PermissionsPage() {
                   <h3 className="text-sm font-semibold text-[var(--text-primary)]">
                     {selectedUser.full_name ?? selectedUser.email}
                   </h3>
-                  <p className="text-xs text-[var(--text-muted)]">แก้ไข allowed pages</p>
+                  <p className="text-xs text-[var(--text-muted)]">Edit allowed pages</p>
                 </div>
                 {successMsg && (
                   <span className="text-xs text-emerald-600 font-medium">{successMsg}</span>
@@ -199,7 +199,7 @@ export default function PermissionsPage() {
                 disabled={saving === selectedUser.user_id}
                 className="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-sm font-medium py-2 rounded-lg transition-colors"
               >
-                {saving === selectedUser.user_id ? "กำลังบันทึก..." : "บันทึก"}
+                {saving === selectedUser.user_id ? "กำลังSave..." : "Save"}
               </button>
             </div>
           )}

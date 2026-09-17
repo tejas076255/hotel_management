@@ -35,8 +35,8 @@ export function normalizePassport(value: unknown): string {
 export function normalizeGender(value: unknown): "M" | "F" | "Other" | null {
   const raw = String(value ?? "").trim().toUpperCase();
   if (!raw) return null;
-  if (raw === "M" || raw === "MALE" || raw === "1" || raw === "ชาย") return "M";
-  if (raw === "F" || raw === "FEMALE" || raw === "2" || raw === "หญิง") return "F";
+  if (raw === "M" || raw === "MALE" || raw === "1" || raw === "Male") return "M";
+  if (raw === "F" || raw === "FEMALE" || raw === "2" || raw === "Female") return "F";
   if (raw === "X" || raw === "OTHER" || raw === "3") return "Other";
   return null;
 }

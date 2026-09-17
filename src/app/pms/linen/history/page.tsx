@@ -73,7 +73,7 @@ function LinenHistoryPageInner() {
                             <History className="w-5 h-5 text-emerald-500" />
                             <h1 className="text-2xl font-black text-slate-900 dark:text-slate-100 font-thai tracking-tight uppercase">History & Audit</h1>
                         </div>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 font-thai">ประวัติการรับ-ส่งผ้าและบันทึกการแก้ไขย้อนหลัง</p>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 font-thai">HistoryการReceive-Sendผ้าและSaveการEditย้อนหลัง</p>
                     </div>
                 </div>
 
@@ -118,7 +118,7 @@ function LinenHistoryPageInner() {
                                             <span className="font-mono font-bold text-slate-900 dark:text-slate-100">#{selectedBatch.id.substring(0, 8)}</span>
                                         </div>
                                         <div className="flex justify-between text-sm">
-                                            <span className="text-slate-500 font-thai">วันที่</span>
+                                            <span className="text-slate-500 font-thai">Date</span>
                                             <span className="font-bold text-slate-900 dark:text-slate-100 font-thai">{selectedBatch.business_date}</span>
                                         </div>
                                         <div className="flex justify-between text-sm">

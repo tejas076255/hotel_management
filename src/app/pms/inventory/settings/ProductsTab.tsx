@@ -600,7 +600,7 @@ export function ProductsTab() {
                                 Name (TH) {isNameThRequired && <span className="text-red-500">* (บังคับเมื่อเป็นสินค้า POS)</span>}
                             </label>
                             <Input
-                                placeholder="e.g. แชมพู, น้ำดื่มขวด"
+                                placeholder="e.g. Shampoo, Drinking Waterขวด"
                                 value={form.name_th}
                                 onChange={(e) => handleFormChange("name_th", e.target.value)}
                             />
@@ -694,13 +694,13 @@ export function ProductsTab() {
                                     onChange={(e) => handleCheckboxChange("pos_abbreviated_enabled", e.target.checked)}
                                 />
                                 <span className="text-sm font-medium text-[var(--text-table-cell)]">
-                                    เปิดใช้สำหรับการออกใบกำกับภาษีอย่างย่อ (POS)
+                                    เCloseใช้สำหReceiveการออกAbbreviated Tax Invoice (POS)
                                 </span>
                             </label>
                             
                             {form.pos_abbreviated_enabled && !form.sale_price.trim() && (
                                 <div className="mt-2 text-xs bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400 p-2 rounded-lg border border-amber-200 dark:border-amber-800">
-                                    <b>Warning:</b> ยังไม่พร้อมใช้ POS — ต้อง set ราคาขายก่อน ระบบถึงจะนำไปสะสมยอดได้
+                                    <b>Warning:</b> ยังไม่พร้อมใช้ POS — ต้อง set Priceขายก่อน ระบบถึงจะนำไปสะสมยอดได้
                                 </div>
                             )}
                         </div>

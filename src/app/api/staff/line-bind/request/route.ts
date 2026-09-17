@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
         token,
         expires_at: expiresAt,
         expires_in_minutes: 10,
-        instruction: `พิมพ์ข้อความนี้ใน LINE โรงแรม: BIND ${token}`,
+        instruction: `Printข้อความนี้ใน LINE โรงแรม: BIND ${token}`,
       },
     });
   } catch (err) {

@@ -24,7 +24,7 @@ export interface ReceiptRenderData {
 function receiptCopy(data: ReceiptRenderData, labelType: "original" | "copy") {
   const { language: lang } = data;
   const isTh = lang === "th";
-  const title = isTh ? "ใบเสร็จรับเงิน" : "Receipt";
+  const title = isTh ? "Receipt" : "Receipt";
   const copyLabel = isTh
     ? (labelType === "original" ? "ต้นฉบับ / Original" : "สำเนา / Copy")
     : (labelType === "original" ? "Original" : "Copy");
@@ -41,7 +41,7 @@ function receiptCopy(data: ReceiptRenderData, labelType: "original" | "copy") {
 
   const roomText = data.roomNumbers.join(", ") || "-";
   const stayLine = data.checkinDate && data.checkoutDate
-    ? `${isTh ? "เช็คอิน" : "Check-in"} ${fmtDate(data.checkinDate, lang)} — ${isTh ? "เช็คเอาท์" : "Check-out"} ${fmtDate(data.checkoutDate, lang)}`
+    ? `${isTh ? "Check-in" : "Check-in"} ${fmtDate(data.checkinDate, lang)} — ${isTh ? "Check-out" : "Check-out"} ${fmtDate(data.checkoutDate, lang)}`
     : "";
 
   return `
@@ -50,11 +50,11 @@ function receiptCopy(data: ReceiptRenderData, labelType: "original" | "copy") {
         <div class="seller">
           <div class="seller-main">${esc(sellerName)}${hotelSuffix}</div>
           <div class="seller-line">${esc(sellerAddress)}</div>
-          ${data.seller.company_tax_id ? `<div class="seller-line">${isTh ? "เลขประจำตัวผู้เสียภาษี" : "Tax ID"} ${esc(data.seller.company_tax_id)}</div>` : ""}
+          ${data.seller.company_tax_id ? `<div class="seller-line">${isTh ? "เลขประจำตัวผู้เสียTax" : "Tax ID"} ${esc(data.seller.company_tax_id)}</div>` : ""}
           ${data.seller.company_phone ? `<div class="seller-line">${isTh ? "โทร" : "Tel"} ${esc(data.seller.company_phone)}</div>` : ""}
         </div>
         <div class="doc-title">
-          <div class="title-th">ใบเสร็จรับเงิน</div>
+          <div class="title-th">Receipt</div>
           <div class="title-en">Receipt</div>
           <div class="copy-label">${esc(copyLabel)}</div>
         </div>
@@ -62,21 +62,21 @@ function receiptCopy(data: ReceiptRenderData, labelType: "original" | "copy") {
 
       <div class="meta-row">
         <div class="guest-block">
-          <div class="guest-name">${isTh ? "ลูกค้า" : "Guest"} ${esc(data.guestName)}</div>
-          <div class="guest-line">${isTh ? "ห้อง" : "Room"} ${esc(roomText)}</div>
+          <div class="guest-name">${isTh ? "Customer" : "Guest"} ${esc(data.guestName)}</div>
+          <div class="guest-line">${isTh ? "Room" : "Room"} ${esc(roomText)}</div>
           ${stayLine ? `<div class="guest-line">${esc(stayLine)}</div>` : ""}
         </div>
         <div class="meta-box">
           <div><span>${isTh ? "เลขที่" : "No."}</span><b>${esc(data.receiptNo)}</b></div>
-          <div><span>${isTh ? "วันที่" : "Date"}</span><b>${esc(fmtDate(data.printedAt, lang))}</b></div>
+          <div><span>${isTh ? "Date" : "Date"}</span><b>${esc(fmtDate(data.printedAt, lang))}</b></div>
         </div>
       </div>
 
       <div class="divider"></div>
 
       <div class="total-section">
-        <div class="total-label">${isTh ? "จำนวนเงินทั้งสิ้น" : "Grand Total"}</div>
-        <div class="total-amount">${fmtMoney(data.grandTotal)} <span class="total-currency">${isTh ? "บาท" : "THB"}</span></div>
+        <div class="total-label">${isTh ? "Quantityเงินทั้งสิ้น" : "Grand Total"}</div>
+        <div class="total-amount">${fmtMoney(data.grandTotal)} <span class="total-currency">${isTh ? "THB" : "THB"}</span></div>
         ${data.note ? `<div class="note-text">${esc(data.note)}</div>` : ""}
       </div>
 
@@ -85,7 +85,7 @@ function receiptCopy(data: ReceiptRenderData, labelType: "original" | "copy") {
       <div class="sig-row">
         <div class="sig-col">
           <div class="sig-line"></div>
-          <div class="sig-label">${isTh ? "พนักงานเก็บเงิน" : "Collection Staff"}</div>
+          <div class="sig-label">${isTh ? "Staffเก็บเงิน" : "Collection Staff"}</div>
         </div>
         <div class="sig-col">
           <div class="sig-name">นาย ตัวอย่าง สมมุติ</div>

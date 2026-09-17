@@ -25,7 +25,7 @@ export function BatchQrShare({ token, summaryText, monthlyLink }: BatchQrSharePr
   const handleCopy = async () => {
     try {
       const fullContent = summaryText 
-        ? `${summaryText}\n\nเปิดดูรายละเอียด/ยืนยันได้ที่: ${vendorLink}` 
+        ? `${summaryText}\n\nเCloseดูDetails/Confirmได้ที่: ${vendorLink}` 
         : vendorLink;
         
       await navigator.clipboard.writeText(fullContent);
@@ -57,9 +57,9 @@ export function BatchQrShare({ token, summaryText, monthlyLink }: BatchQrSharePr
          </svg>
       </div>
       <div>
-         <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">เสร็จสิ้นกระบวนการรับ-ส่งผ้า</h3>
+         <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">เสร็จสิ้นกระบวนการReceive-Sendผ้า</h3>
          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-            โปรดส่งลิงก์ด้านล่าง หรือให้ร้านซักรีดสแกน QR Code เพื่อให้ทางร้านเปิดดูรายละเอียดและยืนยัน
+            โปรดSendลิงก์ด้านล่าง หรือให้ร้านซักรีดสแกน QR Code เพื่อให้ทางร้านเCloseดูDetailsและConfirm
          </p>
       </div>
 
@@ -78,12 +78,12 @@ export function BatchQrShare({ token, summaryText, monthlyLink }: BatchQrSharePr
           {copied ? (
             <>
                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><polyline points="20 6 9 17 4 12" /></svg>
-               คัดลอกสำเร็จแล้ว
+               คัดลอกSuccessแล้ว
             </>
           ) : (
             <>
                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-               คัดลอกลิงก์ส่งให้ร้าน
+               คัดลอกลิงก์Sendให้ร้าน
             </>
           )}
         </button>
@@ -98,7 +98,7 @@ export function BatchQrShare({ token, summaryText, monthlyLink }: BatchQrSharePr
               <line x1="8" y1="2" x2="8" y2="6" />
               <line x1="3" y1="10" x2="21" y2="10" />
             </svg>
-            <span className="text-xs font-bold text-slate-600 dark:text-slate-400 font-thai">สรุปรายเดือน (สำหรับร้าน)</span>
+            <span className="text-xs font-bold text-slate-600 dark:text-slate-400 font-thai">สรุปรายเดือน (สำหReceiveร้าน)</span>
           </div>
           <div className="flex items-center gap-2 p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg text-sm mb-2 border border-emerald-100 dark:border-emerald-800">
             <span className="truncate flex-1 text-emerald-700 dark:text-emerald-400 text-left select-all text-xs">{monthlyLink}</span>
@@ -110,7 +110,7 @@ export function BatchQrShare({ token, summaryText, monthlyLink }: BatchQrSharePr
             {monthlyCopied ? (
               <>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><polyline points="20 6 9 17 4 12" /></svg>
-                คัดลอกสำเร็จแล้ว
+                คัดลอกSuccessแล้ว
               </>
             ) : (
               <>

@@ -20,69 +20,69 @@ type AvailabilityDisplayConfig = {
 export const MOBILE_TEXT_ROOM_DISPLAY: AvailabilityDisplayConfig[] = [
   {
     key: "double_standard",
-    name: "ห้องธรรมดา เตียงเดี่ยว",
-    aliases: ["double standard", "ห้องธรรมดาเตียงเดี่ยว"],
-    linkLabel: "ห้องธรรมดา",
+    name: "Roomธรรมดา เตียงเดี่ยว",
+    aliases: ["double standard", "Roomธรรมดาเตียงเดี่ยว"],
+    linkLabel: "Roomธรรมดา",
   },
   {
     key: "twin_standard",
-    name: "ห้องธรรมดา เตียงคู่",
-    aliases: ["twin standard", "ห้องธรรมดาเตียงคู่"],
-    linkLabel: "ห้องธรรมดา",
+    name: "Roomธรรมดา เตียงคู่",
+    aliases: ["twin standard", "Roomธรรมดาเตียงคู่"],
+    linkLabel: "Roomธรรมดา",
   },
   {
     key: "deluxe_queen",
-    name: "ห้องดีลักซ์ เตียงเดี่ยว",
-    aliases: ["deluxe queen", "ห้องดีลักซ์เตียงเดี่ยว"],
-    linkLabel: "ห้องดีลักซ์",
+    name: "Roomดีลักซ์ เตียงเดี่ยว",
+    aliases: ["deluxe queen", "Roomดีลักซ์เตียงเดี่ยว"],
+    linkLabel: "Roomดีลักซ์",
   },
   {
     key: "deluxe_twin",
-    name: "ห้องดีลักซ์ เตียงคู่",
-    aliases: ["deluxe twin", "ห้องดีลักซ์เตียงคู่"],
-    linkLabel: "ห้องดีลักซ์",
+    name: "Roomดีลักซ์ เตียงคู่",
+    aliases: ["deluxe twin", "Roomดีลักซ์เตียงคู่"],
+    linkLabel: "Roomดีลักซ์",
   },
   {
     key: "triple_beds",
-    name: "ห้องสามเตียง",
-    aliases: ["triple beds", "ห้องสามเตียง"],
-    linkLabel: "ห้องสามเตียง",
+    name: "Roomสามเตียง",
+    aliases: ["triple beds", "Roomสามเตียง"],
+    linkLabel: "Roomสามเตียง",
   },
   {
     key: "junior_suite",
-    name: "ห้องใหญ่ เตียงคิง",
-    aliases: ["junior suite", "ห้องใหญ่เตียงคิง"],
-    linkLabel: "ห้องใหญ่ เตียงคิง",
+    name: "Roomใหญ่ เตียงคิง",
+    aliases: ["junior suite", "Roomใหญ่เตียงคิง"],
+    linkLabel: "Roomใหญ่ เตียงคิง",
   },
   {
     key: "family_room",
-    name: "ห้องแฟมิลี่ (พักได้ 3 ท่าน ค่ะ)",
-    aliases: ["family room", "ห้องแฟมิลี่"],
-    linkLabel: "ห้องแฟมิลี่",
+    name: "Roomแฟมิลี่ (พักได้ 3 ท่าน ค่ะ)",
+    aliases: ["family room", "Roomแฟมิลี่"],
+    linkLabel: "Roomแฟมิลี่",
   },
 ];
 
 export const MOBILE_TEXT_ROOM_LINKS: Record<string, string> = {
-  ห้องธรรมดา: "https://photos.app.goo.gl/mx3kJMCvRWt8x33d7",
-  ห้องดีลักซ์: "https://photos.app.goo.gl/c94VaCBth1dPvTScA",
-  ห้องสามเตียง: "https://photos.app.goo.gl/QV2Y4mifSCfhHKFf8",
-  "ห้องใหญ่ เตียงคิง": "https://photos.app.goo.gl/5Skn5eH3AzvXQQh78",
-  ห้องแฟมิลี่: "https://photos.app.goo.gl/ReiwqRvkmPpVJRmx5",
+  Roomธรรมดา: "https://photos.app.goo.gl/mx3kJMCvRWt8x33d7",
+  Roomดีลักซ์: "https://photos.app.goo.gl/c94VaCBth1dPvTScA",
+  Roomสามเตียง: "https://photos.app.goo.gl/QV2Y4mifSCfhHKFf8",
+  "Roomใหญ่ เตียงคิง": "https://photos.app.goo.gl/5Skn5eH3AzvXQQh78",
+  Roomแฟมิลี่: "https://photos.app.goo.gl/ReiwqRvkmPpVJRmx5",
 };
 
 const THAI_MONTHS = [
-  "มกราคม",
-  "กุมภาพันธ์",
-  "มีนาคม",
-  "เมษายน",
-  "พฤษภาคม",
-  "มิถุนายน",
-  "กรกฎาคม",
-  "สิงหาคม",
-  "กันยายน",
-  "ตุลาคม",
-  "พฤศจิกายน",
-  "ธันวาคม",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 function parseYmd(value: string): Date {
@@ -113,7 +113,7 @@ export function formatPriceBreakdown(dailyPrices: number[]): string {
   const normalized = dailyPrices.map((price) => Number(price || 0));
   const firstPrice = normalized[0] ?? 0;
   if (normalized.every((price) => price === firstPrice)) {
-    return `ราคาคืนละ ${formatMoney(firstPrice)}`;
+    return `PriceReturnละ ${formatMoney(firstPrice)}`;
   }
 
   const counts = new Map<number, number>();
@@ -122,7 +122,7 @@ export function formatPriceBreakdown(dailyPrices: number[]): string {
   }
 
   return Array.from(counts.entries())
-    .map(([price, count]) => `ราคาคืนละ ${formatMoney(price)} ${count} คืน`)
+    .map(([price, count]) => `PriceReturnละ ${formatMoney(price)} ${count} Return`)
     .join(", ");
 }
 
@@ -130,27 +130,27 @@ export function formatBookingSummaryText(summaries: SummaryReservation[]): strin
   if (summaries.length === 0) return "";
 
   const totalPrice = summaries.reduce((sum, item) => sum + Number(item.price || 0), 0);
-  let text = "สรุปการจองของคุณลูกค้านะคะ\n";
+  let text = "สรุปการจองของคุณCustomerนะคะ\n";
 
   if (summaries.length === 1) {
     const item = summaries[0];
     text += `คุณ${item.name}\n`;
     text += `- จอง${item.roomTypeThai}\n`;
-    text += `- เข้าพักวันที่ ${formatThaiDayMonth(item.checkinDate)} - วันออก: ${formatThaiDayMonth(item.checkoutDate)}\n`;
-    text += `- รวมจำนวน ${item.nights} คืน ${formatPriceBreakdown(item.dailyPrices)}\n`;
-    text += `ราคารวม ${formatMoney(item.price)} บาท ค่ะ`;
+    text += `- เข้าพักDate ${formatThaiDayMonth(item.checkinDate)} - Daysออก: ${formatThaiDayMonth(item.checkoutDate)}\n`;
+    text += `- รวมQuantity ${item.nights} Return ${formatPriceBreakdown(item.dailyPrices)}\n`;
+    text += `Priceรวม ${formatMoney(item.price)} THB ค่ะ`;
     return text;
   }
 
   text += `คุณ${summaries[0].name}\n`;
   summaries.forEach((item, index) => {
-    text += `\nห้องที่ ${index + 1}:\n`;
+    text += `\nRoomที่ ${index + 1}:\n`;
     text += `- จอง${item.roomTypeThai}\n`;
-    text += `- เข้าพักวันที่ ${formatThaiDayMonth(item.checkinDate)} - วันออก: ${formatThaiDayMonth(item.checkoutDate)}\n`;
-    text += `- รวมจำนวน ${item.nights} คืน ${formatPriceBreakdown(item.dailyPrices)}\n`;
-    text += `- ราคา ${formatMoney(item.price)} บาท\n`;
+    text += `- เข้าพักDate ${formatThaiDayMonth(item.checkinDate)} - Daysออก: ${formatThaiDayMonth(item.checkoutDate)}\n`;
+    text += `- รวมQuantity ${item.nights} Return ${formatPriceBreakdown(item.dailyPrices)}\n`;
+    text += `- Price ${formatMoney(item.price)} THB\n`;
   });
-  text += `\nราคารวมทั้งหมด ${formatMoney(totalPrice)} บาท ค่ะ`;
+  text += `\nPriceรวมAll ${formatMoney(totalPrice)} THB ค่ะ`;
   return text;
 }
 
@@ -177,7 +177,7 @@ export function resolveRoomTypeThaiLabel(nameEn?: string | null, nameTh?: string
     return display.name.replace(/\s+/g, "");
   }
 
-  return String(nameEn ?? "ไม่ทราบประเภท").trim() || "ไม่ทราบประเภท";
+  return String(nameEn ?? "ไม่ทราบCategory").trim() || "ไม่ทราบCategory";
 }
 
 type AvailabilityDayData = Record<
@@ -264,15 +264,15 @@ export function formatAvailabilityText(pricesByDay: Record<string, AvailabilityD
       chunk.startDate === chunk.endDate
         ? formatThaiDayMonth(chunk.startDate)
         : `${formatThaiDayMonth(chunk.startDate)} - ${formatThaiDayMonth(chunk.endDate)}`;
-    text += `ราคาห้องเข้าพักวันที่ ${dateText} ค่ะ\n`;
+    text += `PriceRoomเข้าพักDate ${dateText} ค่ะ\n`;
 
     MOBILE_TEXT_ROOM_DISPLAY.forEach((room, roomIndex) => {
       const row = chunk.combinedPrices[room.key];
       if (!row) return;
       if (row.status === "available") {
-        text += `${roomIndex + 1}. ${room.name} ราคา ${formatMoney(row.price)}/คืน\n`;
+        text += `${roomIndex + 1}. ${room.name} Price ${formatMoney(row.price)}/Return\n`;
       } else if (row.status === "partial") {
-        text += `${roomIndex + 1}. ${room.name} มีว่างแต่ไม่ครบทุกวัน ค่ะ\n`;
+        text += `${roomIndex + 1}. ${room.name} มีว่างแต่ไม่ครบทุกDays ค่ะ\n`;
       } else {
         text += `${roomIndex + 1}. ${room.name} เต็มค่ะ\n`;
       }
@@ -281,8 +281,8 @@ export function formatAvailabilityText(pricesByDay: Record<string, AvailabilityD
     if (index < chunks.length - 1) text += "\n";
   });
 
-  text += "\nห้องธรรมดาจะเป็นห้องที่ยังไม่ได้ปรับปรุงค่ะ ส่วนที่เหลือปรับปรุงใหม่หมดแล้วค่ะ\n";
-  text += "ดูรูปห้องพักได้ที่นี่ค่ะ\n";
+  text += "\nRoomธรรมดาจะเป็นRoomที่ยังไม่ได้ปReceiveปรุงค่ะ ส่วนที่เหลือปReceiveปรุงใหม่หมดแล้วค่ะ\n";
+  text += "ดูรูปRoomได้ที่นี่ค่ะ\n";
   Object.entries(MOBILE_TEXT_ROOM_LINKS).forEach(([label, link]) => {
     text += `- ${label}: ${link}\n`;
   });
@@ -309,7 +309,7 @@ export function formatPriceQuoteText(input: {
 }): string {
   const customerName = String(input.customerName ?? "")
     .replace(/^คุณ\s*/i, "")
-    .trim() || "ลูกค้า";
+    .trim() || "Customer";
   const nights = Math.max(1, Number(input.nights || 1));
   const rooms = input.rooms.filter((room) => Number(room.quantity) > 0);
   const totalAll = rooms.reduce((sum, room) => {
@@ -317,8 +317,8 @@ export function formatPriceQuoteText(input: {
     return sum + perRoomTotal * Number(room.quantity || 0);
   }, 0);
 
-  let text = `สรุปประเภทห้องและราคาตามที่คุณ ${customerName} สอบถามมานะคะ\n`;
-  text += `เข้าพักวันที่ ${formatThaiDayMonth(input.checkin)} - วันออก: ${formatThaiDayMonth(input.checkout)} รวม ${nights} คืน\n`;
+  let text = `สรุปCategoryRoomและPriceตามที่คุณ ${customerName} สอบถามมานะคะ\n`;
+  text += `เข้าพักDate ${formatThaiDayMonth(input.checkin)} - Daysออก: ${formatThaiDayMonth(input.checkout)} รวม ${nights} Return\n`;
 
   for (const room of rooms) {
     const quantity = Math.max(1, Number(room.quantity || 1));
@@ -328,23 +328,23 @@ export function formatPriceQuoteText(input: {
     const firstPrice = normalizedPrices[0] ?? 0;
     const samePrice = normalizedPrices.length > 0 && normalizedPrices.every((price) => price === firstPrice);
 
-    text += `\n${compactThaiRoomName(room.roomTypeName)} จำนวน ${quantity} ห้อง\n`;
+    text += `\n${compactThaiRoomName(room.roomTypeName)} Quantity ${quantity} Room\n`;
     if (samePrice) {
-      text += `- ราคาคืนละ ${formatMoney(firstPrice)} บาท/ห้อง x ${nights} คืน\n`;
+      text += `- PriceReturnละ ${formatMoney(firstPrice)} THB/Room x ${nights} Return\n`;
     } else {
       const detail = normalizedPrices
-        .map((price, index) => `${formatThaiDayMonth(addDays(input.checkin, index))} ${formatMoney(price)} บาท`)
+        .map((price, index) => `${formatThaiDayMonth(addDays(input.checkin, index))} ${formatMoney(price)} THB`)
         .join(", ");
-      text += `- ราคาตามวันที่ ${detail}\n`;
+      text += `- PriceตามDate ${detail}\n`;
     }
     if (quantity === 1) {
-      text += `- ราคารวม ${formatMoney(lineTotal)} บาท\n`;
+      text += `- Priceรวม ${formatMoney(lineTotal)} THB\n`;
     } else {
-      text += `- ราคา ${formatMoney(perRoomTotal)} บาท/ห้อง ราคารวม ${formatMoney(lineTotal)} บาท\n`;
+      text += `- Price ${formatMoney(perRoomTotal)} THB/Room Priceรวม ${formatMoney(lineTotal)} THB\n`;
     }
   }
 
-  text += `\nราคารวมทั้งหมด ${formatMoney(totalAll)} บาทค่ะ`;
+  text += `\nPriceรวมAll ${formatMoney(totalAll)} THBค่ะ`;
   return text;
 }
 

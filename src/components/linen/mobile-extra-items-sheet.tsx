@@ -87,7 +87,7 @@ export function MobileExtraItemsSheet({ isOpen, onClose, onAdd, existingItemIds 
                     
                     <div className="px-6 pb-4 border-b border-slate-50 dark:border-slate-800 flex justify-between items-center">
                         <div>
-                            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 font-thai">เพิ่มรายการพิเศษ</h2>
+                            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 font-thai">Addรายการพิเศษ</h2>
                             <p className="text-sm text-slate-400 dark:text-slate-500 font-thai">นับผ้าอื่นที่ไม่ได้อยู่ในรายการหลัก</p>
                         </div>
                         <button onClick={onClose} className="w-10 h-10 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400 active:scale-95 transition-all">
@@ -97,7 +97,7 @@ export function MobileExtraItemsSheet({ isOpen, onClose, onAdd, existingItemIds 
 
                     <div className="flex-1 overflow-y-auto p-6 pt-2">
                         {isLoading ? (
-                            <div className="py-20 text-center text-slate-400 animate-pulse font-thai">กำลังโหลด...</div>
+                            <div className="py-20 text-center text-slate-400 animate-pulse font-thai">Loading...</div>
                         ) : (
                             <div className="space-y-1">
                                 {items.filter(item => !existingItemIds.includes(item.id)).map((item) => (
@@ -144,7 +144,7 @@ export function MobileExtraItemsSheet({ isOpen, onClose, onAdd, existingItemIds 
                                 : 'bg-slate-100 dark:bg-slate-800 text-slate-400 cursor-not-allowed shadow-none'
                             }`}
                         >
-                            ยืนยัน {selectedCount > 0 && `(${selectedCount} รายการ)`}
+                            Confirm {selectedCount > 0 && `(${selectedCount} รายการ)`}
                         </button>
                     </div>
                 </div>

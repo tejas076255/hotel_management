@@ -29,7 +29,7 @@ export default function MonthlyMegaPage() {
                         Linen Mega Reconciliation Table
                     </h1>
                     <p className="text-sm text-slate-500 dark:text-slate-400 font-thai">
-                        ประจำเดือน {month}/{year} — สรุปยอดนับคาดการณ์, ยอดส่ง, ยอดรับคืน และส่วนต่างรายวัน
+                        ประจำเดือน {month}/{year} — สรุปยอดนับคาดการณ์, ยอดSend, ยอดReceiveReturn และส่วนต่างรายDays
                     </p>
                 </div>
                 <MonthPicker currentDate={selectedDate} onChange={handleMonthChange} />

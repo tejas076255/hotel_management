@@ -202,8 +202,8 @@ export default function ScanPassport() {
                   </p>
                   <p className="text-sm font-medium text-amber-700 dark:text-amber-400 line-clamp-3">
                     หา booking อัตโนมัติไม่เจอจากชื่อใน passport
-                    แต่ยังเลือกห้องเองแล้ว check-in ต่อได้ตามปกติ
-                    โดยจะยึดชื่อแขกจริงตอน confirm
+                    แต่ยังSelectRoomเองแล้ว check-in ต่อได้ตามปกติ
+                    โดยจะยึดชื่อGuestจริงตอน confirm
                   </p>
                 </div>
 

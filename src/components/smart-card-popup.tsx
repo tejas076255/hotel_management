@@ -87,12 +87,12 @@ const THAI_NAME_PREFIXES = [
   "ส.อ.", "ส.ท.", "ส.ต.",
   "จ.อ.", "จ.ท.", "จ.ต.",
   "น.ส.", "ด.ช.", "ด.ญ.", "นส", "ดช", "ดญ",
-  "นาย", "นางสาว", "นาง", "เด็กชาย", "เด็กหญิง",
+  "นาย", "นางสาว", "นาง", "เด็กMale", "เด็กFemale",
   "ดร.", "ศ.", "รศ.", "ผศ.", "นพ.", "พญ.",
 ];
 
 const THAI_NAME_PREFIX_PATTERN = new RegExp(
-  `^(?:${THAI_NAME_PREFIXES.sort((a, b) => b.length - a.length).map(escapeRegExp).join("|")})(?:\\s*หญิง)?(?:\\s+|$)`,
+  `^(?:${THAI_NAME_PREFIXES.sort((a, b) => b.length - a.length).map(escapeRegExp).join("|")})(?:\\s*Female)?(?:\\s+|$)`,
   "u"
 );
 

@@ -192,27 +192,27 @@ export function formatTaxInvoiceItemDescription(item: TaxInvoiceLineItem, lang: 
     if (roomCount > 1) {
       return lang === "en"
         ? `Room charge ${roomCount} rooms (${dateLabel})`
-        : `ค่าห้องพัก ${roomCount} ห้อง (${dateLabel})`;
+        : `ค่าRoom ${roomCount} Room (${dateLabel})`;
     }
-    return lang === "en" ? `Room charge (${dateLabel})` : `ค่าห้องพัก (${dateLabel})`;
+    return lang === "en" ? `Room charge (${dateLabel})` : `ค่าRoom (${dateLabel})`;
   }
   if (lang !== "en" && item.kind === "room_charge") {
-    return description.replace(/^ค่าห้อง(?!พัก)\s*/i, "ค่าห้องพัก ").trim();
+    return description.replace(/^ค่าRoom(?!พัก)\s*/i, "ค่าRoom ").trim();
   }
   if (lang !== "en" || item.kind !== "room_charge") return description;
 
   return description
-    .replace(/^ค่าห้องพัก\s*Room\s*/i, "Room charge ")
-    .replace(/^ค่าห้องพัก\s*/i, "Room charge ")
-    .replace(/^ค่าห้อง\s*Room\s*/i, "Room charge ")
-    .replace(/^ค่าห้อง\s*/i, "Room charge ")
+    .replace(/^ค่าRoom\s*Room\s*/i, "Room charge ")
+    .replace(/^ค่าRoom\s*/i, "Room charge ")
+    .replace(/^ค่าRoom\s*Room\s*/i, "Room charge ")
+    .replace(/^ค่าRoom\s*/i, "Room charge ")
     .trim();
 }
 
 export function formatTaxInvoiceItemUnit(item: TaxInvoiceLineItem, lang: TaxInvoiceLanguage): string {
   const unit = String(item.unit || "").trim();
   if (lang !== "en") return unit;
-  if (item.kind === "room_charge" && unit === "คืน") return Number(item.quantity) === 1 ? "Night" : "Nights";
+  if (item.kind === "room_charge" && unit === "Return") return Number(item.quantity) === 1 ? "Night" : "Nights";
   if (item.kind === "extra_charge" && unit === "รายการ") return "Item";
   return unit;
 }
@@ -270,30 +270,30 @@ export function getLabels(lang: TaxInvoiceLanguage) {
         hq: "Head Office",
       }
     : {
-        title: "ใบเสร็จรับเงิน/ใบกำกับภาษี",
-        customer: "ลูกค้า",
-        address: "ที่อยู่",
-        taxId: "เลขประจำตัวผู้เสียภาษี",
+        title: "Receipt/Tax Invoice",
+        customer: "Customer",
+        address: "Address",
+        taxId: "เลขประจำตัวผู้เสียTax",
         branch: "สาขา",
-        room: "ห้อง",
+        room: "Room",
         invoiceNo: "เลขที่ Invoice",
-        date: "วันที่",
+        date: "Date",
         ref: "อ้างอิง",
         no: "ลำดับ",
         item: "รายการ",
-        qty: "จำนวน",
+        qty: "Quantity",
         unit: "หน่วย",
-        unitPrice: "ราคา/หน่วย",
-        discount: "ส่วนลด",
-        amount: "จำนวนเงิน (บาท)",
-        remark: "หมายเหตุ",
+        unitPrice: "Unit Price",
+        discount: "Discount",
+        amount: "Quantityเงิน (THB)",
+        remark: "Notes",
         ifAny: "(หากมี)",
         subtotal: "รวมเป็นเงิน (ก่อน VAT)",
-        vat: "ภาษีมูลค่าเพิ่ม 7%",
-        total: "จำนวนเงินทั้งสิ้น",
-        baht: "บาท",
+        vat: "Taxมูลค่าAdd 7%",
+        total: "Quantityเงินทั้งสิ้น",
+        baht: "THB",
         pending: "รอเลขจากระบบ",
-        cashier: "พนักงานเก็บเงิน",
+        cashier: "Staffเก็บเงิน",
         manager: "ผู้จัดการโรงแรม",
         original: "ต้นฉบับ / Original",
         copy: "สำเนา / Copy",

@@ -24,8 +24,8 @@ export default function SuccessStep() {
   const draftReason = String(result?.draft_reason ?? "").trim();
   const draftMessage =
     draftReason === "room_not_ready"
-      ? result?.draft_message || "ห้องยังไม่พร้อมเข้าพัก ระบบบันทึกเป็น Draft ให้ก่อน รอแม่บ้าน approve แล้วค่อย Complete Check-in"
-      : "กรุณากรอกข้อมูลเพิ่มเติมจาก Desktop ในเมนู Booking > Passport OCR";
+      ? result?.draft_message || "Roomยังไม่พร้อมเข้าพัก ระบบSaveเป็น Draft ให้ก่อน รอMaid approve แล้วค่อย Complete Check-in"
+      : "กรุณากรอกข้อมูลAddเติมจาก Desktop ในเมนู Booking > Passport OCR";
 
   return (
     <div className="flex flex-col min-h-screen bg-[var(--bg-surface)]">
@@ -65,7 +65,7 @@ export default function SuccessStep() {
               Room {result?.room_number ?? "Updated"}
             </p>
             <p className="text-sm font-semibold text-emerald-700 dark:text-emerald-400 mb-6">
-              Check-in สำเร็จแล้ว และสถานะห้องเข้า In House เรียบร้อย
+              Check-in Successแล้ว และStatusRoomเข้า In House เรียบร้อย
             </p>
           </>
         )}

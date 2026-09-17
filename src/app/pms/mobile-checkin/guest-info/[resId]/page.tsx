@@ -160,7 +160,7 @@ export default function GuestInfo() {
         const json = await res.json().catch(() => null);
         if (requestId !== lookupRequestRef.current) return;
         if (!res.ok || !json?.success) {
-          throw new Error(json?.error || "ค้นหาโปรไฟล์ไม่สำเร็จ");
+          throw new Error(json?.error || "Searchโปรไฟล์ไม่Success");
         }
 
         const found = (json.profile ?? null) as ExistingProfileCandidate | null;
@@ -172,7 +172,7 @@ export default function GuestInfo() {
         if (requestId !== lookupRequestRef.current) return;
         setProfileCandidate(null);
         setSelectedProfileId(null);
-        setProfileLookupError(err instanceof Error ? err.message : "ค้นหาโปรไฟล์ไม่สำเร็จ");
+        setProfileLookupError(err instanceof Error ? err.message : "Searchโปรไฟล์ไม่Success");
       } finally {
         if (requestId === lookupRequestRef.current) {
           setProfileLookupLoading(false);
@@ -372,7 +372,7 @@ export default function GuestInfo() {
             <div>
                <p className="text-sm font-bold text-amber-800 dark:text-amber-300 uppercase">Draft Mode Active</p>
                <p className="text-xs font-semibold text-amber-700 dark:text-amber-400 mt-1">
-                 Booking นี้เคยถูกบันทึกเป็น draft มาก่อน แต่ถ้าข้อมูลครบแล้ว confirm รอบนี้จะเปลี่ยนเป็น active ได้
+                 Booking นี้เคยถูกSaveเป็น draft มาก่อน แต่ถ้าข้อมูลครบแล้ว confirm รอบนี้จะเปลี่ยนเป็น active ได้
                </p>
             </div>
           </div>
@@ -450,7 +450,7 @@ export default function GuestInfo() {
                 {profileLookupLoading && (
                   <div className="flex items-center gap-2 text-xs font-semibold text-[var(--text-secondary)]">
                     <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                    กำลังค้นหาโปรไฟล์เดิม...
+                    กำลังSearchโปรไฟล์เดิม...
                   </div>
                 )}
 
@@ -488,7 +488,7 @@ export default function GuestInfo() {
                             : "bg-emerald-100 text-emerald-700 border-emerald-300 hover:bg-emerald-200"
                         }`}
                       >
-                        {selectedProfileId === profileCandidate.id ? "เลือกโปรไฟล์นี้แล้ว" : "ใช้โปรไฟล์นี้"}
+                        {selectedProfileId === profileCandidate.id ? "Selectโปรไฟล์นี้แล้ว" : "ใช้โปรไฟล์นี้"}
                       </button>
                       {selectedProfileId && selectedProfileId === profileCandidate.id && (
                         <button
@@ -496,7 +496,7 @@ export default function GuestInfo() {
                           onClick={() => setSelectedProfileId(null)}
                           className="px-3 py-1.5 rounded-lg text-xs font-bold border border-[var(--border-input)] text-[var(--text-secondary)] hover:bg-[var(--bg-surface-hover)] transition"
                         >
-                          ยกเลิกการเลือก
+                          CancelการSelect
                         </button>
                       )}
                     </div>

@@ -46,7 +46,7 @@ export default function MonthlyLinenPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black text-slate-900 dark:text-slate-100 uppercase tracking-tight">ผ้าซัก — สรุปรายเดือน</h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">สรุปยอดรับ-ส่งผ้า, ต้นทุนรวบยอด และการวิเคราะห์ส่วนต่างรายเดือน</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">สรุปยอดReceive-Sendผ้า, ต้นทุนรวบยอด และการวิเคราะห์ส่วนต่างรายเดือน</p>
         </div>
 
         <div className="flex items-center gap-3">
@@ -61,7 +61,7 @@ export default function MonthlyLinenPage() {
       {isLoading ? (
         <div className="h-[60vh] flex flex-col items-center justify-center text-slate-400 gap-3">
           <Loader2 className="animate-spin" size={32} />
-          <p className="font-bold text-xs uppercase tracking-widest">กำลังโหลดข้อมูล...</p>
+          <p className="font-bold text-xs uppercase tracking-widest">กำลังLoading data......</p>
         </div>
       ) : summary && dailyData ? (
         <>
@@ -102,7 +102,7 @@ export default function MonthlyLinenPage() {
         </>
       ) : (
         <div className="h-[60vh] flex flex-col items-center justify-center text-slate-400 gap-3">
-          <p className="font-bold text-xs uppercase tracking-widest text-rose-500">ไม่สามารถโหลดข้อมูลได้</p>
+          <p className="font-bold text-xs uppercase tracking-widest text-rose-500">ไม่สามารถLoading data...ได้</p>
         </div>
       )}
     </div>

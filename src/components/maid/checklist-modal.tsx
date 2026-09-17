@@ -223,7 +223,7 @@ export default function ChecklistModal({
                 </button>
                 <div>
                   <p className="text-xs font-black uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
-                    เช็กลิสต์ห้อง
+                    เช็กลิสต์Room
                   </p>
                   <h2 className="mt-1 text-3xl font-black text-slate-900 dark:text-white">{roomNumber}</h2>
                 </div>
@@ -246,7 +246,7 @@ export default function ChecklistModal({
               </div>
               <div className="rounded-2xl bg-amber-500 px-3 py-3 text-slate-950 shadow-lg shadow-amber-500/20">
                 <p className="text-2xl font-black leading-none">{dueLoanUnitCount}</p>
-                <p className="mt-1 text-xs font-black">เก็บคืน</p>
+                <p className="mt-1 text-xs font-black">เก็บReturn</p>
               </div>
               <div className="rounded-2xl bg-sky-500 px-3 py-3 text-white shadow-lg shadow-sky-500/20">
                 <p className="text-2xl font-black leading-none">
@@ -260,13 +260,13 @@ export default function ChecklistModal({
           <div className="relative z-10 flex-1 overflow-y-auto px-4 pb-36 pt-4">
             {!canRenderBody ? (
               <div className="rounded-[28px] border border-indigo-200/70 bg-[linear-gradient(180deg,rgba(234,239,248,0.92),rgba(242,245,250,0.84))] p-6 text-center shadow-sm dark:border-white/5 dark:bg-none dark:bg-slate-900">
-                <p className="text-base font-black text-slate-800 dark:text-white">ไม่มีรายการสำหรับห้องนี้</p>
+                <p className="text-base font-black text-slate-800 dark:text-white">No ItemsสำหReceiveRoomนี้</p>
               </div>
             ) : (
               <div className="space-y-8">
                 {roomNote && (
                   <section className="rounded-[28px] border border-sky-200 bg-[linear-gradient(180deg,rgba(224,242,254,0.96),rgba(240,249,255,0.88))] p-5 shadow-sm dark:border-sky-500/20 dark:bg-none dark:bg-sky-500/10">
-                    <p className="text-base font-black text-sky-700 dark:text-sky-300">หมายเหตุงดทำ</p>
+                    <p className="text-base font-black text-sky-700 dark:text-sky-300">Notesงดทำ</p>
                     <p className="mt-2 whitespace-pre-wrap text-sm font-bold leading-relaxed text-sky-700/85 dark:text-sky-300/80">
                       {roomNote}
                     </p>
@@ -278,9 +278,9 @@ export default function ChecklistModal({
                     <div className="flex items-end justify-between gap-3">
                       <h3 className="flex items-center gap-2 text-xl font-black text-slate-500 dark:text-slate-400">
                         <Package size={20} className="text-indigo-500" />
-                        ของเติมในห้อง
+                        ของเติมในRoom
                       </h3>
-                      <p className="text-xs font-bold text-slate-400 dark:text-slate-500">ติ๊กตามจำนวนที่เติม</p>
+                      <p className="text-xs font-bold text-slate-400 dark:text-slate-500">ติ๊กตามQuantityที่เติม</p>
                     </div>
 
                     <div className="space-y-3">
@@ -326,7 +326,7 @@ export default function ChecklistModal({
 
                 {dueLoanItems.length > 0 && (
                   <section className="space-y-4">
-                    <h3 className="text-xl font-black text-amber-500">ของที่ต้องเก็บคืน</h3>
+                    <h3 className="text-xl font-black text-amber-500">ของที่ต้องเก็บReturn</h3>
                     <div className="space-y-3">
                       {dueLoanItems.map((loan) => (
                         <div
@@ -347,13 +347,13 @@ export default function ChecklistModal({
                             </div>
                           </div>
                           <p className="shrink-0 text-base font-black text-amber-700 dark:text-amber-300">
-                            จำนวน {loan.quantity}
+                            Quantity {loan.quantity}
                           </p>
                         </div>
                       ))}
                     </div>
                     <p className="text-sm font-bold text-amber-600/80 dark:text-amber-300/70">
-                      จบงานแล้วระบบจะบันทึกการเก็บคืนให้อัตโนมัติ
+                      จบงานแล้วระบบจะSaveการเก็บReturnให้อัตโนมัติ
                     </p>
                   </section>
                 )}
@@ -371,8 +371,8 @@ export default function ChecklistModal({
                             {loan.item_icon} {loan.item_name}
                           </p>
                           <p className="mt-1 text-sm font-bold text-slate-500 dark:text-slate-400">
-                            จำนวน {loan.quantity}
-                            {loan.due_date ? ` · เก็บคืน ${loan.due_date}` : ""}
+                            Quantity {loan.quantity}
+                            {loan.due_date ? ` · เก็บReturn ${loan.due_date}` : ""}
                           </p>
                         </div>
                       ))}
@@ -401,11 +401,11 @@ export default function ChecklistModal({
                           <div key={assignment.assignment_id} className="space-y-3">
                             <div>
                               <p className="text-lg font-black text-slate-900 dark:text-white">
-                                {assignmentMeta?.task_name ?? "งานเพิ่ม"}
+                                {assignmentMeta?.task_name ?? "งานAdd"}
                               </p>
                               {!!assignmentMeta?.estimated_minutes && (
                                 <p className="text-xs font-bold text-slate-400 dark:text-slate-500">
-                                  ใช้เวลา {assignmentMeta.estimated_minutes} นาที
+                                  ใช้Time {assignmentMeta.estimated_minutes} นาที
                                 </p>
                               )}
                             </div>
@@ -450,15 +450,15 @@ export default function ChecklistModal({
                       className="flex w-full items-center justify-between rounded-[28px] border border-emerald-200 bg-[linear-gradient(180deg,rgba(231,248,239,0.96),rgba(242,251,246,0.9))] px-5 py-4 text-left shadow-sm transition-all dark:border-emerald-500/20 dark:bg-none dark:bg-emerald-500/10"
                     >
                       <div>
-                        <p className="text-xl font-black text-emerald-700 dark:text-emerald-300">คืนของเข้าชั้น</p>
+                        <p className="text-xl font-black text-emerald-700 dark:text-emerald-300">Returnของเข้าFloor</p>
                         <p className="mt-1 text-sm font-bold text-emerald-700/75 dark:text-emerald-300/70">
                           {selectedReturnCount > 0
-                            ? `เลือกคืนแล้ว ${selectedReturnCount} ชิ้น`
-                            : "กดเพื่อเลือกของที่จะคืน"}
+                            ? `SelectReturnแล้ว ${selectedReturnCount} ชิ้น`
+                            : "กดเพื่อSelectของที่จะReturn"}
                         </p>
                       </div>
                       <span className="text-lg font-black text-emerald-700 dark:text-emerald-300">
-                        {isReturnSectionOpen ? "ปิด" : "เปิด"}
+                        {isReturnSectionOpen ? "Close" : "เClose"}
                       </span>
                     </button>
 
@@ -475,11 +475,11 @@ export default function ChecklistModal({
                                 <div>
                                   <p className="text-xl font-black text-slate-900 dark:text-white">{item.item}</p>
                                   <p className="mt-1 text-sm font-bold text-slate-500 dark:text-slate-400">
-                                    ค้างในห้อง {item.available_to_return} · เติมสะสม {item.delivered_total} · คืนแล้ว {item.returned_total}
+                                    ค้างในRoom {item.available_to_return} · เติมสะสม {item.delivered_total} · Returnแล้ว {item.returned_total}
                                   </p>
                                 </div>
                                 <p className="text-lg font-black text-emerald-700 dark:text-emerald-300">
-                                  คืน {selectedQty}
+                                  Return {selectedQty}
                                 </p>
                               </div>
 
@@ -570,12 +570,12 @@ export default function ChecklistModal({
                 {isSubmitting ? (
                   <>
                     <Loader2 size={22} className="animate-spin" />
-                    กำลังบันทึก
+                    กำลังSave
                   </>
                 ) : allMaintenanceChecklistChecked ? (
                   <>
                     <Check size={24} strokeWidth={3} />
-                    ยืนยันเสร็จงาน
+                    Confirmเสร็จงาน
                   </>
                 ) : (
                   <>

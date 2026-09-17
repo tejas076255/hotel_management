@@ -142,14 +142,14 @@ async function handleCheckoutQuery(replyToken: string) {
     `📋 ยอด Check-Out (Business Date ${businessDate})`,
     `Calendar: ${calendarDate}`,
     ``,
-    `✅ Check-out แล้ว: ${checkedOut.length} ห้อง`,
-    `⏳ ยังไม่ Check-out: ${remaining.length} ห้อง`,
-    `📊 รวม Due Out ใน business date นี้: ${total} ห้อง`,
+    `✅ Check-out แล้ว: ${checkedOut.length} Room`,
+    `⏳ ยังไม่ Check-out: ${remaining.length} Room`,
+    `📊 รวม Due Out ใน business date นี้: ${total} Room`,
   ];
 
   if (remaining.length > 0 && remaining.length <= 10) {
     lines.push(``);
-    lines.push(`ห้องที่ยังไม่ออก:`);
+    lines.push(`Roomที่ยังไม่ออก:`);
     for (const r of remaining) {
       lines.push(`• ${r.booking_code ?? r.id.slice(0, 8)} — ${r.guest_name ?? "ไม่ระบุชื่อ"}`);
     }
@@ -187,7 +187,7 @@ async function handleInHouseQuery(replyToken: string) {
   if (rows.length === 0) {
     await replyLineText(
       replyToken,
-      `🏨 In House (Business Date ${businessDate})\nCalendar: ${calendarDate}\n\nไม่มีแขกพักอยู่ในโรงแรมขณะนี้`
+      `🏨 In House (Business Date ${businessDate})\nCalendar: ${calendarDate}\n\nไม่มีGuestพักอยู่ในโรงแรมขณะนี้`
     );
     return;
   }
@@ -207,7 +207,7 @@ async function handleInHouseQuery(replyToken: string) {
     `🏨 In House (Business Date ${businessDate})`,
     `Calendar: ${calendarDate}`,
     ``,
-    `จำนวน ${roomNumbers.length} ห้อง`,
+    `Quantity ${roomNumbers.length} Room`,
     ``,
     roomNumbers.join(", "),
   ];
@@ -231,7 +231,7 @@ async function handleScheduleQuery(params: {
   if (!result.ok) {
     await replyLineText(
       params.replyToken,
-      "ยังไม่ได้ผูก LINE กับบัญชี Staff\nกรุณาพิมพ์ BIND <token> เพื่อผูกบัญชีก่อนใช้งาน"
+      "ยังไม่ได้ผูก LINE กับบัญชี Staff\nกรุณาPrint BIND <token> เพื่อผูกบัญชีก่อนใช้งาน"
     );
     return;
   }
@@ -257,7 +257,7 @@ function isScheduleQuery(norm: string): boolean {
     "เวร",
     "กะ",
     "กะทำงาน",
-    "เวลาทำงาน",
+    "Timeทำงาน",
     "ตารางงาน",
     "งานอาทิตย์นี้",
     "งานสัปดาห์นี้",
@@ -271,13 +271,13 @@ function isScheduleQuery(norm: string): boolean {
   if (scheduleCommands.has(norm)) return true;
   return (
     norm.includes("กะทำงาน") ||
-    norm.includes("เวลาทำงาน") ||
+    norm.includes("Timeทำงาน") ||
     norm.includes("ตารางกะ") ||
     norm.includes("ตารางงาน") ||
     norm.includes("ตารางเวร") ||
     norm.includes("เข้าเวร") ||
     norm.includes("เข้ากะ") ||
-    norm.includes("ทำงานวันไหน") ||
+    norm.includes("ทำงานDaysไหน") ||
     norm.includes("ต้องเข้ามาทำงาน") ||
     norm.includes("work schedule")
   );
@@ -292,13 +292,13 @@ function isScheduleWeekQuery(norm: string): boolean {
     norm.includes("week") ||
     norm.includes("อาทิตย์นี้") ||
     norm.includes("สัปดาห์นี้") ||
-    norm.includes("7 วัน") ||
-    norm.includes("เจ็ดวัน") ||
+    norm.includes("7 Days") ||
+    norm.includes("เจ็ดDays") ||
     norm === "shift" ||
     norm === "กะ" ||
     norm === "กะทำงาน" ||
-    norm === "เวลาทำงาน" ||
-    norm.includes("ทำงานวันไหน") ||
+    norm === "Timeทำงาน" ||
+    norm.includes("ทำงานDaysไหน") ||
     norm.includes("ต้องเข้ามาทำงาน")
   );
 }
@@ -306,8 +306,8 @@ function isScheduleWeekQuery(norm: string): boolean {
 async function replyFoLineHelp(replyToken: string) {
   await replyLineText(
     replyToken,
-    "📖 คำสั่งสำหรับ FO:\n\n" +
-    "• shift / กะ / กะทำงาน / เวลาทำงาน\n  → ตารางกะของตัวเอง 7 วันนี้\n\n" +
+    "📖 คำสั่งสำหReceive FO:\n\n" +
+    "• shift / กะ / กะทำงาน / Timeทำงาน\n  → ตารางกะของตัวเอง 7 Daysนี้\n\n" +
     "• schedule\n  → ตารางกะของตัวเองถึงสิ้นเดือน\n\n" +
     "• shift next / เวรเดือนหน้า\n  → ตารางกะของตัวเองเดือนถัดไป"
   );
@@ -317,14 +317,14 @@ async function replyFoRestricted(replyToken: string) {
   await replyLineText(
     replyToken,
     "บัญชี LINE นี้เป็น FO จึงดูได้เฉพาะตารางกะของตัวเองเท่านั้น\n\n" +
-    "ลองพิมพ์: shift, กะทำงาน, เวลาทำงาน หรือ เวรเดือนหน้า"
+    "ลองPrint: shift, กะทำงาน, Timeทำงาน หรือ เวรเดือนหน้า"
   );
 }
 
 async function replyUnboundLineUser(replyToken: string) {
   await replyLineText(
     replyToken,
-    "ยังไม่ได้ผูก LINE กับบัญชี Staff\nกรุณาพิมพ์ BIND <token> เพื่อผูกบัญชีก่อนใช้งาน"
+    "ยังไม่ได้ผูก LINE กับบัญชี Staff\nกรุณาPrint BIND <token> เพื่อผูกบัญชีก่อนใช้งาน"
   );
 }
 
@@ -408,14 +408,14 @@ async function handleBindCommand(params: {
 
   if (updateStaffError) {
     console.error("line bind update staff failed", updateStaffError);
-    await replyLineText(replyToken, "ผูก LINE ไม่สำเร็จ กรุณาขอ Token ใหม่แล้วลองอีกครั้ง");
+    await replyLineText(replyToken, "ผูก LINE ไม่Success กรุณาขอ Token ใหม่แล้วลองอีกครั้ง");
     return;
   }
 
   const displayName = updatedStaff?.display_name
     ? String(updatedStaff.display_name)
-    : "พนักงาน";
-  await replyLineText(replyToken, `ผูก LINE สำเร็จ! ยินดีต้อนรับ คุณ ${displayName}`);
+    : "Staff";
+  await replyLineText(replyToken, `ผูก LINE Success! ยินดีต้อนReceive คุณ ${displayName}`);
 }
 
 export async function POST(request: NextRequest) {
@@ -488,7 +488,7 @@ export async function POST(request: NextRequest) {
           norm.includes("checkout") ||
           norm.includes("check out") ||
           norm.includes("check-out") ||
-          norm.includes("เช็คเอาท์") ||
+          norm.includes("Check-out") ||
           norm.includes("เช็กเอาท์") ||
           norm.includes("เช็คเอา") ||
           norm.includes("c/o") ||
@@ -506,8 +506,8 @@ export async function POST(request: NextRequest) {
           norm === "ih" ||
           norm.includes("in house") ||
           norm.includes("inhouse") ||
-          norm.includes("แขกพักอยู่") ||
-          norm.includes("ห้องที่พัก") ||
+          norm.includes("Guestพักอยู่") ||
+          norm.includes("Roomที่พัก") ||
           norm.includes("ใครพักอยู่");
         if (isInHouseQuery) {
           await handleInHouseQuery(replyToken);
@@ -531,12 +531,12 @@ export async function POST(request: NextRequest) {
           await replyLineText(
             replyToken,
             "📖 คำสั่งที่ใช้ได้:\n\n" +
-            "• checkout / co / เช็คเอาท์\n  → ยอด Check-out วันนี้\n\n" +
-            "• inhouse / ih / in house\n  → ห้องที่มีแขกพักอยู่ตอนนี้\n\n" +
+            "• checkout / co / Check-out\n  → ยอด Check-out Daysนี้\n\n" +
+            "• inhouse / ih / in house\n  → Roomที่มีGuestพักอยู่ตอนนี้\n\n" +
             "• schedule / shift / ตารางเวร / เวร\n  → ตารางเวรของตัวเองถึงสิ้นเดือน\n\n" +
             "• schedule next / เวรเดือนหน้า\n  → ตารางเวรของตัวเองเดือนถัดไป\n\n" +
             "• BIND <token>\n  → ผูก LINE กับบัญชี Staff\n\n" +
-            "พิมพ์ help เพื่อดูคำสั่งทั้งหมด"
+            "Print help เพื่อดูคำสั่งAll"
           );
           continue;
         }
@@ -544,7 +544,7 @@ export async function POST(request: NextRequest) {
         // --- Unknown ---
         await replyLineText(
           replyToken,
-          "ไม่เข้าใจคำสั่ง 🤔\nพิมพ์ help เพื่อดูคำสั่งที่ใช้ได้"
+          "ไม่เข้าใจคำสั่ง 🤔\nPrint help เพื่อดูคำสั่งที่ใช้ได้"
         );
       } catch (eventErr) {
         console.error("line webhook event handler error", eventErr);

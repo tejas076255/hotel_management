@@ -103,12 +103,12 @@ export default function DepositStep() {
               <div className="space-y-1">
                 {roomIsTransfer ? (
                   <p className="text-sm font-medium text-sky-800 dark:text-sky-300 leading-relaxed">
-                    ค่าห้อง + มัดจำ จะบันทึกเป็น Transfer <br/>
+                    ค่าRoom + Deposit จะSaveเป็น Transfer <br/>
                     โดยไม่สร้าง SCB QR (รวม ฿{total.toLocaleString()})
                   </p>
                 ) : (
                   <p className="text-sm font-medium text-sky-800 dark:text-sky-300 leading-relaxed">
-                    ระบบจะบันทึกมัดจำนี้เป็น Transfer <br/>
+                    ระบบจะSaveDepositนี้เป็น Transfer <br/>
                     โดยไม่สร้าง SCB QR จาก Mobile Check-in
                   </p>
                 )}

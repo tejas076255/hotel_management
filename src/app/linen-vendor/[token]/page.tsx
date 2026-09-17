@@ -29,7 +29,7 @@ export default function VendorDetailViewPage({ params }: { params: { token: stri
                     <div className="w-16 h-16 bg-rose-50 dark:bg-rose-500/10 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-4 border border-rose-100 dark:border-rose-500/20 shadow-sm">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-8 h-8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                     </div>
-                    <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100 mb-2 font-thai">เข้าถึงไม่สำเร็จ</h2>
+                    <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100 mb-2 font-thai">เข้าถึงไม่Success</h2>
                     <p className="text-slate-400 dark:text-slate-500 font-thai">ลิงก์นี้ไม่ถูกต้อง หรือหมดอายุไปแล้ว</p>
                 </div>
             </div>
@@ -37,7 +37,7 @@ export default function VendorDetailViewPage({ params }: { params: { token: stri
     }
 
     const handleConfirm = async () => {
-        if (!confirm("คุณยืนยันว่าได้รับผ้า และยอดทั้งหมดถูกต้องตรงกันใช่หรือไม่?")) return;
+        if (!confirm("คุณConfirmว่าได้Receiveผ้า และยอดAllถูกต้องตรงกันใช่หรือไม่?")) return;
         setIsSubmitting(true);
         try {
             const res = await fetch(`/api/linen/vendor/${params.token}/confirm`, { method: "POST" });
@@ -45,7 +45,7 @@ export default function VendorDetailViewPage({ params }: { params: { token: stri
             mutate();
         } catch (err) {
             console.error(err);
-            alert("เกิดข้อผิดพลาด กรุณาลองใหม่");
+            alert("เกิดข้อError กรุณาลองใหม่");
         } finally {
             setIsSubmitting(false);
         }
@@ -60,7 +60,7 @@ export default function VendorDetailViewPage({ params }: { params: { token: stri
             mutate();
         } catch (err) {
             console.error(err);
-            alert("เกิดข้อผิดพลาด กรุณาลองใหม่");
+            alert("เกิดข้อError กรุณาลองใหม่");
         } finally {
             setIsSubmitting(false);
         }
@@ -86,7 +86,7 @@ export default function VendorDetailViewPage({ params }: { params: { token: stri
                     <svg viewBox="0 0 24 24" fill="currentColor" className="w-48 h-48"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
                 </div>
                 <div className="relative z-10">
-                    <h1 className="text-2xl font-black font-thai tracking-tight uppercase">สรุปรายการรับ-ส่งผ้า</h1>
+                    <h1 className="text-2xl font-black font-thai tracking-tight uppercase">สรุปรายการReceive-Sendผ้า</h1>
                     <div className="flex items-center gap-2 mt-3">
                          <div className="px-3 py-1 bg-white/10 rounded-full border border-white/20 text-sm font-bold font-thai">
                             โรงแรม {data.hotel_name}
@@ -94,7 +94,7 @@ export default function VendorDetailViewPage({ params }: { params: { token: stri
                     </div>
                     <p className="text-emerald-100/70 mt-4 flex items-center gap-2 text-sm font-medium">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                        วันที่ {format(new Date(data.batch.business_date), "dd MMM yyyy", { locale: th })} (รอบ {data.batch.pickup_round})
+                        Date {format(new Date(data.batch.business_date), "dd MMM yyyy", { locale: th })} (รอบ {data.batch.pickup_round})
                     </p>
                 </div>
             </div>
@@ -105,7 +105,7 @@ export default function VendorDetailViewPage({ params }: { params: { token: stri
                         <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center text-rose-500 shrink-0 shadow-sm">⚠️</div>
                         <div>
                             <h3 className="font-bold font-thai uppercase">แจ้งยอดไม่ตรงแล้ว</h3>
-                            <p className="text-xs mt-1 text-rose-600 dark:text-rose-400 font-thai leading-relaxed">ระบบแจ้งทางโรงแรมแล้ว โปรดรอการติดต่อกลับเพื่อแก้ไขยอดส่งซัก</p>
+                            <p className="text-xs mt-1 text-rose-600 dark:text-rose-400 font-thai leading-relaxed">ระบบแจ้งทางโรงแรมแล้ว โปรดรอการติดต่อกลับเพื่อEditยอดSendซัก</p>
                         </div>
                     </div>
                 )}
@@ -114,8 +114,8 @@ export default function VendorDetailViewPage({ params }: { params: { token: stri
                     <div className="bg-emerald-50 dark:bg-emerald-500/10 border-2 border-emerald-100 dark:border-emerald-500/20 text-emerald-800 dark:text-emerald-300 p-5 rounded-3xl shadow-sm mb-6 flex gap-4 animate-in slide-in-from-top-4">
                         <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center text-emerald-500 shrink-0 shadow-sm">✅</div>
                         <div>
-                            <h3 className="font-bold font-thai uppercase">ยืนยันรายการสำเร็จ</h3>
-                            <p className="text-xs mt-1 text-emerald-600 dark:text-emerald-400 font-thai leading-relaxed">ขอบคุณค่ะ ระบบได้บันทึกการยืนยันของคุณเรียบร้อยแล้ว</p>
+                            <h3 className="font-bold font-thai uppercase">ConfirmรายการSuccess</h3>
+                            <p className="text-xs mt-1 text-emerald-600 dark:text-emerald-400 font-thai leading-relaxed">ขอบคุณค่ะ ระบบได้SaveการConfirmของคุณเรียบร้อยแล้ว</p>
                         </div>
                     </div>
                 )}
@@ -135,8 +135,8 @@ export default function VendorDetailViewPage({ params }: { params: { token: stri
                                 </svg>
                             </div>
                             <div className="min-w-0 flex-1">
-                                <h3 className="font-bold text-slate-800 dark:text-slate-100 font-thai">สรุปรายเดือนสำหรับร้าน</h3>
-                                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-thai">เปิดดูยอดสะสมประจำเดือนจากลิงก์นี้</p>
+                                <h3 className="font-bold text-slate-800 dark:text-slate-100 font-thai">สรุปรายเดือนสำหReceiveร้าน</h3>
+                                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-thai">เCloseดูยอดสะสมประจำเดือนจากลิงก์นี้</p>
                                 <p className="text-[10px] text-emerald-600 dark:text-emerald-400 mt-2 truncate font-mono">{data.monthly_vendor.url}</p>
                             </div>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 text-slate-300 dark:text-slate-600 shrink-0">
@@ -147,18 +147,18 @@ export default function VendorDetailViewPage({ params }: { params: { token: stri
                 )}
 
                 <div className="space-y-4">
-                    <MobileBatchStepSummary title="ผ้าวันนี้" items={dirtyItems} />
+                    <MobileBatchStepSummary title="ผ้าDaysนี้" items={dirtyItems} />
                     <MobileBatchStepSummary title="ผ้าเก่า" items={dayuseItems} />
                     <MobileBatchStepSummary title="ผ้าซักใหม่" items={rewashItems} />
-                    <MobileBatchStepSummary title="รับคืนผ้าซักปกติ" items={returnItems} totalLabel="รวมรับคืน" />
-                    <MobileBatchStepSummary title="รับคืนผ้าค้างเก่า" items={splitReturns.pending} totalLabel="รวมผ้าค้างที่คืน" />
-                    <MobileBatchStepSummary title="รับคืนผ้าซักใหม่" items={rewashReturnItems} totalLabel="รวมรับคืนผ้าซักใหม่" />
+                    <MobileBatchStepSummary title="ReceiveReturnผ้าซักปกติ" items={returnItems} totalLabel="รวมReceiveReturn" />
+                    <MobileBatchStepSummary title="ReceiveReturnผ้าค้างเก่า" items={splitReturns.pending} totalLabel="รวมผ้าค้างที่Return" />
+                    <MobileBatchStepSummary title="ReceiveReturnผ้าซักใหม่" items={rewashReturnItems} totalLabel="รวมReceiveReturnผ้าซักใหม่" />
 
                     {data.pending_items.length > 0 && (
                         <div className="bg-slate-900 dark:bg-slate-900 text-white p-6 rounded-[2rem] shadow-xl border border-slate-800 dark:border-slate-800 mt-6 relative overflow-hidden">
                              <div className="relative z-10">
                                 <h3 className="font-bold flex items-center gap-2 mb-4 text-sm uppercase tracking-widest text-amber-400">
-                                    ยอดค้างส่งคืนโรงแรม
+                                    ยอดค้างSendReturnโรงแรม
                                 </h3>
                                 <div className="space-y-3">
                                     {data.pending_items.map(p => (
@@ -191,7 +191,7 @@ export default function VendorDetailViewPage({ params }: { params: { token: stri
                                <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                            ) : (
                                <>
-                                   ยอดถูกต้อง ยืนยันรับผ้า
+                                   ยอดถูกต้อง ConfirmReceiveผ้า
                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="w-6 h-6"><polyline points="20 6 9 17 4 12"/></svg>
                                </>
                            )}

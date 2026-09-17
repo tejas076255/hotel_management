@@ -39,9 +39,9 @@ function ChecklistMockupContent() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   const [amenities, setAmenities] = useState<Amenity[]>([
-    { id: "1", name: "น้ำดื่ม", count: 2, checks: [false, false] },
+    { id: "1", name: "Drinking Water", count: 2, checks: [false, false] },
     { id: "2", name: "ผ้าขนหนู", count: 2, checks: [false, false] },
-    { id: "3", name: "แชมพู", count: 1, checks: [false] },
+    { id: "3", name: "Shampoo", count: 1, checks: [false] },
     { id: "4", name: "ทิชชู่ม้วน", count: 2, checks: [false, false] },
   ]);
 
@@ -84,7 +84,7 @@ function ChecklistMockupContent() {
                 <ArrowLeft size={28} />
               </Link>
               <div>
-                 <h1 className="text-2xl font-black">เช็กลิสต์ห้อง {roomNumber}</h1>
+                 <h1 className="text-2xl font-black">เช็กลิสต์Room {roomNumber}</h1>
                  <p className="dark:text-slate-400 text-slate-500 text-sm font-bold">กรุณาตรวจสอบให้ครบถ้วน</p>
               </div>
             </div>
@@ -102,9 +102,9 @@ function ChecklistMockupContent() {
           <section className="space-y-4">
             <div className="flex justify-between items-end">
                <h2 className="text-xl font-black dark:text-slate-400 text-slate-500 uppercase tracking-widest flex items-center gap-2">
-                  <Package size={20} className="text-indigo-500" /> ของเติมในห้อง
+                  <Package size={20} className="text-indigo-500" /> ของเติมในRoom
                </h2>
-               <p className="text-xs font-bold dark:text-slate-500 text-slate-400">ติ๊กตามจำนวนขวด/ชิ้นที่เติม</p>
+               <p className="text-xs font-bold dark:text-slate-500 text-slate-400">ติ๊กตามQuantityขวด/ชิ้นที่เติม</p>
             </div>
             
             <div className="space-y-3">
@@ -138,7 +138,7 @@ function ChecklistMockupContent() {
           {loans.length > 0 && (
             <section className="space-y-4">
               <h2 className="text-xl font-black text-amber-500 uppercase tracking-widest flex items-center gap-2">
-                 <AlertCircle size={20} /> ของที่ต้องเก็บคืน
+                 <AlertCircle size={20} /> ของที่ต้องเก็บReturn
               </h2>
               <div className="space-y-2">
                 {loans.map(loan => (
@@ -147,11 +147,11 @@ function ChecklistMockupContent() {
                         <span className="text-3xl">{loan.icon}</span>
                         <p className="font-black text-lg dark:text-amber-500 text-amber-700">{loan.name}</p>
                      </div>
-                     <p className="font-black dark:text-amber-500 text-amber-700 text-lg">จำนวน {loan.quantity}</p>
+                     <p className="font-black dark:text-amber-500 text-amber-700 text-lg">Quantity {loan.quantity}</p>
                   </div>
                 ))}
               </div>
-              <p className="text-sm font-bold dark:text-amber-500/60 text-amber-600/70">* จบงานแล้วระบบจะบันทึกการส่งคืนอัตโนมัติ</p>
+              <p className="text-sm font-bold dark:text-amber-500/60 text-amber-600/70">* จบงานแล้วระบบจะSaveการSendReturnอัตโนมัติ</p>
             </section>
           )}
 
@@ -194,7 +194,7 @@ function ChecklistMockupContent() {
                }`}
              >
                {isAllMaintenanceDone ? (
-                 <>✅ ยืนยันเสร็จงาน</>
+                 <>✅ Confirmเสร็จงาน</>
                ) : (
                  <>⚠️ ทำงานซ่อมให้ครบก่อน</>
                )}
@@ -211,7 +211,7 @@ export default function ChecklistMockupPage() {
     <Suspense
       fallback={
         <div className={`${thaiUi.className} flex min-h-screen items-center justify-center bg-slate-950 text-white`}>
-          <p className="text-lg font-black">กำลังโหลดเช็กลิสต์...</p>
+          <p className="text-lg font-black">Loading...เช็กลิสต์...</p>
         </div>
       }
     >

@@ -64,13 +64,13 @@ export function ScbTransferTable({ tab, role, rows, onDetail, onAssign, onIgnore
       <table className="data-table table-fixed min-w-[1080px] w-full">
         <thead>
           <tr>
-            <th className="w-[90px]">เวลา</th>
+            <th className="w-[90px]">Time</th>
             <th className="w-[160px]">TXN ID</th>
             <th className="w-[110px] text-right">ยอด</th>
-            <th className="w-[160px]">ผู้โอน</th>
+            <th className="w-[160px]">ผู้Transfer</th>
             <th className="w-[160px]">Target</th>
             <th className="w-[120px]">ช่องทาง</th>
-            <th className="w-[120px]">สถานะ</th>
+            <th className="w-[120px]">Status</th>
             <th className="w-[180px]">Action</th>
           </tr>
         </thead>
@@ -118,7 +118,7 @@ export function ScbTransferTable({ tab, role, rows, onDetail, onAssign, onIgnore
                         type="button"
                         className="btn btn-secondary btn-sm"
                         disabled={readOnly}
-                        title={readOnly ? "ต้องใช้สิทธิ์ Admin" : undefined}
+                        title={readOnly ? "ต้องใช้Permissions Admin" : undefined}
                         onClick={() => onRecheck(row)}
                       >
                         Recheck
@@ -135,7 +135,7 @@ export function ScbTransferTable({ tab, role, rows, onDetail, onAssign, onIgnore
                         type="button"
                         className="btn btn-primary btn-sm"
                         disabled={readOnly}
-                        title={readOnly ? "ต้องใช้สิทธิ์ Admin" : undefined}
+                        title={readOnly ? "ต้องใช้Permissions Admin" : undefined}
                         onClick={() => onAssign(row)}
                       >
                         Assign
@@ -144,7 +144,7 @@ export function ScbTransferTable({ tab, role, rows, onDetail, onAssign, onIgnore
                         type="button"
                         className="btn btn-ghost btn-sm"
                         disabled={readOnly}
-                        title={readOnly ? "ต้องใช้สิทธิ์ Admin" : undefined}
+                        title={readOnly ? "ต้องใช้Permissions Admin" : undefined}
                         onClick={() => onIgnore(row)}
                       >
                         Ignore
@@ -158,7 +158,7 @@ export function ScbTransferTable({ tab, role, rows, onDetail, onAssign, onIgnore
                         type="button"
                         className="btn btn-secondary btn-sm"
                         disabled={readOnly}
-                        title={readOnly ? "ต้องใช้สิทธิ์ Admin" : undefined}
+                        title={readOnly ? "ต้องใช้Permissions Admin" : undefined}
                         onClick={() => onRecheck(row)}
                       >
                         Recheck

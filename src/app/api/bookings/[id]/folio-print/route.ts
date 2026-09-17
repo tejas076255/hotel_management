@@ -233,27 +233,27 @@ function isDepositLedgerRow(row: PaymentRow): boolean {
 }
 
 function makePaymentDescription(row: PaymentRow, roomNumber: string | null): string {
-  const roomSuffix = roomNumber ? ` ห้อง ${roomNumber}` : "";
+  const roomSuffix = roomNumber ? ` Room ${roomNumber}` : "";
   const note = String(row.note ?? "").trim();
   const lowerNote = note.toLowerCase();
   const method = row.method === "cash"
-    ? "เงินสด"
+    ? "Cash"
     : row.method === "transfer"
-      ? "โอนเงิน"
+      ? "Transferเงิน"
       : row.method === "credit_card"
         ? "บัตรเครดิต"
         : "อื่นๆ";
 
   if (row.tx_type === "deposit" || (row.tx_type === "payment" && row.revenue_category === "deposit")) {
-    return `รับเงินมัดจำด้วย${method}${roomSuffix}`;
+    return `ReceiveเงินDepositด้วย${method}${roomSuffix}`;
   }
   if (row.tx_type === "refund") {
-    if (row.revenue_category === "deposit" && lowerNote.includes("paid by deposit")) return `ชำระด้วยเงินมัดจำ${roomSuffix}`;
-    if (row.revenue_category === "deposit") return `คืนเงินมัดจำ${roomSuffix}`;
-    return `คืนเงิน${roomSuffix}`;
+    if (row.revenue_category === "deposit" && lowerNote.includes("paid by deposit")) return `ชำระด้วยเงินDeposit${roomSuffix}`;
+    if (row.revenue_category === "deposit") return `ReturnเงินDeposit${roomSuffix}`;
+    return `Returnเงิน${roomSuffix}`;
   }
-  if (row.revenue_category === "extra_charge") return row.extra_fee_templates?.name || note || `ค่าใช้จ่ายเพิ่มเติม${roomSuffix}`;
-  return `ชำระค่าห้องพักด้วย${method}${roomSuffix}`;
+  if (row.revenue_category === "extra_charge") return row.extra_fee_templates?.name || note || `ค่าใช้จ่ายAddเติม${roomSuffix}`;
+  return `ชำระค่าRoomด้วย${method}${roomSuffix}`;
 }
 
 function buildLedgerRows(
@@ -269,7 +269,7 @@ function buildLedgerRows(
   if (feeSummary.room_charges_total > 0) {
     rows.push({
       date: reservation.checkin_date,
-      description: roomNumber ? `ค่าห้องพัก ห้อง ${roomNumber}` : "ค่าห้องพัก",
+      description: roomNumber ? `ค่าRoom Room ${roomNumber}` : "ค่าRoom",
       amount: feeSummary.room_charges_total,
       kind: "charge",
     });
@@ -278,7 +278,7 @@ function buildLedgerRows(
   if (discountTotal > 0) {
     rows.push({
       date: reservation.checkin_date,
-      description: "ส่วนลด",
+      description: "Discount",
       amount: discountTotal,
       kind: "discount",
     });

@@ -137,8 +137,8 @@ type PosSalesSummary = {
 // ============================================================
 
 const MONTHS = [
-  "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-  "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม",
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
 ];
 
 const STATUS_BADGE: Record<string, { label: string; className: string }> = {
@@ -648,7 +648,7 @@ export default function MonthlyAuditPage() {
           className="rounded-lg flex items-center gap-2 border bg-blue-50 border-blue-200 px-4 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-900/30 dark:text-blue-300 dark:hover:bg-blue-900/50 transition-colors ml-auto"
         >
           <FileText className="h-4 w-4" />
-          ใบกำกับภาษีอย่างย่อ
+          Abbreviated Tax Invoice
         </Link>
       </div>
 
@@ -723,7 +723,7 @@ export default function MonthlyAuditPage() {
       {!loading && !previewLoading && isPreviewMode && displayedEntries.length === 0 && (
         <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] p-12 text-center">
           <p className="text-[var(--text-muted)]">
-            Preview: ยังไม่มี checked-out reservations สำหรับ {MONTHS[selectedMonth - 1]} {selectedYear}
+            Preview: ยังไม่มี checked-out reservations สำหReceive {MONTHS[selectedMonth - 1]} {selectedYear}
           </p>
         </div>
       )}
@@ -737,8 +737,8 @@ export default function MonthlyAuditPage() {
             </h2>
             {displayedFullTaxInvoiceSummary && displayedFullTaxInvoiceSummary.total_reservations > 0 && (
               <p className="mt-1 text-xs text-[var(--text-muted)]">
-                Full Tax Invoice แยกอีก {displayedFullTaxInvoiceSummary.total_reservations} bookings / {fmt(displayedFullTaxInvoiceSummary.totals.total_revenue)} บาท
-                {displayedGrandSummary ? ` · Grand total ${fmt(displayedGrandSummary.totals.total_revenue)} บาท` : ""}
+                Full Tax Invoice แยกอีก {displayedFullTaxInvoiceSummary.total_reservations} bookings / {fmt(displayedFullTaxInvoiceSummary.totals.total_revenue)} THB
+                {displayedGrandSummary ? ` · Grand total ${fmt(displayedGrandSummary.totals.total_revenue)} THB` : ""}
               </p>
             )}
             {!isPreviewMode && displayedMonthSummary && displayedMonthGrandSummary && (
@@ -839,7 +839,7 @@ export default function MonthlyAuditPage() {
             <div>
               <h2 className="text-sm font-semibold text-[var(--text-primary)]">POS Sales Summary</h2>
               <p className="mt-0.5 text-xs text-[var(--text-muted)]">
-                สรุปยอดขายสินค้า POS แยกจากยอดห้องพัก
+                สรุปยอดขายสินค้า POS แยกจากยอดRoom
               </p>
             </div>
             <div className="grid grid-cols-2 gap-2 text-right sm:grid-cols-4">
@@ -1081,7 +1081,7 @@ export default function MonthlyAuditPage() {
             <div>
               <h2 className="text-sm font-semibold text-[var(--text-primary)]">Full Tax Invoice Bookings</h2>
               <p className="mt-0.5 text-xs text-[var(--text-muted)]">
-                เอกสารสำคัญที่ออกแล้ว แยกจากยอดใบกำกับภาษีอย่างย่อและแก้ไขจาก Monthly Audit ไม่ได้
+                เอกสารสำคัญที่ออกแล้ว แยกจากยอดAbbreviated Tax InvoiceและEditจาก Monthly Audit ไม่ได้
               </p>
             </div>
             <div className="text-right text-xs text-[var(--text-muted)]">

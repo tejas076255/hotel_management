@@ -778,7 +778,7 @@ export default function RoomPlannerPage() {
 
                     // Guard: linked stay — block (Phase 46)
                     if (sourceRes.linked_root_id) {
-                        alert("Per-Night move ยังไม่รองรับ Linked Stay — ใช้ Move Whole แทน");
+                        alert("Per-Night move ยังไม่รองReceive Linked Stay — ใช้ Move Whole แทน");
                         return;
                     }
 
@@ -1232,7 +1232,7 @@ export default function RoomPlannerPage() {
                             : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-default)] hover:bg-amber-50 hover:border-amber-300 dark:hover:bg-amber-950/30"
                     }`}
                     onClick={() => setPerNightMode(prev => !prev)}
-                    title="Per-Night Move: เปิดโหมดลากย้ายแยกรายคืน (สร้าง Plan Move)"
+                    title="Per-Night Move: เCloseโหมดลากย้ายแยกรายReturn (สร้าง Plan Move)"
                 >
                     <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <rect x="3" y="3" width="7" height="7" rx="1" />
@@ -1278,7 +1278,7 @@ export default function RoomPlannerPage() {
                             <rect x="14" y="14" width="7" height="7" rx="1" />
                         </svg>
                         <span className="font-semibold">Per-Night Move Mode</span>
-                        <span className="text-amber-600 dark:text-amber-400">— ลาก booking ไปห้องอื่น จะย้ายแยกรายคืน (ไม่ใช่ทั้งก้อน)</span>
+                        <span className="text-amber-600 dark:text-amber-400">— ลาก booking ไปRoomอื่น จะย้ายแยกรายReturn (ไม่ใช่ทั้งก้อน)</span>
                     </div>
                     <button
                         className="btn btn-outline btn-sm text-amber-700 border-amber-300 hover:bg-amber-100 dark:text-amber-300 dark:border-amber-600 dark:hover:bg-amber-900/50"
@@ -1329,12 +1329,12 @@ export default function RoomPlannerPage() {
                     const linkedRootId = res.linked_root_id;
                     const confirmMsg = isLinked
                         ? `⚠️ Booking นี้เป็น Linked Stay\n\nCancel Plan Move จะ Unlink อัตโนมัติ\nต้องไป Link ใหม่เองภายหลัง\n\n` +
-                          `ยกเลิก Plan Move ทั้งหมด ${bookingPlans.length} รายการ?\n\n` +
+                          `Cancel Plan Move All ${bookingPlans.length} รายการ?\n\n` +
                           bookingPlans.map(p => `• ${p.start_date} → ${p.end_date} (→ Room ${p.to_room_number || '?'})`).join("\n") +
                           `\n\nดำเนินการ?`
-                        : `ยกเลิก Plan Move ทั้งหมด ${bookingPlans.length} รายการ ของ ${res.guest_name || res.booking_code}?\n\n` +
+                        : `Cancel Plan Move All ${bookingPlans.length} รายการ ของ ${res.guest_name || res.booking_code}?\n\n` +
                           bookingPlans.map(p => `• ${p.start_date} → ${p.end_date} (→ Room ${p.to_room_number || '?'})`).join("\n") +
-                          `\n\nBooking จะกลับไปห้องเดิมทั้งหมด\nดำเนินการ?`;
+                          `\n\nBooking จะกลับไปRoomเดิมAll\nดำเนินการ?`;
 
                     if (!confirm(confirmMsg)) return;
 
@@ -1360,8 +1360,8 @@ export default function RoomPlannerPage() {
                                 const body = await resp.json().catch(() => ({}));
                                 if (body.error?.includes("float") || body.requires_confirmation) {
                                     alert(
-                                        `ยกเลิก Plan ${plan.start_date}→${plan.end_date} ไม่ได้:\n` +
-                                        `ห้องเดิมเต็ม — กรุณาไปแก้ไขที่หน้า Plan Move แทน`
+                                        `Cancel Plan ${plan.start_date}→${plan.end_date} ไม่ได้:\n` +
+                                        `Roomเดิมเต็ม — กรุณาไปEditที่หน้า Plan Move แทน`
                                     );
                                     break;
                                 }
@@ -1388,15 +1388,15 @@ export default function RoomPlannerPage() {
                             if (!unlinkResp.ok) {
                                 const body = await unlinkResp.json().catch(() => ({}));
                                 // Plans already cancelled, warn about unlink failure
-                                alert(`✅ Plan Move ยกเลิกแล้ว แต่ Unlink ไม่สำเร็จ:\n${body.error || unlinkResp.status}\n\nกรุณาไป Unlink เองที่หน้า Booking Detail`);
+                                alert(`✅ Plan Move Cancelแล้ว แต่ Unlink ไม่Success:\n${body.error || unlinkResp.status}\n\nกรุณาไป Unlink เองที่หน้า Booking Detail`);
                                 load();
                                 return;
                             }
                         }
 
                         const successMsg = isLinked
-                            ? "✅ ยกเลิก Plan Move + Unlink เรียบร้อย\n⚠️ กรุณาไป Link ใหม่ถ้าต้องการ"
-                            : "✅ ยกเลิก Plan Move ทั้งหมดเรียบร้อย";
+                            ? "✅ Cancel Plan Move + Unlink เรียบร้อย\n⚠️ กรุณาไป Link ใหม่ถ้าต้องการ"
+                            : "✅ Cancel Plan Move Allเรียบร้อย";
                         alert(successMsg);
                         load();
                     } catch (e: any) {

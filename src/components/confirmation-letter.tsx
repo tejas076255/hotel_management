@@ -186,9 +186,9 @@ export default function ConfirmationLetter({ reservationId, onClose }: Confirmat
             <section className="mb-8">
               <h3 className="text-sm font-bold uppercase tracking-wide text-[var(--text-secondary)] mb-2">Terms & Conditions</h3>
               <div className="text-xs leading-6 text-[var(--text-secondary)] border border-[var(--border-default)] bg-[var(--bg-body)] p-3">
-                <p>1. กรุณาแสดงเอกสารยืนยันตัวตนเมื่อเช็คอิน</p>
-                <p>2. เวลาเช็คอินและเช็คเอาต์เป็นไปตามนโยบายของโรงแรม</p>
-                <p>3. กรุณาตรวจสอบรายละเอียดการจองและแจ้งแก้ไขก่อนวันเข้าพัก</p>
+                <p>1. กรุณาแสดงเอกสารConfirmตัวตนเมื่อCheck-in</p>
+                <p>2. TimeCheck-inและเช็คเอาต์เป็นไปตามนโยบายของโรงแรม</p>
+                <p>3. กรุณาตรวจสอบDetailsการจองและแจ้งEditก่อนDaysเข้าพัก</p>
               </div>
             </section>
 

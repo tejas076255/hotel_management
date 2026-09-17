@@ -21,9 +21,9 @@ export const TM30_COLUMNS = [
   "เพศ\nGender *",
   "เลขหนังสือเดินทาง\nPassport No. *",
   "สัญชาติ\nNationality *",
-  "วัน เดือน ปี เกิด\nBirth Date\nDD/MM/YYYY(ค.ศ. / A.D.) \nเช่น 17/06/1985 หรือ 10/00/1985 หรือ 00/00/1985",
-  "วันที่แจ้งออกจากที่พัก\nCheck-out Date\nDD/MM/YYYY(ค.ศ. / A.D.) \nเช่น 14/06/2023",
-  "เบอร์โทรศัพท์\nPhone No.",
+  "Days เดือน ปี เกิด\nBirth Date\nDD/MM/YYYY(ค.ศ. / A.D.) \nเช่น 17/06/1985 หรือ 10/00/1985 หรือ 00/00/1985",
+  "Dateแจ้งออกจากที่พัก\nCheck-out Date\nDD/MM/YYYY(ค.ศ. / A.D.) \nเช่น 14/06/2023",
+  "Phoneศัพท์\nPhone No.",
 ] as const;
 
 /** Sheet name must match the template */
@@ -42,22 +42,22 @@ export function tm30Filename(date: string): string {
  */
 export const RR3_COLUMNS = [
   "เลขลำดับ",
-  "วันเวลาที่มาเข้าพัก",
-  "ห้องพักเลขที่",
+  "DaysTimeที่มาเข้าพัก",
+  "Roomเลขที่",
   "ชื่อตัวและชื่อสกุล",
   "สัญชาติ",
   "เลขประจำตัวประชาชน หรือ ใบสำคัญประจำตัวคนต่างด้าว หรือ หนังสือเดินทาง",
-  "ที่อยู่ปัจจุบัน อยุ่ที่ ตำบล อำเภอ จังหวัด หรือประเทศใด",
+  "Addressปัจจุบัน อยุ่ที่ ตำบล อำเภอ จังหวัด หรือประเทศใด",
   "อาชีพ",
   "มาจาก ตำบล อำเภอ จังหวัด หรือ ประเทศใด",
   "จะไปที่ ตำบล อำเภอ จังหวัด หรือ ประเทศใด",
-  "วัน เวลาที่ ออกไป",
-  "หมายเหตุ",
-  "ราคา",
+  "Days Timeที่ ออกไป",
+  "Notes",
+  "Price",
 ] as const;
 
 /** Default occupation for all guests */
-export const RR3_DEFAULT_OCCUPATION = "รับจ้าง";
+export const RR3_DEFAULT_OCCUPATION = "Receiveจ้าง";
 
 /** Default destination province (example) */
 export const RR3_DEFAULT_DESTINATION = "ตัวอย่าง";

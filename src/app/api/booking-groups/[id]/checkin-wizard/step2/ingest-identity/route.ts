@@ -29,8 +29,8 @@ function normalizeGender(value: unknown): "M" | "F" | "Other" | null {
   if (!raw) return null;
   if (raw === "M" || raw === "MALE" || raw === "1") return "M";
   if (raw === "F" || raw === "FEMALE" || raw === "2") return "F";
-  if (raw === "ชาย") return "M";
-  if (raw === "หญิง") return "F";
+  if (raw === "Male") return "M";
+  if (raw === "Female") return "F";
   if (raw === "X" || raw === "OTHER" || raw === "3") return "Other";
   return null;
 }
@@ -65,12 +65,12 @@ const THAI_NAME_PREFIXES = [
   "ส.อ.", "ส.ท.", "ส.ต.",
   "จ.อ.", "จ.ท.", "จ.ต.",
   "น.ส.", "ด.ช.", "ด.ญ.", "นส", "ดช", "ดญ",
-  "นาย", "นางสาว", "นาง", "เด็กชาย", "เด็กหญิง",
+  "นาย", "นางสาว", "นาง", "เด็กMale", "เด็กFemale",
   "ดร.", "ศ.", "รศ.", "ผศ.", "นพ.", "พญ.",
 ];
 
 const THAI_NAME_PREFIX_PATTERN = new RegExp(
-  `^(?:${THAI_NAME_PREFIXES.sort((a, b) => b.length - a.length).map(escapeRegExp).join("|")})(?:\\s*หญิง)?(?:\\s+|$)`,
+  `^(?:${THAI_NAME_PREFIXES.sort((a, b) => b.length - a.length).map(escapeRegExp).join("|")})(?:\\s*Female)?(?:\\s+|$)`,
   "u"
 );
 

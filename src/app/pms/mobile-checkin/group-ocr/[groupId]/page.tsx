@@ -265,7 +265,7 @@ export default function GroupOcrCameraLoop() {
                     </h2>
                   </div>
                   <p className="text-sm font-bold text-rose-700 mb-2">
-                    ไม่พบ MRZ หรือแสงสะท้อนบัง กรุณาถ่ายใหม่หรือข้ามเพื่อกรอกข้อมูลบน Desktop ภายหลัง
+                    ไม่พบ MRZ หรือแสงสะท้อนบัง กรุณาถ่ายใหม่หรือข้ามเพื่อกรอกข้อมูDeleteน Desktop ภายหลัง
                   </p>
                 </div>
               )}

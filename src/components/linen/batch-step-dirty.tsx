@@ -149,18 +149,18 @@ export function BatchStepDirty({ onNext }: BatchStepDirtyProps) {
             onNext(result.data.batch.id);
         } catch (error) {
             console.error(error);
-            alert("เกิดข้อผิดพลาดในการบันทึก กรุณาลองใหม่");
+            alert("เกิดข้อErrorในการSave กรุณาลองใหม่");
         } finally {
             setIsSubmitting(false);
         }
     };
 
     if (isExpectedLoading || isDayuseLoading) {
-        return <div className="p-8 text-center text-slate-500 dark:text-slate-400 animate-pulse bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">กำลังโหลดข้อมูล...</div>;
+        return <div className="p-8 text-center text-slate-500 dark:text-slate-400 animate-pulse bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">กำลังLoading data......</div>;
     }
 
     if (!expected) {
-        const message = expectedError?.message ?? dayuseError?.message ?? "ไม่สามารถโหลดข้อมูล Expected ได้";
+        const message = expectedError?.message ?? dayuseError?.message ?? "ไม่สามารถLoading data... Expected ได้";
         return <div className="p-8 text-center text-rose-500 dark:text-rose-400 bg-white dark:bg-slate-900 rounded-xl border border-rose-200 dark:border-rose-900/30">{message}</div>;
     }
 
@@ -170,7 +170,7 @@ export function BatchStepDirty({ onNext }: BatchStepDirtyProps) {
                 <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 flex items-center justify-between">
                     <div>
                         <h3 className="font-semibold text-slate-800 dark:text-slate-100 text-lg flex items-center gap-2">
-                            <span>📝 นับผ้าส่งซัก</span>
+                            <span>📝 นับผ้าSendซัก</span>
                             <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold uppercase">Step 1/4</span>
                         </h3>
                     </div>
@@ -180,7 +180,7 @@ export function BatchStepDirty({ onNext }: BatchStepDirtyProps) {
                     <div className="flex text-[10px] font-bold text-slate-400 dark:text-slate-500 px-2 pb-2 mb-2 border-b border-slate-100 dark:border-slate-800 uppercase tracking-widest">
                         <div className="flex-1">รายการ</div>
                         <div className="w-16 text-center">ประมาณ</div>
-                        <div className="w-20 text-center">ส่งจริง</div>
+                        <div className="w-20 text-center">Sendจริง</div>
                     </div>
 
                     <div className="space-y-3">
@@ -214,7 +214,7 @@ export function BatchStepDirty({ onNext }: BatchStepDirtyProps) {
                                 className="text-sm font-semibold text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/20 px-4 py-2 rounded-lg hover:bg-amber-100 dark:hover:bg-amber-900 transition-colors inline-flex items-center gap-2"
                             >
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4"><path d="M12 5v14M5 12h14"/></svg>
-                                ส่งผ้าเก่า {dayuseData.towel_count >= dayuseData.threshold && <span className="bg-rose-500 text-white text-[10px] px-1.5 py-0.5 rounded-full ml-1">{dayuseData.towel_count}</span>}
+                                Sendผ้าเก่า {dayuseData.towel_count >= dayuseData.threshold && <span className="bg-rose-500 text-white text-[10px] px-1.5 py-0.5 rounded-full ml-1">{dayuseData.towel_count}</span>}
                             </button>
                             <button
                                 type="button"
@@ -222,7 +222,7 @@ export function BatchStepDirty({ onNext }: BatchStepDirtyProps) {
                                 disabled={!dayuseData.accumulated.some((item) => Number(item.qty ?? 0) > 0)}
                                 className="text-sm font-black text-white border border-amber-500 bg-amber-500 px-4 py-2 rounded-lg hover:bg-amber-600 disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-200 disabled:text-slate-400 dark:disabled:border-slate-800 dark:disabled:bg-slate-800 dark:disabled:text-slate-600 transition-colors inline-flex items-center gap-2"
                             >
-                                ส่งทั้งหมด
+                                SendAll
                             </button>
                         </div>
                     )}
@@ -254,12 +254,12 @@ export function BatchStepDirty({ onNext }: BatchStepDirtyProps) {
                         {isSubmitting ? (
                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                         ) : (
-                           <>ถัดไป: นับผ้าคืน <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></>
+                           <>ถัดไป: นับผ้าReturn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></>
                         )}
                     </button>
                     {!isComplete && (
                         <p className="text-center text-[10px] text-rose-500 dark:text-rose-400 font-bold mt-3 uppercase tracking-tighter">
-                            * กรุณากรอกช่องส่งจริงให้ครบทุกรายการ (ใส่ 0 ได้)
+                            * กรุณากรอกช่องSendจริงให้ครบทุกรายการ (ใส่ 0 ได้)
                         </p>
                     )}
                 </div>

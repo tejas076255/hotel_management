@@ -67,13 +67,13 @@ export function MonthlyMegaTable({ year, month }: MonthlyMegaTableProps) {
     }, [data]);
 
     const handleReopen = async () => {
-        const reason = window.prompt("กรุณาระบุเหตุผลในการเปิดรอบเดือนใหม่ (อย่างน้อย 10 ตัวอักษร)");
+        const reason = window.prompt("กรุณาระบุเหตุผลในการเCloseรอบเดือนใหม่ (อย่างน้อย 10 ตัวอักษร)");
         if (!reason) return;
         if (reason.trim().length < 10) {
             alert("เหตุผลต้องมีอย่างน้อย 10 ตัวอักษร");
             return;
         }
-        if (!confirm("ยืนยันการเปิดรอบเดือนใหม่? ข้อมูลที่มีอยู่จะถูกอนุญาตให้แก้ไขได้อีกครั้ง")) return;
+        if (!confirm("ConfirmการเCloseรอบเดือนใหม่? ข้อมูลที่มีอยู่จะถูกอนุญาตให้Editได้อีกครั้ง")) return;
         setIsReopening(true);
         try {
             const res = await fetch(`/api/linen/monthly/${year}/${month}/reopen`, {
@@ -83,10 +83,10 @@ export function MonthlyMegaTable({ year, month }: MonthlyMegaTableProps) {
             });
             if (!res.ok) throw new Error("Failed to reopen month");
             await mutate();
-            alert("เปิดรอบเดือนสำเร็จ");
+            alert("เCloseรอบเดือนSuccess");
         } catch (err) {
             console.error(err);
-            alert("เกิดข้อผิดพลาดในการเปิดรอบเดือน");
+            alert("เกิดข้อErrorในการเCloseรอบเดือน");
         } finally {
             setIsReopening(false);
         }
@@ -105,8 +105,8 @@ export function MonthlyMegaTable({ year, month }: MonthlyMegaTableProps) {
         return (
             <div className="h-96 flex flex-col items-center justify-center text-rose-500 gap-3 bg-white rounded-3xl border border-slate-100 shadow-sm p-8 text-center">
                 <AlertCircle size={48} />
-                <h3 className="text-xl font-bold font-thai">ไม่สามารถโหลดข้อมูล Mega Table ได้</h3>
-                <p className="text-sm font-thai opacity-70">โปรดตรวจสอบว่า Agent B ได้เพิ่ม API Endpoint แล้ว หรือลองรีเฟรชหน้าจอ</p>
+                <h3 className="text-xl font-bold font-thai">ไม่สามารถLoading data... Mega Table ได้</h3>
+                <p className="text-sm font-thai opacity-70">โปรดตรวจสอบว่า Agent B ได้Add API Endpoint แล้ว หรือลองรีเฟรชหน้าจอ</p>
                 <button onClick={() => mutate()} className="mt-4 px-6 py-2 bg-slate-100 text-slate-700 rounded-xl font-bold font-thai hover:bg-slate-200 transition-all">
                     ลองใหม่อีกครั้ง
                 </button>
@@ -148,7 +148,7 @@ export function MonthlyMegaTable({ year, month }: MonthlyMegaTableProps) {
                                 onChange={(e) => setFilters(f => ({ ...f, include_o: e.target.checked }))}
                                 className="w-4 h-4 rounded border-slate-300 text-amber-600 focus:ring-amber-500"
                             />
-	                            <span className="text-xs font-bold text-slate-600 dark:text-slate-400 font-thai">ยอดส่งเกิน (O)</span>
+	                            <span className="text-xs font-bold text-slate-600 dark:text-slate-400 font-thai">ยอดSendเกิน (O)</span>
 	                        </label>
 	                        <div className="w-px h-4 bg-slate-200 dark:bg-slate-700" />
 	                        <label className="flex items-center gap-2 px-3 py-1.5 rounded-lg cursor-pointer transition-colors hover:bg-white dark:hover:bg-slate-700">
@@ -203,7 +203,7 @@ export function MonthlyMegaTable({ year, month }: MonthlyMegaTableProps) {
                                     
                                     return (
                                         <th key={day} colSpan={totalCols} className="bg-slate-50 dark:bg-slate-800 border-b border-r border-slate-200 dark:border-slate-700 px-4 py-2 text-center font-bold">
-                                            วันที่ {day}
+                                            Date {day}
                                         </th>
                                     );
                                 })}

@@ -70,7 +70,7 @@ export function StockReconcileSection({ onReconcileComplete }: StockReconcileSec
       sections.push({
         key: "amenity_direct",
         label_en: "Amenity Direct (Floor Audit)",
-        label_th: "สต๊อก Amenity ชั้น",
+        label_th: "สต๊อก Amenity Floor",
         status: ack.amenity_direct ? "acknowledged" : (apiData.amenity_direct.status === "clean" ? "clean" : "pending"),
         variance_count: apiData.amenity_direct.stale_floors?.length || 0,
         total_count: apiData.amenity_direct.stale_floors?.length || 0, // Using stale floors conceptually

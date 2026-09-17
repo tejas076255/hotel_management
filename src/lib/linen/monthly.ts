@@ -33,8 +33,8 @@ type MonthlyDailyRpcRow = {
 };
 
 const EXTRA_LABELS = new Map<number, string>([
-  [1, "ปลอกหมอนเพิ่ม"],
-  [2, "ขนหนูเพิ่ม"],
+  [1, "PillowcaseAdd"],
+  [2, "ขนหนูAdd"],
 ]);
 
 function numberValue(value: unknown): number {
@@ -136,7 +136,7 @@ export async function getMonthlySummary(
   const extras: LinenMonthlyExtra[] = rows
     .filter((row) => EXTRA_LABELS.has(row.item_number) && row.qty_extra > 0)
     .map((row) => ({
-      item_name: EXTRA_LABELS.get(row.item_number) ?? `${row.name_th}เพิ่ม`,
+      item_name: EXTRA_LABELS.get(row.item_number) ?? `${row.name_th}Add`,
       linen_item_id: row.linen_item_id,
       qty: row.qty_extra,
     }));

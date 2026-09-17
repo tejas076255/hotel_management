@@ -373,11 +373,11 @@ async function validateReturnStockPayload(
   if (returnedItems.length === 0) return { valid: true };
 
   if (!reservationContext) {
-    return { valid: false, error: "ไม่พบข้อมูลการเข้าพักสำหรับคืนของเข้าชั้น" };
+    return { valid: false, error: "No Data Foundการเข้าพักสำหReceiveReturnของเข้าFloor" };
   }
 
   if (reservationContext.status !== "checked_out") {
-    return { valid: false, error: "คืนของเข้าชั้นได้เฉพาะห้องที่เช็กเอาต์แล้วเท่านั้น" };
+    return { valid: false, error: "Returnของเข้าFloorได้เฉพาะRoomที่เช็กเอาต์แล้วเท่านั้น" };
   }
 
   const productIds = returnedItems.map((item) => item.product_id);
@@ -394,7 +394,7 @@ async function validateReturnStockPayload(
   if (ledgerError) {
     const message = String(ledgerError.message ?? "").toLowerCase();
     if (message.includes("housekeeping_amenity_ledger") || message.includes("does not exist")) {
-      return { valid: false, error: "ต้องอัปเดตฐานข้อมูลก่อนใช้ฟีเจอร์คืนของเข้าชั้น" };
+      return { valid: false, error: "ต้องอัปเดตฐานข้อมูลก่อนใช้ฟีเจอร์Returnของเข้าFloor" };
     }
     return { valid: false, error: ledgerError.message };
   }
@@ -411,7 +411,7 @@ async function validateReturnStockPayload(
   for (const item of returnedItems) {
     const available = Math.max(availabilityByProductId.get(item.product_id) ?? 0, 0);
     if (item.quantity > available) {
-      return { valid: false, error: "จำนวนคืนของเกินยอดค้างในห้อง" };
+      return { valid: false, error: "QuantityReturnของเกินยอดค้างในRoom" };
     }
   }
 
@@ -476,7 +476,7 @@ async function applyStockReturn(
   }
 
   if (!reservationContext) {
-    return { attempted: true, processed: 0, error: "ไม่พบข้อมูลห้องสำหรับคืนของเข้าชั้น" };
+    return { attempted: true, processed: 0, error: "No Data FoundRoomสำหReceiveReturnของเข้าFloor" };
   }
 
   const linkedReservationIds = Array.from(
@@ -526,7 +526,7 @@ async function applyStockReturn(
       return {
         attempted: true,
         processed: 0,
-        error: "จำนวนคืนของเกินยอดค้างในห้อง",
+        error: "QuantityReturnของเกินยอดค้างในRoom",
       };
     }
   }

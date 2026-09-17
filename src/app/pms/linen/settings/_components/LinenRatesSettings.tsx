@@ -78,8 +78,8 @@ export function LinenRatesSettings() {
     <section id="vendor-rates" className="scroll-mt-8 space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-black text-slate-900 dark:text-slate-100 uppercase tracking-tight">ราคา Vendor</h2>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">กำหนดราคาซักต่อชิ้นแยกตามรายเดือน (มีผลกับการคำนวณต้นทุน)</p>
+          <h2 className="text-xl font-black text-slate-900 dark:text-slate-100 uppercase tracking-tight">Price Vendor</h2>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">กำหนดPriceซักต่อชิ้นแยกตามรายเดือน (มีผลกับการคำนวณต้นทุน)</p>
         </div>
 
         <div className="flex items-center gap-3">
@@ -100,7 +100,7 @@ export function LinenRatesSettings() {
         {isLoading ? (
           <div className="p-20 flex flex-col items-center justify-center text-slate-400 gap-3">
             <Loader2 className="animate-spin" size={32} />
-            <p className="font-bold text-xs uppercase tracking-widest">กำลังโหลดราคา...</p>
+            <p className="font-bold text-xs uppercase tracking-widest">Loading...Price...</p>
           </div>
         ) : (
           <table className="w-full text-left border-collapse">
@@ -108,8 +108,8 @@ export function LinenRatesSettings() {
               <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800">
                 <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center w-12">#</th>
                 <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">รายการ</th>
-                <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center w-32">ราคา (฿/ชิ้น)</th>
-                <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center w-24">ประวัติ</th>
+                <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center w-32">Price (฿/ชิ้น)</th>
+                <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center w-24">History</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50 dark:divide-slate-800/50">
@@ -146,7 +146,7 @@ export function LinenRatesSettings() {
           {showSuccess && (
             <span className="flex items-center gap-2 text-emerald-600 font-bold text-sm animate-in fade-in slide-in-from-right-4 transition-all">
               <CheckCircle2 size={16} />
-              บันทึกเรียบร้อย
+              Saveเรียบร้อย
             </span>
           )}
           <Button
@@ -155,7 +155,7 @@ export function LinenRatesSettings() {
             className="min-w-[140px] bg-[#1B4038] hover:bg-[#122b26] text-white flex items-center gap-2 font-bold shadow-lg shadow-[#1B4038]/20"
           >
             {isSaving ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />}
-            บันทึกทั้งหมด
+            SaveAll
           </Button>
         </div>
       </div>
@@ -172,7 +172,7 @@ function RateHistoryModal({ itemId, onClose }: { itemId: number | null; onClose:
     <Dialog open={!!itemId} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>ประวัติราคา</DialogTitle>
+          <DialogTitle>HistoryPrice</DialogTitle>
         </DialogHeader>
 
         <div className="py-4">
@@ -190,13 +190,13 @@ function RateHistoryModal({ itemId, onClose }: { itemId: number | null; onClose:
                   </div>
                   <div className="text-right">
                     <p className="text-lg font-black text-[#1B4038] dark:text-emerald-400">{item.rate_per_piece.toFixed(2)} ฿</p>
-                    <p className="text-[10px] text-slate-400">{item.note || "ไม่มีบันทึก"}</p>
+                    <p className="text-[10px] text-slate-400">{item.note || "ไม่มีSave"}</p>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="text-center text-slate-400 text-sm italic">ยังไม่มีประวัติการปรับราคา</p>
+            <p className="text-center text-slate-400 text-sm italic">ยังไม่มีHistoryการปReceivePrice</p>
           )}
         </div>
       </DialogContent>

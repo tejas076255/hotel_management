@@ -191,7 +191,7 @@ export default function SelectRoom() {
           <DialogHeader>
             <DialogTitle>Confirm Manual Match</DialogTitle>
             <DialogDescription>
-              ระบบจะใช้ชื่อจาก passport scan แทนชื่อ booking ของห้องนี้เมื่อเข้าหน้า check-in
+              ระบบจะใช้ชื่อจาก passport scan แทนชื่อ booking ของRoomนี้เมื่อเข้าหน้า check-in
             </DialogDescription>
           </DialogHeader>
 

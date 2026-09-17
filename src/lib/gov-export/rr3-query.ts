@@ -79,7 +79,7 @@ function emptyPriceSummaryGroup(label: string): RR3PriceSummaryGroup {
     rows: [],
     total_quantity: 0,
     total_amount: 0,
-    copy_text: `${label}\nยอดรวม = 0`,
+    copy_text: `${label}\nTotal = 0`,
   };
 }
 
@@ -128,7 +128,7 @@ function buildPriceSummaryGroup(label: string, bucket: Map<number, number>): RR3
       return `${price} × ${qty} = ${formatSummaryNumber(row.total)}`;
     }),
     "",
-    `ยอดรวม = ${formatSummaryNumber(totalAmount)}`,
+    `Total = ${formatSummaryNumber(totalAmount)}`,
   ];
 
   return {

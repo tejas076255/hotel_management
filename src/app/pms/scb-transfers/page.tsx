@@ -248,7 +248,7 @@ export default function ScbTransfersPage() {
 
       <div className="grid gap-4 md:grid-cols-3">
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 shadow-sm">
-          <div className="text-sm font-bold text-[var(--text-muted)]">วันนี้</div>
+          <div className="text-sm font-bold text-[var(--text-muted)]">Daysนี้</div>
           <div className="mt-2 text-3xl font-black text-emerald-600">{summary.matched_today_count}</div>
           <div className="mt-1 text-sm text-[var(--text-secondary)]">matched</div>
         </div>
@@ -258,7 +258,7 @@ export default function ScbTransfersPage() {
           <div className="mt-1 text-sm text-[var(--text-secondary)]">unmatched</div>
         </div>
         <div className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 shadow-sm">
-          <div className="text-sm font-bold text-[var(--text-muted)]">ยอดรวมวันนี้</div>
+          <div className="text-sm font-bold text-[var(--text-muted)]">TotalDaysนี้</div>
           <div className="mt-2 text-3xl font-black text-brand-600">
             ฿{Number(summary.matched_today_amount ?? 0).toLocaleString("th-TH", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
           </div>
@@ -319,27 +319,27 @@ export default function ScbTransfersPage() {
       <Dialog open={!!ignoreRow} onOpenChange={(next) => !next && setIgnoreRow(null)}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>ยืนยันการ Ignore</DialogTitle>
+            <DialogTitle>Confirmการ Ignore</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <p className="text-sm text-[var(--text-secondary)]">
-              ต้องการ ignore รายการโอนนี้?
+              ต้องการ ignore รายการTransferนี้?
               <br />
               TXN: {ignoreRow?.transaction_id || ignoreRow?.id} · ยอด ฿{Number(ignoreRow?.amount ?? 0).toLocaleString("th-TH", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </p>
             <label className="block">
-              <span className="mb-1 block text-xs font-black uppercase tracking-widest text-[var(--text-muted)]">หมายเหตุ</span>
+              <span className="mb-1 block text-xs font-black uppercase tracking-widest text-[var(--text-muted)]">Notes</span>
               <textarea
                 value={ignoreNote}
                 onChange={(e) => setIgnoreNote(e.target.value)}
                 className="form-textarea min-h-[96px] w-full"
-                placeholder="กรอกเหตุผลสำหรับ audit trail"
+                placeholder="กรอกเหตุผลสำหReceive audit trail"
               />
             </label>
           </div>
           <DialogFooter>
-            <button type="button" className="btn btn-ghost" onClick={() => setIgnoreRow(null)}>ยกเลิก</button>
-            <button type="button" className="btn btn-danger" disabled={!ignoreNote.trim() || busy || role === "supervisor"} title={role === "supervisor" ? "ต้องใช้สิทธิ์ Admin" : undefined} onClick={() => void handleIgnore()}>
+            <button type="button" className="btn btn-ghost" onClick={() => setIgnoreRow(null)}>Cancel</button>
+            <button type="button" className="btn btn-danger" disabled={!ignoreNote.trim() || busy || role === "supervisor"} title={role === "supervisor" ? "ต้องใช้Permissions Admin" : undefined} onClick={() => void handleIgnore()}>
               Ignore
             </button>
           </DialogFooter>

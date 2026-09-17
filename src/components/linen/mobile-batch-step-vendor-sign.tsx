@@ -40,7 +40,7 @@ export function MobileBatchStepVendorSign({ batchId, items, rewashEvents = [], r
 
     const handleConfirm = async () => {
         if (!vendorName) {
-            alert("กรุณาระบุชื่อผู้รับผ้า");
+            alert("กรุณาระบุชื่อผู้Receiveผ้า");
             return;
         }
         if (!signatureBlob) {
@@ -76,7 +76,7 @@ export function MobileBatchStepVendorSign({ batchId, items, rewashEvents = [], r
             onNext();
         } catch (error) {
             console.error(error);
-            alert("เกิดข้อผิดพลาดในการบันทึก");
+            alert("เกิดข้อErrorในการSave");
         } finally {
             setIsSubmitting(false);
         }
@@ -85,30 +85,30 @@ export function MobileBatchStepVendorSign({ batchId, items, rewashEvents = [], r
     return (
         <div className="flex flex-col h-full bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden mb-24">
             <div className="p-5 border-b border-slate-100 bg-slate-50">
-                <h2 className="text-2xl font-bold text-slate-900 font-thai">3. ร้านซักเซ็นรับผ้า</h2>
+                <h2 className="text-2xl font-bold text-slate-900 font-thai">3. ร้านซักเซ็นReceiveผ้า</h2>
                 <p className="text-sm text-slate-500 font-thai">ตรวจสอบยอดและลงชื่อ</p>
             </div>
 
             <div className="flex-1 overflow-y-auto p-5 space-y-6">
-                <MobileBatchStepSummary title="ผ้าวันนี้" items={dirtyItems} />
+                <MobileBatchStepSummary title="ผ้าDaysนี้" items={dirtyItems} />
                 <MobileBatchStepSummary title="ผ้าเก่า" items={dayuseItems} />
                 <MobileBatchStepSummary title="ผ้าซักใหม่" items={rewashItems} />
-                <MobileBatchStepSummary title="รับคืนผ้าซักปกติ" items={returnItems} />
-                <MobileBatchStepSummary title="รับคืนผ้าค้างเก่า" items={splitReturns.pending} />
-                <MobileBatchStepSummary title="รับคืนผ้าซักใหม่" items={rewashReturnSummary} />
+                <MobileBatchStepSummary title="ReceiveReturnผ้าซักปกติ" items={returnItems} />
+                <MobileBatchStepSummary title="ReceiveReturnผ้าค้างเก่า" items={splitReturns.pending} />
+                <MobileBatchStepSummary title="ReceiveReturnผ้าซักใหม่" items={rewashReturnSummary} />
 
                 <div className="pt-6 border-t border-slate-100">
                     <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">✍️ ลงชื่อร้านซักรีด</h3>
                     <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
                         <SignatureCanvas onSign={setSignatureBlob} />
                         <div className="mt-4">
-                            <label className="text-xs font-bold text-slate-400 uppercase mb-2 block">ชื่อพนักงานร้านซัก</label>
+                            <label className="text-xs font-bold text-slate-400 uppercase mb-2 block">ชื่อStaffร้านซัก</label>
                             <input
                                 type="text"
                                 value={vendorName}
                                 onChange={(e) => setVendorName(e.target.value)}
                                 className="w-full h-12 bg-white border border-slate-200 rounded-xl px-4 text-slate-900 font-thai focus:border-[#1B4038] outline-none"
-                                placeholder="พิมพ์ชื่อ..."
+                                placeholder="Printชื่อ..."
                             />
                         </div>
                     </div>
@@ -127,7 +127,7 @@ export function MobileBatchStepVendorSign({ batchId, items, rewashEvents = [], r
                     disabled={isSubmitting}
                     className="flex-[1.5] py-4 bg-[#1B4038] text-white font-bold rounded-2xl shadow-lg active:scale-95 transition-all text-base flex justify-center items-center gap-2"
                 >
-                    {isSubmitting ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : "ยืนยันการส่ง-รับผ้า"}
+                    {isSubmitting ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : "ConfirmการSend-Receiveผ้า"}
                 </button>
             </div>
         </div>

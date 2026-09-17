@@ -59,7 +59,7 @@ export function LinenHistoryFilterBar({ filters, onFilterChange }: LinenHistoryF
                         type="text"
                         value={filters.search || ""}
                         onChange={(e) => handleChange("search", e.target.value)}
-                        placeholder="ค้นหา Batch ID หรือหมายเหตุ..."
+                        placeholder="Search Batch ID หรือNotes..."
                         className="w-full pl-10 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#1B4038]/10 focus:border-[#1B4038] dark:focus:border-emerald-500 transition-all font-thai"
                     />
                 </div>
@@ -74,7 +74,7 @@ export function LinenHistoryFilterBar({ filters, onFilterChange }: LinenHistoryF
                         }`}
                     >
                         <Filter className="w-4 h-4" />
-                        ตัวกรอง {hasActiveFilters && "(มีตัวเลือก)"}
+                        ตัวกรอง {hasActiveFilters && "(มีตัวSelect)"}
                     </button>
 
                     {hasActiveFilters && (
@@ -93,7 +93,7 @@ export function LinenHistoryFilterBar({ filters, onFilterChange }: LinenHistoryF
                 <div className="card p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-slate-50/50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 animate-in fade-in slide-in-from-top-2 duration-200">
                     {/* Date Range */}
                     <div className="space-y-2">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-thai">ช่วงวันที่</label>
+                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-thai">ช่วงDate</label>
                         <div className="flex items-center gap-2">
                             <input
                                 type="date"
@@ -119,7 +119,7 @@ export function LinenHistoryFilterBar({ filters, onFilterChange }: LinenHistoryF
                             onChange={(e) => handleChange("linen_item_id", e.target.value ? parseInt(e.target.value) : undefined)}
                             className="w-full p-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-xs font-thai focus:outline-none focus:ring-1 focus:ring-[#1B4038]"
                         >
-                            <option value="">ทั้งหมด</option>
+                            <option value="">All</option>
                             {items.map(item => (
                                 <option key={item.id} value={item.id}>{item.name_th}</option>
                             ))}
@@ -156,7 +156,7 @@ export function LinenHistoryFilterBar({ filters, onFilterChange }: LinenHistoryF
                                 onChange={(e) => handleChange("has_edits", e.target.checked)}
                                 className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
                             />
-                            <span className="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200 transition-colors font-thai">มีการแก้ไข (Audit)</span>
+                            <span className="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200 transition-colors font-thai">มีการEdit (Audit)</span>
                         </label>
                     </div>
                 </div>

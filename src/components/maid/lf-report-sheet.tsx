@@ -89,7 +89,7 @@ export default function LfReportSheet({ isOpen, onClose, onSuccess }: LfReportSh
     event.preventDefault();
 
     if (!roomId || !description.trim()) {
-      setError("กรุณาเลือกห้องและใส่รายละเอียด");
+      setError("กรุณาSelectRoomและใส่Details");
       return;
     }
 
@@ -130,14 +130,14 @@ export default function LfReportSheet({ isOpen, onClose, onSuccess }: LfReportSh
 
         if (!uploadRes.ok) {
           const uploadJson = await uploadRes.json().catch(() => null);
-          throw new Error(uploadJson?.error || "อัปโหลดรูปไม่สำเร็จ");
+          throw new Error(uploadJson?.error || "อัปโหลดรูปไม่Success");
         }
       }
 
       onSuccess();
       handleClose();
     } catch (err: any) {
-      setError(err.message || "เกิดข้อผิดพลาด");
+      setError(err.message || "เกิดข้อError");
     } finally {
       setIsSubmitting(false);
     }
@@ -201,7 +201,7 @@ export default function LfReportSheet({ isOpen, onClose, onSuccess }: LfReportSh
               <div className="flex gap-3">
                 <Info className="mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-300" />
                 <p className="text-sm font-bold leading-relaxed text-amber-700 dark:text-amber-300">
-                  หากพบสิ่งของที่ลูกค้าลืมไว้ กรุณาถ่ายภาพและใส่รายละเอียดเพื่อแจ้ง Front Desk ทันที
+                  หากพบสิ่งของที่Customerลืมไว้ กรุณาถ่ายภาพและใส่Detailsเพื่อแจ้ง Front Desk ทันที
                 </p>
               </div>
             </div>
@@ -215,7 +215,7 @@ export default function LfReportSheet({ isOpen, onClose, onSuccess }: LfReportSh
             <form id="lf-report-form" onSubmit={handleSubmit} className="mt-6 space-y-6">
               <div>
                 <label className="mb-2 block text-base font-black text-slate-800 dark:text-slate-200">
-                  พบที่ห้องไหน? <span className="text-rose-500">*</span>
+                  พบที่Roomไหน? <span className="text-rose-500">*</span>
                 </label>
                 <select
                   className="w-full appearance-none rounded-[24px] border border-amber-100 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(255,251,235,0.92))] px-4 py-4 text-base font-bold text-slate-900 outline-none transition focus:border-amber-400 dark:border-white/10 dark:bg-none dark:bg-slate-900 dark:text-white"
@@ -224,11 +224,11 @@ export default function LfReportSheet({ isOpen, onClose, onSuccess }: LfReportSh
                   required
                 >
                   <option value="" disabled>
-                    เลือกห้อง...
+                    SelectRoom...
                   </option>
                   {rooms.map((room) => (
                     <option key={room.id} value={room.id}>
-                      ห้อง {room.room_number}
+                      Room {room.room_number}
                       {room.guest_name ? ` - ${room.guest_name}` : ""}
                     </option>
                   ))}
@@ -277,7 +277,7 @@ export default function LfReportSheet({ isOpen, onClose, onSuccess }: LfReportSh
 
               <div>
                 <label className="mb-2 block text-base font-black text-slate-800 dark:text-slate-200">
-                  รายละเอียด <span className="text-rose-500">*</span>
+                  Details <span className="text-rose-500">*</span>
                 </label>
                 <textarea
                   className="min-h-[120px] w-full resize-none rounded-[24px] border border-amber-100 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(255,251,235,0.92))] px-4 py-4 text-base font-bold text-slate-900 outline-none transition focus:border-amber-400 dark:border-white/10 dark:bg-none dark:bg-slate-900 dark:text-white"
@@ -291,7 +291,7 @@ export default function LfReportSheet({ isOpen, onClose, onSuccess }: LfReportSh
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-base font-black text-slate-800 dark:text-slate-200">
-                    หมวดหมู่
+                    Chapterหมู่
                   </label>
                   <select
                     className="w-full appearance-none rounded-[24px] border border-amber-100 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(255,251,235,0.92))] px-4 py-4 text-base font-bold text-slate-900 outline-none transition focus:border-amber-400 dark:border-white/10 dark:bg-none dark:bg-slate-900 dark:text-white"
@@ -332,7 +332,7 @@ export default function LfReportSheet({ isOpen, onClose, onSuccess }: LfReportSh
               {isSubmitting ? (
                 <>
                   <Loader2 size={22} className="animate-spin" />
-                  กำลังส่ง
+                  กำลังSend
                 </>
               ) : (
                 "แจ้งพบของลืม"

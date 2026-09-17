@@ -25,7 +25,7 @@ export function LinenDashboardCards({ dashboard, isLoading }: LinenDashboardCard
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
             <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 p-4 rounded-xl shadow-sm flex flex-col justify-center">
                 <p className="text-sm text-blue-600 dark:text-blue-400 font-medium mb-1 flex items-center justify-between">
-                    <span>ส่งซักวันนี้ (ชิ้น)</span>
+                    <span>SendซักDaysนี้ (ชิ้น)</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 opacity-50">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
@@ -35,7 +35,7 @@ export function LinenDashboardCards({ dashboard, isLoading }: LinenDashboardCard
             
             <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800 p-4 rounded-xl shadow-sm flex flex-col justify-center">
                 <p className="text-sm text-emerald-600 dark:text-emerald-400 font-medium mb-1 flex items-center justify-between">
-                    <span>รับคืนวันนี้ (ชิ้น)</span>
+                    <span>ReceiveReturnDaysนี้ (ชิ้น)</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 opacity-50">
                         <path d="M19 12H5M12 19l-7-7 7-7"/>
                     </svg>

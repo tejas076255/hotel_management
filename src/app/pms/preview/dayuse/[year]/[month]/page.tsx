@@ -40,7 +40,7 @@ export default function DayUseAbbreviatedPreviewPage({ params }: { params: { yea
   }, [year, month]);
 
   const handleGenerate = async () => {
-    if (!confirm("ยืนยันสร้างใบกำกับภาษีอย่างย่อสำหรับ Day Use? (ข้อมูลจะไม่สามารถแก้ได้หลังจากนี้)")) return;
+    if (!confirm("Confirmสร้างAbbreviated Tax InvoiceสำหReceive Day Use? (ข้อมูลจะไม่สามารถแก้ได้หลังจากนี้)")) return;
     setGenerating(true);
     try {
       const res = await fetch(`/api/tax-invoice/abbreviated/generate`, {
@@ -67,8 +67,8 @@ export default function DayUseAbbreviatedPreviewPage({ params }: { params: { yea
                <div className="h-12 w-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center dark:bg-green-900/50 dark:text-green-400">
                  <CheckCircle className="h-6 w-6" />
                </div>
-               <h3 className="text-lg font-bold text-[var(--text-primary)]">สร้างใบกำกับภาษีสำเร็จ!</h3>
-               <p className="text-sm text-[var(--text-secondary)]">ระบบสร้างใบย่อ Day Use ทั้งหมด {successModal.count} ใบ</p>
+               <h3 className="text-lg font-bold text-[var(--text-primary)]">สร้างTax InvoiceSuccess!</h3>
+               <p className="text-sm text-[var(--text-secondary)]">ระบบสร้างใบย่อ Day Use All {successModal.count} ใบ</p>
              </div>
              
              <div className="flex flex-col gap-3">
@@ -77,13 +77,13 @@ export default function DayUseAbbreviatedPreviewPage({ params }: { params: { yea
                  target="_blank"
                  className="flex items-center justify-center gap-2 bg-emerald-100 text-emerald-700 hover:bg-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-300 px-4 py-3 rounded-lg font-medium transition-colors border border-emerald-200 dark:border-emerald-800"
                >
-                 <FileText className="h-4 w-4" /> พิมพ์ใบ Day Use (เดือน {month}/{year})
+                 <FileText className="h-4 w-4" /> Printใบ Day Use (เดือน {month}/{year})
                </Link>
              </div>
 
              <div className="mt-6 pt-4 border-t border-[var(--border)] flex justify-end">
                <button onClick={() => setSuccessModal(null)} className="px-4 py-2 text-sm text-[var(--text-secondary)] hover:bg-[var(--bg-muted)] rounded-lg transition-colors">
-                 ปิดหน้าต่าง
+                 Closeหน้าต่าง
                </button>
              </div>
           </div>
@@ -122,7 +122,7 @@ export default function DayUseAbbreviatedPreviewPage({ params }: { params: { yea
             className="flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 disabled:opacity-50 transition"
           >
             <Save className="h-4 w-4" />
-            {generating ? "Generating..." : "บันทึกข้อมูล (Generate Day Use)"}
+            {generating ? "Generating..." : "Saveข้อมูล (Generate Day Use)"}
           </button>
         </div>
       </div>

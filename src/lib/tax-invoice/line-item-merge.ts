@@ -32,7 +32,7 @@ function mergeKey(item: TaxInvoiceLineItem): string | null {
 
   const dates = sortedUnique(item.stay_dates).sort();
   const unitPrice = normalizeMoney(item.unit_price);
-  const unit = String(item.unit ?? "").trim() || "คืน";
+  const unit = String(item.unit ?? "").trim() || "Return";
   return [unit, unitPrice.toFixed(2), dates.join(",")].join("|");
 }
 
@@ -40,7 +40,7 @@ function mergedDescription(roomCount: number, dates: string[], lang: TaxInvoiceL
   const dateLabel = formatDateLabelFromDates(dates, lang);
   return lang === "en"
     ? `Room charge ${roomCount} rooms (${dateLabel})`
-    : `ค่าห้องพัก ${roomCount} ห้อง (${dateLabel})`;
+    : `ค่าRoom ${roomCount} Room (${dateLabel})`;
 }
 
 export function mergeSameRateRoomLineItems(

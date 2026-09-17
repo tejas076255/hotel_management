@@ -132,13 +132,13 @@ export function ScbUnmatchedResolveModal({ open, role, transaction, onClose, onR
     <Dialog open={open} onOpenChange={(next) => !next && onClose()}>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle>จับคู่รายการโอน</DialogTitle>
+          <DialogTitle>จับคู่รายการTransfer</DialogTitle>
         </DialogHeader>
         <div className="space-y-4">
           <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-muted)] px-4 py-3 text-sm">
-            ยอดโอน: <span className="font-semibold">฿{Number(transaction?.amount ?? 0).toLocaleString("th-TH", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            ยอดTransfer: <span className="font-semibold">฿{Number(transaction?.amount ?? 0).toLocaleString("th-TH", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
             {" · "}
-            ผู้โอน: <span className="font-semibold">{transaction?.payer_name || "—"}</span>
+            ผู้Transfer: <span className="font-semibold">{transaction?.payer_name || "—"}</span>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
@@ -159,14 +159,14 @@ export function ScbUnmatchedResolveModal({ open, role, transaction, onClose, onR
           </div>
 
           <label className="block">
-            <span className="mb-1 block text-xs font-black uppercase tracking-widest text-[var(--text-muted)]">ค้นหา</span>
+            <span className="mb-1 block text-xs font-black uppercase tracking-widest text-[var(--text-muted)]">Search</span>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-muted)]" />
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 className="form-input h-11 w-full pl-10"
-                placeholder={targetType === "reservation" ? "R-0412 / ชื่อแขก" : "POS order / ชื่อลูกค้า"}
+                placeholder={targetType === "reservation" ? "R-0412 / ชื่อGuest" : "POS order / ชื่อCustomer"}
                 disabled={readOnly}
               />
             </div>
@@ -213,7 +213,7 @@ export function ScbUnmatchedResolveModal({ open, role, transaction, onClose, onR
 
           <div className="grid gap-3 md:grid-cols-2">
             <label className="block">
-              <span className="mb-1 block text-xs font-black uppercase tracking-widest text-[var(--text-muted)]">ค่าห้อง</span>
+              <span className="mb-1 block text-xs font-black uppercase tracking-widest text-[var(--text-muted)]">ค่าRoom</span>
               <input
                 type="number"
                 min="0"
@@ -224,7 +224,7 @@ export function ScbUnmatchedResolveModal({ open, role, transaction, onClose, onR
               />
             </label>
             <label className="block">
-              <span className="mb-1 block text-xs font-black uppercase tracking-widest text-[var(--text-muted)]">มัดจำ</span>
+              <span className="mb-1 block text-xs font-black uppercase tracking-widest text-[var(--text-muted)]">Deposit</span>
               <input
                 type="number"
                 min="0"
@@ -239,11 +239,11 @@ export function ScbUnmatchedResolveModal({ open, role, transaction, onClose, onR
           <div className={`rounded-xl border px-4 py-3 text-sm ${exactMatch ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-amber-200 bg-amber-50 text-amber-700"}`}>
             รวม: ฿{total.toLocaleString("th-TH", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             {" · "}
-            {exactMatch ? "ตรงกับยอดโอน" : "ยอดไม่ตรง — ไม่สามารถจับคู่ได้"}
+            {exactMatch ? "ตรงกับยอดTransfer" : "ยอดไม่ตรง — ไม่สามารถจับคู่ได้"}
           </div>
 
           <label className="block">
-            <span className="mb-1 block text-xs font-black uppercase tracking-widest text-[var(--text-muted)]">หมายเหตุ</span>
+            <span className="mb-1 block text-xs font-black uppercase tracking-widest text-[var(--text-muted)]">Notes</span>
             <textarea
               value={note}
               onChange={(e) => setNote(e.target.value)}
@@ -266,14 +266,14 @@ export function ScbUnmatchedResolveModal({ open, role, transaction, onClose, onR
           )}
         </div>
         <DialogFooter>
-          <button className="btn btn-ghost" onClick={onClose}>ยกเลิก</button>
+          <button className="btn btn-ghost" onClick={onClose}>Cancel</button>
           <button
             className="btn btn-primary"
             disabled={readOnly || !selected || !exactMatch || saving}
-            title={readOnly ? "ต้องใช้สิทธิ์ Admin" : undefined}
+            title={readOnly ? "ต้องใช้Permissions Admin" : undefined}
             onClick={handleSubmit}
           >
-            {saving ? "กำลังบันทึก..." : "ยืนยันจับคู่"}
+            {saving ? "กำลังSave..." : "Confirmจับคู่"}
           </button>
         </DialogFooter>
       </DialogContent>

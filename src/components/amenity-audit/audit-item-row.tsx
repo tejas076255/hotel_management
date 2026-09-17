@@ -53,7 +53,7 @@ export function AuditItemRow({ item, onChange }: AuditItemRowProps) {
               <div>→ จะต้องเติมจริง <strong className="text-sky-600 dark:text-sky-400 text-lg">{item.refill_delta}</strong> ชิ้น</div>
               {item.overclick_delta !== 0 && (
                 <div className={isOverclick ? "text-amber-600 dark:text-amber-400 font-medium" : "text-rose-600 dark:text-rose-400 font-medium"}>
-                  → แม่บ้านกด [{item.product_name}] {isOverclick ? "เกิน" : "ขาด"} {Math.abs(item.overclick_delta)} ชิ้น
+                  → Maidกด [{item.product_name}] {isOverclick ? "เกิน" : "ขาด"} {Math.abs(item.overclick_delta)} ชิ้น
                 </div>
               )}
            </div>

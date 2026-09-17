@@ -53,7 +53,7 @@ export function AuditSummaryFooter({
                disabled={!isValid || isSubmitting} 
                className="w-full h-14 text-lg font-bold bg-brand-600 hover:bg-brand-700 text-white"
             >
-               {isSubmitting ? "Submitting..." : "ยืนยัน Submit Audit"}
+               {isSubmitting ? "Submitting..." : "Confirm Submit Audit"}
             </Button>
             {!isValid && (
                <p className="text-center text-xs text-rose-500 mt-2">

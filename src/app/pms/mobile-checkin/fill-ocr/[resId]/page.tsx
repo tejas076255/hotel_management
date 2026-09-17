@@ -176,7 +176,7 @@ export default function FillOcrPage() {
               <div className="text-left">
                 <p className="text-lg font-black text-[var(--text-primary)]">Main Guest</p>
                 <p className="text-xs font-semibold text-[var(--text-muted)] mt-0.5">
-                  OCR จะ fill ข้อมูลแขกหลัก
+                  OCR จะ fill ข้อมูลGuestหลัก
                 </p>
               </div>
             </button>
@@ -194,7 +194,7 @@ export default function FillOcrPage() {
                 <p className="text-xs font-semibold text-[var(--text-muted)] mt-0.5">
                   {accomCount >= 3
                     ? "เต็มแล้ว (3/3)"
-                    : `เพิ่มผู้ร่วมเดินทาง (${accomCount}/3)`}
+                    : `Addผู้ร่วมเดินทาง (${accomCount}/3)`}
                 </p>
               </div>
             </button>
@@ -218,7 +218,7 @@ export default function FillOcrPage() {
                 อัพโหลดรูป Passport ระบบจะอ่าน MRZ แล้ว Fill ข้อมูลอัตโนมัติ
               </p>
               <p className="text-xs font-bold text-amber-600 dark:text-amber-400">
-                * ไม่บันทึกรูป — เก็บแค่ข้อมูลตัวอักษร
+                * ไม่Saveรูป — เก็บแค่ข้อมูลตัวอักษร
               </p>
             </div>
 
@@ -236,7 +236,7 @@ export default function FillOcrPage() {
               onChange={handleFileChange}
             />
             <p className="text-xs text-[var(--text-muted)]">
-              รองรับ jpg, png, webp (สูงสุด 10MB)
+              รองReceive jpg, png, webp (สูงสุด 10MB)
             </p>
           </div>
         )}

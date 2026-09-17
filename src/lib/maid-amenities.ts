@@ -1,26 +1,26 @@
 const AMENITY_LABELS_BY_PRODUCT_ID: Record<string, string> = {
-  "63d5daa9-8506-441f-8d0e-96fed8225e1b": "กาแฟ",
-  "a825de0a-918b-4941-9a78-123d5ec78ffa": "น้ำดื่ม",
-  "c38614e2-9498-485a-a761-b4e332e15181": "แชมพู",
-  "d7241352-8194-4b8f-ad66-8dee940054d1": "สบู่",
+  "63d5daa9-8506-441f-8d0e-96fed8225e1b": "Coffee",
+  "a825de0a-918b-4941-9a78-123d5ec78ffa": "Drinking Water",
+  "c38614e2-9498-485a-a761-b4e332e15181": "Shampoo",
+  "d7241352-8194-4b8f-ad66-8dee940054d1": "Soap",
 };
 
 const RETURNABLE_PRODUCT_ORDER = [
-  "a825de0a-918b-4941-9a78-123d5ec78ffa", // น้ำดื่ม
-  "63d5daa9-8506-441f-8d0e-96fed8225e1b", // กาแฟ
-  "d7241352-8194-4b8f-ad66-8dee940054d1", // สบู่
-  "c38614e2-9498-485a-a761-b4e332e15181", // แชมพู
+  "a825de0a-918b-4941-9a78-123d5ec78ffa", // Drinking Water
+  "63d5daa9-8506-441f-8d0e-96fed8225e1b", // Coffee
+  "d7241352-8194-4b8f-ad66-8dee940054d1", // Soap
+  "c38614e2-9498-485a-a761-b4e332e15181", // Shampoo
 ];
 
 const AMENITY_LABELS_BY_ENGLISH: Record<string, string> = {
-  "bath towel": "ผ้าเช็ดตัว",
-  "glass": "แก้วน้ำ",
-  "shampoo": "แชมพู",
-  "soap": "สบู่",
-  "tissue paper": "กระดาษทิชชู่",
-  "trash bin": "ถังขยะ",
-  "water bottle": "น้ำดื่ม",
-  "coffee": "กาแฟ",
+  "bath towel": "Bath Towel",
+  "glass": "Glass",
+  "shampoo": "Shampoo",
+  "soap": "Soap",
+  "tissue paper": "Tissue",
+  "trash bin": "Trash Bin",
+  "water bottle": "Drinking Water",
+  "coffee": "Coffee",
 };
 
 const RETURNABLE_PRODUCT_ID_SET = new Set(Object.keys(AMENITY_LABELS_BY_PRODUCT_ID));

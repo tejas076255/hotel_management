@@ -167,13 +167,13 @@ export function BookingAlarmsSection({ reservationId, checkInDate }: { reservati
                         setShowAddModal(true);
                     }}
                 >
-                    + เพิ่ม Alarm
+                    + Add Alarm
                 </button>
             </div>
 
             {/* Active Alarms */}
             {activeAlarms.length === 0 ? (
-                <p className="text-xs text-[var(--text-muted)] text-center py-2">ไม่มี Alarm ที่กำลังทำงาน</p>
+                <p className="text-xs text-[var(--text-muted)] text-center py-2">ไม่มี Alarm ที่In Progressงาน</p>
             ) : (
                 <div className="space-y-2">
                     {activeAlarms.map(a => (
@@ -196,13 +196,13 @@ export function BookingAlarmsSection({ reservationId, checkInDate }: { reservati
                                             setShowAddModal(true);
                                         }}
                                     >
-                                        แก้ไข
+                                        Edit
                                     </button>
                                     <button className="btn btn-sm bg-indigo-600 text-white hover:bg-indigo-700 text-xs px-2 py-1" onClick={() => setCompleteModalId(a.id)}>
-                                        ✓ ปิด + Note
+                                        ✓ Close + Note
                                     </button>
                                     <button className="btn btn-sm btn-ghost text-rose-500 hover:bg-rose-50 px-2 py-1 text-xs" onClick={() => handleDelete(a.id)}>
-                                        ลบ
+                                        Delete
                                     </button>
                                 </div>
                             </div>
@@ -261,11 +261,11 @@ export function BookingAlarmsSection({ reservationId, checkInDate }: { reservati
                 <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/50">
                     <div className="bg-[var(--bg-surface)] rounded-xl w-[400px] max-w-full overflow-hidden shadow-xl p-5">
                         <h3 className="font-bold mb-4 text-[var(--text-primary)]">
-                            {editingAlarm ? "แก้ไข Alarm" : "เพิ่ม Alarm"}
+                            {editingAlarm ? "Edit Alarm" : "Add Alarm"}
                         </h3>
                         <div className="space-y-4 text-sm">
                             <div>
-                                <label className="form-label block mb-1">วันที่ต้องการแจ้งเตือน</label>
+                                <label className="form-label block mb-1">Dateต้องการแจ้งเตือน</label>
                                 <input 
                                     type="date" 
                                     className="form-input w-full" 
@@ -274,15 +274,15 @@ export function BookingAlarmsSection({ reservationId, checkInDate }: { reservati
                                     value={addDate} 
                                     onChange={e => setAddDate(e.target.value)}
                                 />
-                                <p className="text-[10px] text-[var(--text-muted)] mt-1">ต้องก่อนวัน Check-in ({checkInDate}) อย่างน้อย 1 วัน</p>
+                                <p className="text-[10px] text-[var(--text-muted)] mt-1">ต้องก่อนDays Check-in ({checkInDate}) อย่างน้อย 1 Days</p>
                             </div>
                             <div>
-                                <label className="form-label block mb-1">รายละเอียด (Note) *</label>
+                                <label className="form-label block mb-1">Details (Note) *</label>
                                 <textarea 
                                     className="form-input w-full min-h-[80px]" 
                                     value={addNote} 
                                     onChange={e => setAddNote(e.target.value)}
-                                    placeholder="ใส่รายละเอียดที่ต้องการเตือน (ขั้นต่ำ 5 ตัวอักษร)"
+                                    placeholder="ใส่Detailsที่ต้องการเตือน (ขั้นต่ำ 5 ตัวอักษร)"
                                 />
                             </div>
                             {error && <p className="text-rose-500 text-xs">{error}</p>}
@@ -297,14 +297,14 @@ export function BookingAlarmsSection({ reservationId, checkInDate }: { reservati
                                         setError("");
                                     }}
                                 >
-                                    ยกเลิก
+                                    Cancel
                                 </button>
                                 <button 
                                     className="btn btn-primary" 
                                     disabled={saving || !addDate || addNote.length < 5} 
                                     onClick={editingAlarm ? handleEdit : handleAdd}
                                 >
-                                    {saving ? "กำลังบันทึก..." : editingAlarm ? "บันทึกการแก้ไข" : "บันทึก"}
+                                    {saving ? "กำลังSave..." : editingAlarm ? "SaveการEdit" : "Save"}
                                 </button>
                             </div>
                         </div>
@@ -316,25 +316,25 @@ export function BookingAlarmsSection({ reservationId, checkInDate }: { reservati
             {completeModalId && (
                 <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/50">
                     <div className="bg-[var(--bg-surface)] rounded-xl w-[400px] max-w-full overflow-hidden shadow-xl p-5">
-                        <h3 className="font-bold mb-4 text-[var(--text-primary)] text-indigo-700 dark:text-indigo-400">ปิด Alarm (ระบุผลลัพธ์)</h3>
+                        <h3 className="font-bold mb-4 text-[var(--text-primary)] text-indigo-700 dark:text-indigo-400">Close Alarm (ระบุผลลัพธ์)</h3>
                         <div className="space-y-4 text-sm">
                             <div>
-                                <label className="form-label block mb-1">บันทึกผลการทำงาน (Note) *</label>
+                                <label className="form-label block mb-1">Saveผลการทำงาน (Note) *</label>
                                 <textarea 
                                     className="form-input w-full min-h-[80px]" 
                                     value={completeNote} 
                                     onChange={e => setCompleteNote(e.target.value)}
-                                    placeholder="เช่น โทรหาลูกค้าเรียบร้อยแล้ว"
+                                    placeholder="เช่น โทรหาCustomerเรียบร้อยแล้ว"
                                 />
                             </div>
                             <div className="flex justify-end gap-2 mt-4 pt-4 border-t border-[var(--border-default)]">
-                                <button className="btn btn-secondary" onClick={() => setCompleteModalId(null)}>ยกเลิก</button>
+                                <button className="btn btn-secondary" onClick={() => setCompleteModalId(null)}>Cancel</button>
                                 <button 
                                     className="btn btn-primary bg-indigo-600 hover:bg-indigo-700" 
                                     disabled={saving || !completeNote} 
                                     onClick={handleComplete}
                                 >
-                                    {saving ? "กำลังบันทึก..." : "เสร็จสิ้น"}
+                                    {saving ? "กำลังSave..." : "เสร็จสิ้น"}
                                 </button>
                             </div>
                         </div>

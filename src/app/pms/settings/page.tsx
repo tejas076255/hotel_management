@@ -499,7 +499,7 @@ export default function SettingsPage() {
                 <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-4 space-y-4">
                     <h2 className="text-sm font-bold text-[var(--text-table-cell)] uppercase tracking-wide">Shift Logout Reminder</h2>
                     <p className="text-xs text-[var(--text-muted)]">
-                        เตือนพนักงานให้ logout เมื่อเปลี่ยนเวรบนเครื่อง Front Office shared.
+                        เตือนStaffให้ logout เมื่อเปลี่ยนเวรบนเครื่อง Front Office shared.
                     </p>
                     <div className="grid grid-cols-3 gap-3">
                         {normalizeShiftLogoutTimes(settings.shift_logout_reminder_times).slice(0, 3).map((time, index) => (
@@ -557,7 +557,7 @@ export default function SettingsPage() {
                     >
                         <span>
                             <span className="block text-sm font-semibold text-[var(--text-table-cell)]">Show Urgent Logbook Overlay</span>
-                            <span className="block text-xs text-[var(--text-muted)]">แสดงป้าย Logbook ด่วนทุกหน้า (เพิ่ม network usage)</span>
+                            <span className="block text-xs text-[var(--text-muted)]">แสดงป้าย Logbook ด่วนทุกหน้า (Add network usage)</span>
                         </span>
                         <span
                             className={`relative inline-flex h-6 w-11 shrink-0 rounded-full transition-colors ${

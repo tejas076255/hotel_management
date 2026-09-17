@@ -81,7 +81,7 @@ export function PrepaymentCard({ item, isPreview, isAdmin, onSnooze, onClear, on
             {!isCleared && (
                 <div className="flex flex-wrap gap-2 pt-3 border-t border-amber-200/50 dark:border-amber-500/20">
                     <Link href={`/pms/reservations?open=${encodeURIComponent(b.id)}`} className="btn btn-secondary btn-sm bg-[var(--bg-body)]" target="_blank">
-                        เปิด Booking ↗
+                        เClose Booking ↗
                     </Link>
                     
                     {!isPreview && (
@@ -158,7 +158,7 @@ export function CustomAlarmCard({ item, isPreview, onSnooze, onClear, businessDa
             {!isCleared && (
                 <div className="flex flex-wrap gap-2 pt-3 border-t border-indigo-200/50 dark:border-indigo-500/20">
                     <Link href={`/pms/reservations?open=${encodeURIComponent(b.id)}`} className="btn btn-secondary btn-sm bg-[var(--bg-body)]" target="_blank">
-                        เปิด Booking ↗
+                        เClose Booking ↗
                     </Link>
                     
                     {!isPreview && (

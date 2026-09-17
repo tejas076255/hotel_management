@@ -48,7 +48,7 @@ export function SignatureDisplay({ src, label }: SignatureDisplayProps) {
                                 className="w-full h-full object-contain p-4"
                             />
                         </div>
-                        <p className="mt-4 text-xs text-slate-400 font-thai">แตะเพื่อปิด</p>
+                        <p className="mt-4 text-xs text-slate-400 font-thai">แตะเพื่อClose</p>
                     </div>
                 </div>
             )}

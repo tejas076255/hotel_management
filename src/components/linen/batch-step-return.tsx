@@ -96,7 +96,7 @@ export function BatchStepReturn({ batchId, items, returnSources = [], onNext }: 
             await mutateRewash();
         } catch (error) {
             console.error(error);
-            alert("เกิดข้อผิดพลาดในการบันทึกรับผ้า Rewash");
+            alert("เกิดข้อErrorในการSaveReceiveผ้า Rewash");
         } finally {
             setIsResolvingRewash((prev) => ({ ...prev, [id]: false }));
         }
@@ -185,7 +185,7 @@ export function BatchStepReturn({ batchId, items, returnSources = [], onNext }: 
             onNext([...returnedSummary, ...pendingSummary]);
         } catch (error) {
             console.error(error);
-            alert("เกิดข้อผิดพลาดในการบันทึก กรุณาลองใหม่");
+            alert("เกิดข้อErrorในการSave กรุณาลองใหม่");
         } finally {
             setIsSubmitting(false);
             setIsResolvingRewash({});
@@ -207,7 +207,7 @@ export function BatchStepReturn({ batchId, items, returnSources = [], onNext }: 
                 <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 flex items-center justify-between">
                     <div>
                         <h3 className="font-semibold text-slate-800 dark:text-slate-100 text-lg flex items-center gap-2">
-                            <span>📋 นับผ้ารับคืน</span>
+                            <span>📋 นับผ้าReceiveReturn</span>
                             <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold uppercase transition-colors">Step 2/4</span>
                         </h3>
                     </div>
@@ -216,19 +216,19 @@ export function BatchStepReturn({ batchId, items, returnSources = [], onNext }: 
                 <div className="p-4 bg-white dark:bg-slate-900">
                     <h4 className="font-semibold text-slate-700 dark:text-slate-300 mb-3 flex items-center gap-2 text-sm">
                         <div className="w-2 h-2 bg-emerald-500 rounded-full" />
-                        คืนจากการส่งรอบที่ผ่านมา
+                        ReturnจากการSendรอบที่ผ่านมา
                     </h4>
 
                     {displayItems.length === 0 ? (
                         <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl text-center text-slate-500 dark:text-slate-400 text-sm mb-6 border border-dashed border-slate-200 dark:border-slate-700">
-                            ไม่มีผ้าที่ต้องรับคืนจากรอบก่อนหน้า
+                            ไม่มีผ้าที่ต้องReceiveReturnจากรอบก่อนหน้า
                         </div>
                     ) : (
                         <>
                             <div className="flex text-[10px] font-bold text-slate-400 dark:text-slate-500 px-2 pb-2 mb-2 border-b border-slate-100 dark:border-slate-800 uppercase tracking-widest">
                                 <div className="flex-1">รายการ</div>
-                                <div className="w-16 text-center">ส่งไป</div>
-                                <div className="w-20 text-center">รับจริง</div>
+                                <div className="w-16 text-center">Sendไป</div>
+                                <div className="w-20 text-center">Receiveจริง</div>
                             </div>
 
                             <div className="space-y-3 mb-6">
@@ -258,7 +258,7 @@ export function BatchStepReturn({ batchId, items, returnSources = [], onNext }: 
                     )}
 
                     {isPendingLoading ? (
-                        <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl text-center text-slate-400 animate-pulse text-sm">กำลังโหลดข้อมูลผ้าค้าง...</div>
+                        <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl text-center text-slate-400 animate-pulse text-sm">กำลังLoading data...ผ้าค้าง...</div>
                     ) : hasPending ? (
                         <div className="mt-6 border border-amber-200 dark:border-amber-900/50 rounded-xl overflow-hidden bg-amber-50/30 dark:bg-amber-950/20">
                             <div className="p-4 border-b border-amber-100 dark:border-amber-900/50 flex items-center justify-between">
@@ -270,7 +270,7 @@ export function BatchStepReturn({ batchId, items, returnSources = [], onNext }: 
                                     onClick={() => setIsPendingSheetOpen(!isPendingSheetOpen)}
                                     className="text-[10px] font-bold text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/50 hover:bg-amber-200 dark:hover:bg-amber-900 px-3 py-1.5 rounded-lg transition-colors shadow-sm uppercase tracking-wider"
                                 >
-                                    {isPendingSheetOpen ? 'ปิดรายละเอียด' : 'ดูรายละเอียด →'}
+                                    {isPendingSheetOpen ? 'CloseDetails' : 'ดูDetails →'}
                                 </button>
                             </div>
                             
@@ -278,7 +278,7 @@ export function BatchStepReturn({ batchId, items, returnSources = [], onNext }: 
                                 <div className="p-3 bg-white dark:bg-slate-900 space-y-4">
                                     {Object.entries(pendingByDate).map(([date, pItems]) => (
                                         <div key={date}>
-                                            <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-2 px-1 uppercase tracking-tight">รอบวันที่ {date}</div>
+                                            <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-2 px-1 uppercase tracking-tight">รอบDate {date}</div>
                                             <div className="space-y-2">
                                                 {pItems.map(pi => {
                                                     const isResolved = resolvedPending.includes(pi.id);
@@ -332,10 +332,10 @@ export function BatchStepReturn({ batchId, items, returnSources = [], onNext }: 
                                     <div className="w-2 h-2 bg-purple-500 rounded-full" />
                                     <div>
                                         <h4 className="font-semibold text-purple-800 dark:text-purple-400 text-sm">
-                                            ผ้าซักใหม่ที่รอคืน ({pendingRewash.length} รายการ)
+                                            ผ้าซักใหม่ที่รอReturn ({pendingRewash.length} รายการ)
                                         </h4>
                                         <p className="text-[11px] text-purple-700/70 dark:text-purple-400/70">
-                                            ซ่อนไว้ก่อน เพราะบางรายการรอคืนหลายวัน
+                                            ซ่อนไว้ก่อน เพราะบางรายการรอReturnหลายDays
                                         </p>
                                     </div>
                                 </div>
@@ -343,7 +343,7 @@ export function BatchStepReturn({ batchId, items, returnSources = [], onNext }: 
                                     onClick={() => setIsRewashSheetOpen((prev) => !prev)}
                                     className="text-[10px] font-bold text-purple-700 dark:text-purple-300 bg-white dark:bg-purple-950/40 hover:bg-purple-100 dark:hover:bg-purple-900/60 border border-purple-200 dark:border-purple-800 px-3 py-1.5 rounded-lg transition-colors shadow-sm uppercase tracking-wider"
                                 >
-                                    {isRewashSheetOpen ? "ปิดรายละเอียด" : "ดูรายละเอียด →"}
+                                    {isRewashSheetOpen ? "CloseDetails" : "ดูDetails →"}
                                 </button>
                             </div>
 
@@ -373,11 +373,11 @@ export function BatchStepReturn({ batchId, items, returnSources = [], onNext }: 
                                                         <div className="min-w-0">
                                                             <p className="font-semibold text-slate-900 dark:text-slate-100">{rw.item_name_th}</p>
                                                             <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                                                                คงเหลือ {remainingQty} / ทั้งหมด {rw.qty} • จากรอบ {rw.sent_batch_pickup_round}
+                                                                คงเหลือ {remainingQty} / All {rw.qty} • จากรอบ {rw.sent_batch_pickup_round}
                                                             </p>
                                                             {Number(rw.resolved_qty ?? 0) > 0 && (
                                                                 <p className="text-[11px] text-purple-600 dark:text-purple-400">
-                                                                    คืนแล้วสะสม {rw.resolved_qty} ชิ้น
+                                                                    Returnแล้วสะสม {rw.resolved_qty} ชิ้น
                                                                 </p>
                                                             )}
                                                         </div>
@@ -411,7 +411,7 @@ export function BatchStepReturn({ batchId, items, returnSources = [], onNext }: 
                                                                 : "bg-white dark:bg-slate-800 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 hover:bg-purple-600 hover:text-white dark:hover:bg-purple-700"
                                                         }`}
                                                     >
-                                                        {isResolvingRewash[String(rw.id)] ? "..." : `คืน ${submitQty || ""}`.trim()}
+                                                        {isResolvingRewash[String(rw.id)] ? "..." : `Return ${submitQty || ""}`.trim()}
                                                     </button>
                                                 </div>
                                             </div>
@@ -436,12 +436,12 @@ export function BatchStepReturn({ batchId, items, returnSources = [], onNext }: 
                         {isSubmitting ? (
                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                         ) : (
-                           <>ถัดไป: ร้านซักเซ็นรับ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></>
+                           <>ถัดไป: ร้านซักเซ็นReceive <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></>
                         )}
                     </button>
                     {!isComplete && (
                         <p className="text-center text-[10px] text-rose-500 dark:text-rose-400 font-bold mt-3 uppercase tracking-tighter">
-                            * กรุณากรอกช่องรับจริงให้ครบทุกรายการ ยกเว้นถ้าไม่ได้รับคืนเลยให้ใส่ 0
+                            * กรุณากรอกช่องReceiveจริงให้ครบทุกรายการ ยกเว้นถ้าไม่ได้ReceiveReturnเลยให้ใส่ 0
                         </p>
                     )}
                 </div>

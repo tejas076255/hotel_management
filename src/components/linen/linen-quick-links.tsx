@@ -10,7 +10,7 @@ export function LinenQuickLinks() {
 
     const links = [
         {
-            title: "ประวัติการส่งซัก",
+            title: "HistoryการSendซัก",
             href: "/pms/linen/history",
             icon: History,
             subtitle: "Management",
@@ -46,7 +46,7 @@ export function LinenQuickLinks() {
             border: "border-slate-100 dark:border-slate-500/20"
         },
         {
-            title: "รายการแก้ไข (Audit)",
+            title: "รายการEdit (Audit)",
             href: "/pms/linen/history?has_edits=1",
             icon: ClipboardList,
             subtitle: "Management",

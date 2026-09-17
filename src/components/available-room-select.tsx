@@ -6,8 +6,8 @@ interface AvailableRoomSelectProps {
     roomTypeId: string;
     checkinDate: string;   // YYYY-MM-DD
     checkoutDate: string;  // YYYY-MM-DD
-    excludeReservationId?: string;  // เวลา edit ต้อง exclude ตัวเอง
-    value: string;         // room_id ที่เลือก
+    excludeReservationId?: string;  // Time edit ต้อง exclude ตัวเอง
+    value: string;         // room_id ที่Select
     onChange: (roomId: string, roomNumber: string) => void;
     disabled?: boolean;
     selectClassName?: string;

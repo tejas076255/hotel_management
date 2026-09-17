@@ -95,8 +95,8 @@ function buildRemarks(record: RR3GuestRecord): string {
   if (!record.first_name && !record.last_name) missing.push("ชื่อ-สกุล");
   if (!record.nationality_code) missing.push("สัญชาติ");
   if (!record.id_number && !record.passport_no) missing.push("เลขบัตร/passport");
-  if (!record.room_number) missing.push("ห้องพัก");
-  if (!record.checkin_date) missing.push("วันเข้าพัก");
+  if (!record.room_number) missing.push("Room");
+  if (!record.checkin_date) missing.push("Daysเข้าพัก");
   if (missing.length === 0) return "";
   return `ขาด: ${missing.join(", ")}`;
 }

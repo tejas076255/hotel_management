@@ -89,7 +89,7 @@ export default function TaxInvoiceIssuePage() {
       }
       router.push(`/pms/receipt/preview/${result.data.id}`);
     } catch (err: any) {
-      alert(err.message || "เกิดข้อผิดพลาด");
+      alert(err.message || "เกิดข้อError");
     } finally {
       setRcLoading(false);
     }
@@ -128,9 +128,9 @@ export default function TaxInvoiceIssuePage() {
           <p className="text-sm text-[var(--text-secondary)]">
             {docType === "invoice"
               ? isCombinedInvoice
-                ? "ใบเสร็จรับเงิน / ใบกำกับภาษีแบบรวมกลุ่ม — พร้อมรายละเอียด VAT"
-                : "ใบเสร็จรับเงิน / ใบกำกับภาษี — พร้อมรายละเอียด VAT"
-              : "ใบเสร็จรับเงินธรรมดา — ไม่แยก VAT"}
+                ? "Receipt / Tax Invoiceแบบรวมกลุ่ม — พร้อมDetails VAT"
+                : "Receipt / Tax Invoice — พร้อมDetails VAT"
+              : "Receiptธรรมดา — ไม่แยก VAT"}
           </p>
         </div>
         {/* Document type toggle */}
@@ -153,7 +153,7 @@ export default function TaxInvoiceIssuePage() {
 
       {isCombinedInvoice && (
         <div className="mb-4 rounded-xl border border-brand-200 bg-brand-50 px-4 py-3 text-xs text-brand-700 dark:border-brand-500/20 dark:bg-brand-500/10 dark:text-brand-300">
-          Group booking นี้จะออกเป็นใบกำกับภาษีรวมตามห้องที่เลือกไว้: {data?.booking_snapshot?.room_numbers?.join(", ") || "-"}
+          Group booking นี้จะออกเป็นTax InvoiceรวมตามRoomที่Selectไว้: {data?.booking_snapshot?.room_numbers?.join(", ") || "-"}
         </div>
       )}
 
@@ -222,7 +222,7 @@ export default function TaxInvoiceIssuePage() {
                 type="text"
                 value={rcNote}
                 onChange={(e) => setRcNote(e.target.value)}
-                placeholder="หมายเหตุเพิ่มเติม..."
+                placeholder="NotesAddเติม..."
                 className="form-input"
               />
             </div>

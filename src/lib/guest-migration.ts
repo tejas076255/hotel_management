@@ -13,11 +13,11 @@ const EXACT_NOTE_STRIP_SET = new Set([
   "walk-in โทร",
   "walk-in โทร.",
   "โทร",
-  "ทำห้อง",
-  "ไม่ทำห้อง",
+  "ทำRoom",
+  "ไม่ทำRoom",
   "ไม่ทำ",
   "welcome back",
-  "ไม่สลับห้อง",
+  "ไม่สลับRoom",
   "ห้ามย้าย",
   "แล้วค่ะ",
   "tel",
@@ -204,9 +204,9 @@ function buildPreferences(row: Record<string, unknown>): string | null {
   const lastRoom = toNullableText(readRowValue(row, ["Last Room", "LastRoom"]));
   const specialNotes = toNullableText(readRowValue(row, ["Special Notes", "SpecialNotes", "Notes"]));
 
-  if (floorPref) parts.push(`ชั้นที่ชอบ: ${floorPref}`);
+  if (floorPref) parts.push(`Floorที่ชอบ: ${floorPref}`);
   if (smoking) parts.push(`สูบบุหรี่: ${smoking}`);
-  if (lastRoom) parts.push(`ห้องล่าสุด: ${lastRoom}`);
+  if (lastRoom) parts.push(`Roomล่าสุด: ${lastRoom}`);
   if (specialNotes) parts.push(specialNotes);
 
   return parts.length > 0 ? parts.join(" | ") : null;

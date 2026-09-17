@@ -50,11 +50,11 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
     }, [data?.batch?.status]);
 
     if (isLoading) {
-        return <div className="p-8 text-center text-slate-500 animate-pulse">กำลังโหลดข้อมูล...</div>;
+        return <div className="p-8 text-center text-slate-500 animate-pulse">กำลังLoading data......</div>;
     }
 
     if (!data || !data.batch) {
-        return <div className="p-8 text-center text-rose-500">ไม่พบข้อมูล หรือเกิดข้อผิดพลาด</div>;
+        return <div className="p-8 text-center text-rose-500">No Data Found หรือเกิดข้อError</div>;
     }
 
     const { batch, items, return_sources: returnSources = [] } = data;
@@ -72,9 +72,9 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
             ? returnRows
             : items.filter(i => i.received_back > 0).map(i => ({ name: i.name_th ?? `Item ${i.linen_item_id}`, qty: i.received_back }));
 
-        let text = `สรุปรายการผ้า [รอบ ${batch.pickup_round}]\nวันที่: ${batch.business_date}\n`;
+        let text = `สรุปรายการผ้า [รอบ ${batch.pickup_round}]\nDate: ${batch.business_date}\n`;
         if (dirty.length > 0) {
-            text += `\n--- ผ้าวันนี้ ---\n` + dirty.map(i => `${i.name_th}: ${i.sent_by_hotel} ชิ้น`).join("\n");
+            text += `\n--- ผ้าDaysนี้ ---\n` + dirty.map(i => `${i.name_th}: ${i.sent_by_hotel} ชิ้น`).join("\n");
         }
         if (dayuse.length > 0) {
             text += `\n\n--- ผ้าเก่า ---\n` + dayuse.map(i => `${i.name_th}: ${i.sent_by_hotel} ชิ้น`).join("\n");
@@ -86,7 +86,7 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
             text += `\n\n` + formatReturnSummarySections(returns);
         }
         if (rewashReturnRows.length > 0) {
-            text += `\n\n--- รับคืนผ้าซักใหม่ ---\n` + formatLinenSummaryLines(rewashReturnRows);
+            text += `\n\n--- ReceiveReturnผ้าซักใหม่ ---\n` + formatLinenSummaryLines(rewashReturnRows);
         }
         if (pendingRows.length > 0) {
             text += `\n\n--- ผ้าค้าง ---\n` + formatPendingSummaryLines(pendingRows);
@@ -96,7 +96,7 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
     
     // Admin Reopen
     const handleReopen = async () => {
-        if (!confirm("ยืนยันการ Reopen? สถานะจะกลับไปที่ รอร้านซักเซ็นรับ (fo_dirty_counted) และต้องให้ร้านค้าเซ็นรับใหม่ทั้งหมด")) return;
+        if (!confirm("Confirmการ Reopen? Statusจะกลับไปที่ รอร้านซักเซ็นReceive (fo_dirty_counted) และต้องให้ร้านค้าเซ็นReceiveใหม่All")) return;
         
         setIsReopening(true);
         try {
@@ -144,7 +144,7 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
                     <Link href="/pms/linen" className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700 shadow-sm">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M15 18l-6-6 6-6"/></svg>
                     </Link>
-                    <div><h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">รับ-ส่งผ้าต่อ</h1></div>
+                    <div><h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">Receive-Sendผ้าต่อ</h1></div>
                 </div>
                 <BatchStepReturn batchId={batch.id} items={items} returnSources={returnSources} onNext={handleNext} />
             </div>
@@ -158,7 +158,7 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
                     <Link href="/pms/linen" className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700 shadow-sm">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M15 18l-6-6 6-6"/></svg>
                     </Link>
-                    <div><h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">ร้านซักเซ็นรับ</h1></div>
+                    <div><h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">ร้านซักเซ็นReceive</h1></div>
                 </div>
                 <BatchStepVendorSign batchId={batch.id} items={items} rewashEvents={data.rewash_events ?? []} returnSummary={returnDisplayRows} rewashReturnSummary={rewashReturnRows} pendingItems={[]} onNext={handleNext} />
             </div>
@@ -172,7 +172,7 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
                     <Link href="/pms/linen" className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700 shadow-sm">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M15 18l-6-6 6-6"/></svg>
                     </Link>
-                    <div><h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">FO เซ็นรับจบ</h1></div>
+                    <div><h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">FO เซ็นReceiveจบ</h1></div>
                 </div>
                 <BatchStepFoSign batchId={batch.id} items={items} rewashEvents={data.rewash_events ?? []} returnSummary={returnDisplayRows} rewashReturnSummary={rewashReturnRows} onDone={handleDone} />
             </div>
@@ -197,8 +197,8 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M15 18l-6-6 6-6"/></svg>
                     </Link>
                     <div>
-                        <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">รายละเอียด Batch</h1>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">วันที่ {format(new Date(batch.business_date), "dd MMMM yyyy", { locale: th })} • รอบที่ {batch.pickup_round}</p>
+                        <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">Details Batch</h1>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Date {format(new Date(batch.business_date), "dd MMMM yyyy", { locale: th })} • รอบที่ {batch.pickup_round}</p>
                     </div>
                 </div>
                 <div className="flex flex-col items-end gap-1">
@@ -212,18 +212,18 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                         ร้านค้าแจ้งว่ายอดไม่ตรง!
                     </div>
-                    <p className="text-sm">โปรดตรวจสอบกับร้านซักรีด และทำการแก้ไข (Reopen) หาข้อมูลผิดพลาด</p>
+                    <p className="text-sm">โปรดตรวจสอบกับร้านซักรีด และทำการEdit (Reopen) หาข้อมูลError</p>
                 </div>
             )}
 
             <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden mb-6">
                 <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                    <h3 className="font-semibold text-slate-800 dark:text-slate-200">สรุปจำนวนผ้า</h3>
+                    <h3 className="font-semibold text-slate-800 dark:text-slate-200">สรุปQuantityผ้า</h3>
                 </div>
                 <div className="p-0 border-b border-slate-100 dark:border-slate-800">
                     <div className={`grid ${rewashTotal > 0 || rewashReturnTotal > 0 || pendingReturnTotal > 0 ? "grid-cols-2 md:grid-cols-6" : "grid-cols-3"} divide-x divide-slate-100 dark:divide-slate-800`}>
                         <div className="p-4 text-center">
-                            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">ส่งซัก</p>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">Sendซัก</p>
                             <p className="text-2xl font-bold text-blue-700 dark:text-blue-400">{dirtyTotal}</p>
                         </div>
                         <div className="p-4 text-center bg-amber-50/30 dark:bg-amber-500/5">
@@ -237,18 +237,18 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
                             </div>
                         )}
                         <div className="p-4 text-center bg-emerald-50/30 dark:bg-emerald-500/5">
-                            <p className="text-xs text-emerald-600 dark:text-emerald-400 mb-1">รับคืนปกติ</p>
+                            <p className="text-xs text-emerald-600 dark:text-emerald-400 mb-1">ReceiveReturnปกติ</p>
                             <p className="text-2xl font-bold text-emerald-700 dark:text-emerald-500">{returnTotal}</p>
                         </div>
                         {pendingReturnTotal > 0 && (
                             <div className="p-4 text-center bg-amber-50/30 dark:bg-amber-500/5">
-                                <p className="text-xs text-amber-600 dark:text-amber-400 mb-1">รับคืนผ้าค้าง</p>
+                                <p className="text-xs text-amber-600 dark:text-amber-400 mb-1">ReceiveReturnผ้าค้าง</p>
                                 <p className="text-2xl font-bold text-amber-700 dark:text-amber-500">{pendingReturnTotal}</p>
                             </div>
                         )}
                         {rewashReturnTotal > 0 && (
                             <div className="p-4 text-center bg-fuchsia-50/30 dark:bg-fuchsia-500/5">
-                                <p className="text-xs text-fuchsia-600 dark:text-fuchsia-400 mb-1">รับคืน Rewash</p>
+                                <p className="text-xs text-fuchsia-600 dark:text-fuchsia-400 mb-1">ReceiveReturn Rewash</p>
                                 <p className="text-2xl font-bold text-fuchsia-700 dark:text-fuchsia-500">{rewashReturnTotal}</p>
                             </div>
                         )}
@@ -284,7 +284,7 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
                     {detailReturnRows.length > 0 && (
                         <div className="mt-3 rounded-lg border border-emerald-100 bg-emerald-50/50 p-3 dark:border-emerald-900/40 dark:bg-emerald-950/20">
                             <div className="mb-2 text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-300">
-                                ผ้ารับคืนปกติ
+                                ผ้าReceiveReturnปกติ
                             </div>
                             {detailReturnRows.map((item, index) => (
                                 <div key={`detail-return-${index}`} className="flex justify-between items-center py-1 text-sm">
@@ -297,7 +297,7 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
                     {splitReturnDisplayRows.pending.length > 0 && (
                         <div className="mt-3 rounded-lg border border-amber-100 bg-amber-50/50 p-3 dark:border-amber-900/40 dark:bg-amber-950/20">
                             <div className="mb-2 text-xs font-bold uppercase tracking-widest text-amber-600 dark:text-amber-300">
-                                รับคืนผ้าค้างเก่า
+                                ReceiveReturnผ้าค้างเก่า
                             </div>
                             {splitReturnDisplayRows.pending.map((item, index) => (
                                 <div key={`detail-pending-return-${index}`} className="flex justify-between items-center py-1 text-sm">
@@ -310,7 +310,7 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
                     {rewashReturnRows.length > 0 && (
                         <div className="mt-3 rounded-lg border border-fuchsia-100 bg-fuchsia-50/50 p-3 dark:border-fuchsia-900/40 dark:bg-fuchsia-950/20">
                             <div className="mb-2 text-xs font-bold uppercase tracking-widest text-fuchsia-600 dark:text-fuchsia-300">
-                                รับคืนผ้าซักใหม่
+                                ReceiveReturnผ้าซักใหม่
                             </div>
                             {rewashReturnRows.map((item, index) => (
                                 <div key={`detail-rewash-return-${index}`} className="flex justify-between items-center py-1 text-sm">
@@ -341,7 +341,7 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
                         <div className="w-2 h-2 bg-emerald-500 rounded-full" /> ลายเซ็น FO
                     </h4>
                     {batch.fo_return_signature_url ? (
-                        <SignatureDisplay src={batch.fo_return_signature_url} label="พนักงาน Front Office" />
+                        <SignatureDisplay src={batch.fo_return_signature_url} label="Staff Front Office" />
                     ) : (
                         <div className="h-[60px] w-full bg-slate-50 dark:bg-slate-800/50 rounded-lg flex items-center justify-center text-slate-400 dark:text-slate-600 text-xs border border-slate-100 dark:border-slate-800">
                             ยังไม่มีลายเซ็น
@@ -360,7 +360,7 @@ export default function BatchDetailPage({ params }: { params: { id: string } }) 
                     {isReopening ? "กำลังดำเนินการ..." : (
                         <>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-                            Admin: เปิดแก้ไขรายการใหม่ (Reopen)
+                            Admin: เCloseEditรายการใหม่ (Reopen)
                         </>
                     )}
                 </button>

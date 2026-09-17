@@ -39,7 +39,7 @@ export default function PosAbbreviatedPreviewPage({ params }: { params: { date: 
   }, [dateStr]);
 
   const handleGenerate = async () => {
-    if (!confirm("ยืนยันสร้างใบกำกับภาษีอย่างย่อสำหรับ POS ของเดือนนี้? (ระบบจะประมวลผลทั้งเดือน)")) return;
+    if (!confirm("Confirmสร้างAbbreviated Tax InvoiceสำหReceive POS ของเดือนนี้? (ระบบจะประมวลผลทั้งเดือน)")) return;
     setGenerating(true);
     try {
       const year = parseInt(dateStr.split('-')[0], 10);
@@ -68,8 +68,8 @@ export default function PosAbbreviatedPreviewPage({ params }: { params: { date: 
                <div className="h-12 w-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center dark:bg-green-900/50 dark:text-green-400">
                  <CheckCircle className="h-6 w-6" />
                </div>
-               <h3 className="text-lg font-bold text-[var(--text-primary)]">สร้างใบกำกับภาษีสำเร็จ!</h3>
-               <p className="text-sm text-[var(--text-secondary)]">ระบบสร้างใบย่อ POS จำนวน {successModal.count} ใบ</p>
+               <h3 className="text-lg font-bold text-[var(--text-primary)]">สร้างTax InvoiceSuccess!</h3>
+               <p className="text-sm text-[var(--text-secondary)]">ระบบสร้างใบย่อ POS Quantity {successModal.count} ใบ</p>
              </div>
              
              <div className="flex flex-col gap-3">
@@ -78,13 +78,13 @@ export default function PosAbbreviatedPreviewPage({ params }: { params: { date: 
                  target="_blank"
                  className="flex items-center justify-center gap-2 bg-orange-100 text-orange-700 hover:bg-orange-200 dark:bg-orange-900/40 dark:text-orange-300 px-4 py-3 rounded-lg font-medium transition-colors border border-orange-200 dark:border-orange-800"
                >
-                 <FileText className="h-4 w-4" /> พิมพ์ POS ทั้งเดือน
+                 <FileText className="h-4 w-4" /> Print POS ทั้งเดือน
                </Link>
              </div>
 
              <div className="mt-6 pt-4 border-t border-[var(--border)] flex justify-end">
                <button onClick={() => setSuccessModal(null)} className="px-4 py-2 text-sm text-[var(--text-secondary)] hover:bg-[var(--bg-muted)] rounded-lg transition-colors">
-                 ปิดหน้าต่าง
+                 Closeหน้าต่าง
                </button>
              </div>
           </div>
@@ -104,7 +104,7 @@ export default function PosAbbreviatedPreviewPage({ params }: { params: { date: 
             </Link>
           </div>
           <h1 className="text-xl font-bold text-[var(--text-primary)]">
-            POS Preview วันที่ {dateStr}
+            POS Preview Date {dateStr}
           </h1>
         </div>
 
@@ -123,7 +123,7 @@ export default function PosAbbreviatedPreviewPage({ params }: { params: { date: 
             className="flex items-center gap-2 rounded-lg bg-orange-600 px-4 py-2 text-sm font-medium text-white hover:bg-orange-700 disabled:opacity-50 transition"
           >
             <Save className="h-4 w-4" />
-            {generating ? "Generating..." : "บันทึกข้อมูล (Generate POS)"}
+            {generating ? "Generating..." : "Saveข้อมูล (Generate POS)"}
           </button>
         </div>
       </div>
@@ -146,7 +146,7 @@ export default function PosAbbreviatedPreviewPage({ params }: { params: { date: 
               </h2>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-[var(--text-muted)]">จำนวนออเดอร์</span>
+                  <span className="text-[var(--text-muted)]">Quantityออเดอร์</span>
                   <span className="font-medium text-[var(--text-primary)]">{data.summary.total_orders} ออเดอร์</span>
                 </div>
                 <div className="flex justify-between text-rose-600">
@@ -159,7 +159,7 @@ export default function PosAbbreviatedPreviewPage({ params }: { params: { date: 
                 </div>
                 <hr className="border-[var(--border)] my-2" />
                 <div className="flex justify-between font-bold text-[var(--text-primary)] mt-1 text-base">
-                  <span>จำนวนเงินรวม</span>
+                  <span>Quantityเงินรวม</span>
                   <span>{fmtMoney(data.summary.grand_total_inc_vat)}</span>
                 </div>
               </div>
@@ -168,7 +168,7 @@ export default function PosAbbreviatedPreviewPage({ params }: { params: { date: 
           <div className="lg:col-span-3 space-y-4">
             {!data.draft ? (
                <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-12 text-center shadow-sm">
-                 <p className="text-[var(--text-muted)]">ไม่มีรายได้ POS ในวันนี้</p>
+                 <p className="text-[var(--text-muted)]">ไม่มีรายได้ POS ในDaysนี้</p>
                </div>
             ) : (
                <AbbreviatedInvoicePreviewCard draft={data.draft} variant="pos" />

@@ -116,7 +116,7 @@ export function buildTransferAuditNote(args: {
   const name = String(args.senderName || args.fallbackLabel || "").trim();
   const ref = String(args.bankRef || "").trim();
   const parts = [
-    `โอน ${formatBangkokShortDateTime(args.transferAt)}`,
+    `Transfer ${formatBangkokShortDateTime(args.transferAt)}`,
     name || null,
     `รวม฿${formatTransferAuditMoney(args.totalAmount)}`,
     ref ? `Ref ${ref}` : null,

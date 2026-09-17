@@ -96,7 +96,7 @@ export default function BugReportButton() {
       setState("done");
       setTimeout(() => handleClose(), 2000);
     } catch (err: any) {
-      setErrorMsg(err.message ?? "ส่งไม่สำเร็จ กรุณาลองใหม่");
+      setErrorMsg(err.message ?? "Sendไม่Success กรุณาลองใหม่");
       setState("previewing");
     }
   }
@@ -155,7 +155,7 @@ export default function BugReportButton() {
                     onClick={() => setScreenshotDataUrl(null)}
                     className="absolute top-1.5 right-1.5 bg-black/50 text-white text-xs px-1.5 py-0.5 rounded hover:bg-black/70 transition"
                   >
-                    ลบ
+                    Delete
                   </button>
                 </div>
               ) : (
@@ -176,7 +176,7 @@ export default function BugReportButton() {
           {state === "done" && (
             <div className="h-24 flex flex-col items-center justify-center gap-2">
               <span className="text-3xl">✅</span>
-              <p className="text-sm font-medium text-emerald-600">ส่ง report แล้ว — ขอบคุณ!</p>
+              <p className="text-sm font-medium text-emerald-600">Send report แล้ว — ขอบคุณ!</p>
             </div>
           )}
 
@@ -187,7 +187,7 @@ export default function BugReportButton() {
                 ref={descriptionRef}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="อธิบายปัญหา เช่น 'กดบันทึกแล้วหน้าขาว' หรือ 'ตัวเลขผิด'"
+                placeholder="อธิบายปัญหา เช่น 'กดSaveแล้วหน้าขาว' หรือ 'ตัวเลขผิด'"
                 rows={3}
                 className="w-full text-sm border border-[var(--border-default)] rounded-lg px-3 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent"
               />
@@ -205,7 +205,7 @@ export default function BugReportButton() {
                 disabled={state === "submitting"}
                 className="w-full bg-rose-500 hover:bg-rose-600 disabled:opacity-50 text-white text-sm font-medium py-2 rounded-lg transition-colors"
               >
-                {state === "submitting" ? "กำลังส่ง..." : "ส่ง Bug Report"}
+                {state === "submitting" ? "กำลังSend..." : "Send Bug Report"}
               </button>
             </>
           )}

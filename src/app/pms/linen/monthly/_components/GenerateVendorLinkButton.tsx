@@ -25,7 +25,7 @@ export function GenerateVendorLinkButton({ year, month }: { year: number; month:
       const payload = await res.json();
       setResult(payload.data ?? payload);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "เกิดข้อผิดพลาด");
+      setError(err instanceof Error ? err.message : "เกิดข้อError");
     } finally {
       setIsGenerating(false);
     }
@@ -46,9 +46,9 @@ export function GenerateVendorLinkButton({ year, month }: { year: number; month:
     <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 font-thai">ลิงก์สรุปรายเดือนสำหรับร้าน</h3>
+          <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 font-thai">ลิงก์สรุปรายเดือนสำหReceiveร้าน</h3>
           <p className="text-xs text-slate-400 mt-0.5">
-            สร้างลิงก์เพื่อส่งให้ร้านซักรีดดูยอดเดือน {month}/{year}
+            สร้างลิงก์เพื่อSendให้ร้านซักรีดดูยอดเดือน {month}/{year}
           </p>
         </div>
         <button

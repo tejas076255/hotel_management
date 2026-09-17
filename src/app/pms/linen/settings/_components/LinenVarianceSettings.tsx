@@ -65,14 +65,14 @@ export function LinenVarianceSettings() {
     <section id="variance-thresholds" className="scroll-mt-8 space-y-6">
       <div>
         <h2 className="text-xl font-black text-slate-900 dark:text-slate-100 uppercase tracking-tight">Variance Thresholds</h2>
-        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">กำหนดเกณฑ์การวัดผลส่วนต่าง (Actual vs Expected) เพื่อแสดงสีสถานะ</p>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">กำหนดเกณฑ์การวัดผลส่วนต่าง (Actual vs Expected) เพื่อแสดงสีStatus</p>
       </div>
 
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
         {isLoading ? (
           <div className="p-20 flex flex-col items-center justify-center text-slate-400 gap-3">
             <Loader2 className="animate-spin" size={32} />
-            <p className="font-bold text-xs uppercase tracking-widest">กำลังโหลดค่าคอนฟิก...</p>
+            <p className="font-bold text-xs uppercase tracking-widest">Loading...ค่าคอนฟิก...</p>
           </div>
         ) : (
           <div className="p-6 space-y-8">
@@ -129,7 +129,7 @@ export function LinenVarianceSettings() {
                 </div>
               </div>
               <p className="text-[10px] text-slate-400 italic">
-                * ช่วงที่เป็น Warning คือค่าที่อยู่นอกเขต Green แต่อยู่ภายในเขต Yellow (เช่น 70-90% และ 110-130%)
+                * ช่วงที่เป็น Warning คือค่าAddressนอกเขต Green แต่อยู่ภายในเขต Yellow (เช่น 70-90% และ 110-130%)
               </p>
             </div>
 
@@ -149,7 +149,7 @@ export function LinenVarianceSettings() {
           {showSuccess && (
             <span className="flex items-center gap-2 text-emerald-600 font-bold text-sm">
               <CheckCircle2 size={16} />
-              บันทึกเรียบร้อย
+              Saveเรียบร้อย
             </span>
           )}
           <Button
@@ -158,7 +158,7 @@ export function LinenVarianceSettings() {
             className="min-w-[140px] bg-[#1B4038] hover:bg-[#122b26] text-white flex items-center gap-2 font-bold shadow-lg shadow-[#1B4038]/20"
           >
             {isSaving ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />}
-            บันทึกการตั้งค่า
+            SaveSettings
           </Button>
         </div>
       </div>

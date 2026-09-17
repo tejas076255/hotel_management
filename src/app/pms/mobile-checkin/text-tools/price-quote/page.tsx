@@ -141,7 +141,7 @@ export default function MobilePriceQuoteTextPage() {
                 setCustomerName(event.target.value);
                 clearOutput();
               }}
-              placeholder="เช่น สมชาย"
+              placeholder="เช่น สมMale"
               className="form-input w-full"
             />
           </div>
@@ -238,7 +238,7 @@ export default function MobilePriceQuoteTextPage() {
             {error && <p>{error}</p>}
             {violations.map((item) => (
               <p key={item.room_type_key}>
-                {item.room_type_name}: เลือก {item.requested} ห้อง แต่เหลือว่างเพียง {item.available} ห้อง
+                {item.room_type_name}: Select {item.requested} Room แต่เหลือว่างเพียง {item.available} Room
               </p>
             ))}
           </div>

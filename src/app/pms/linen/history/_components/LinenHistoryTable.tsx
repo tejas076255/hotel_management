@@ -17,7 +17,7 @@ export function LinenHistoryTable({ batches, isLoading, onViewDetail }: LinenHis
         return (
             <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden p-12 text-center">
                 <div className="animate-spin w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full mx-auto mb-4" />
-                <p className="text-slate-400 font-thai">กำลังดึงข้อมูลประวัติ...</p>
+                <p className="text-slate-400 font-thai">กำลังดึงข้อมูลHistory...</p>
             </div>
         );
     }
@@ -28,8 +28,8 @@ export function LinenHistoryTable({ batches, isLoading, onViewDetail }: LinenHis
                 <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Package className="w-8 h-8 text-slate-300" />
                 </div>
-                <h3 className="text-lg font-bold text-slate-700 dark:text-slate-300 font-thai">ไม่พบรายการที่ค้นหา</h3>
-                <p className="text-sm text-slate-500 font-thai">ลองเปลี่ยนตัวกรองหรือคำค้นหาใหม่</p>
+                <h3 className="text-lg font-bold text-slate-700 dark:text-slate-300 font-thai">ไม่พบรายการที่Search</h3>
+                <p className="text-sm text-slate-500 font-thai">ลองเปลี่ยนตัวกรองหรือคำSearchใหม่</p>
             </div>
         );
     }
@@ -112,10 +112,10 @@ function StatusBadge({ status }: { status: string }) {
             color: "bg-emerald-50 dark:bg-emerald-950/10 text-emerald-600 dark:text-emerald-300 border border-emerald-100/50" 
         },
         // Pending states
-        fo_dirty_counted: { label: "รอนับคืน", color: "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400" },
+        fo_dirty_counted: { label: "รอนับReturn", color: "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400" },
         fo_return_counted: { label: "รอร้านเซ็น", color: "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400" },
-        vendor_signed: { label: "รอ FO เซ็นรับ", color: "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400" },
-        fo_return_signed: { label: "ส่งซักแล้ว", color: "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400" },
+        vendor_signed: { label: "รอ FO เซ็นReceive", color: "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400" },
+        fo_return_signed: { label: "Sendซักแล้ว", color: "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400" },
     };
 
     const s = map[status] || { label: status, color: "bg-slate-100 text-slate-600" };

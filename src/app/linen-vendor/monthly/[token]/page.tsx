@@ -19,8 +19,8 @@ interface VendorMonthlyData {
 }
 
 const THAI_MONTHS = [
-  "", "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-  "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม",
+  "", "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
 ];
 
 function formatThaiMonth(year: number, month: number): string {
@@ -112,7 +112,7 @@ export default function VendorMonthlyPage({ params }: { params: { token: string 
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
         <div className="flex flex-col items-center gap-3">
           <Loader2 className="animate-spin text-[#1B4038]" size={32} />
-          <p className="font-bold text-xs uppercase tracking-widest text-slate-400 font-thai">กำลังโหลดสรุปรายเดือน...</p>
+          <p className="font-bold text-xs uppercase tracking-widest text-slate-400 font-thai">Loading...สรุปรายเดือน...</p>
         </div>
       </div>
     );
@@ -129,7 +129,7 @@ export default function VendorMonthlyPage({ params }: { params: { token: string 
               <line x1="12" y1="16" x2="12.01" y2="16" />
             </svg>
           </div>
-          <h2 className="text-xl font-bold text-slate-800 mb-2 font-thai">เข้าถึงไม่สำเร็จ</h2>
+          <h2 className="text-xl font-bold text-slate-800 mb-2 font-thai">เข้าถึงไม่Success</h2>
           <p className="text-slate-400 font-thai">ลิงก์นี้ไม่ถูกต้อง หรือหมดอายุไปแล้ว</p>
         </div>
       </div>
@@ -180,7 +180,7 @@ export default function VendorMonthlyPage({ params }: { params: { token: string 
             <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
             <rect x="6" y="14" width="12" height="8" />
           </svg>
-          พิมพ์ / PDF
+          Print / PDF
         </button>
       </div>
 
@@ -240,7 +240,7 @@ export default function VendorMonthlyPage({ params }: { params: { token: string 
               <tfoot className="sticky bottom-0 z-20 bg-slate-50 font-bold border-t-2 border-slate-200">
                 <tr>
                   <td className="sticky left-0 bg-slate-50 border-r border-slate-200 px-4 py-3 shadow-[2px_0_5px_rgba(0,0,0,0.02)]">
-                    รวมทั้งหมด
+                    รวมAll
                   </td>
                   {totals.cells?.map((qty, i) => (
                     <td key={i} className="border-r border-slate-200 px-2 py-3 text-center">

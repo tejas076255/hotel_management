@@ -49,9 +49,9 @@ export default function NewBatchWizardPage() {
             ...(data.return_sources ?? []),
         ]);
 
-        let text = `สรุปรายการผ้า [รอบ ${data.batch.pickup_round}]\nวันที่: ${data.batch.business_date}\n`;
+        let text = `สรุปรายการผ้า [รอบ ${data.batch.pickup_round}]\nDate: ${data.batch.business_date}\n`;
         if (dirty.length > 0) {
-            text += `\n--- ผ้าวันนี้ ---\n` + dirty.map(i => `${i.name_th}: ${i.sent_by_hotel} ชิ้น`).join("\n");
+            text += `\n--- ผ้าDaysนี้ ---\n` + dirty.map(i => `${i.name_th}: ${i.sent_by_hotel} ชิ้น`).join("\n");
         }
         if (dayuse.length > 0) {
             text += `\n\n--- ผ้าเก่า ---\n` + dayuse.map(i => `${i.name_th}: ${i.sent_by_hotel} ชิ้น`).join("\n");
@@ -63,7 +63,7 @@ export default function NewBatchWizardPage() {
             text += `\n\n` + formatReturnSummarySections(returns);
         }
         if (rewashReturns.length > 0) {
-            text += `\n\n--- รับคืนผ้าซักใหม่ ---\n` + formatLinenSummaryLines(rewashReturns);
+            text += `\n\n--- ReceiveReturnผ้าซักใหม่ ---\n` + formatLinenSummaryLines(rewashReturns);
         }
         if (pending.length > 0) {
             text += `\n\n--- ผ้าค้าง ---\n` + formatPendingSummaryLines(pending);
@@ -109,8 +109,8 @@ export default function NewBatchWizardPage() {
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M15 18l-6-6 6-6"/></svg>
                 </Link>
                 <div>
-                    <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">บันทึกรับ-ส่งผ้า</h1>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">รอบใหม่ประจำวัน</p>
+                    <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">SaveReceive-Sendผ้า</h1>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">รอบใหม่ประจำDays</p>
                 </div>
             </div>
 

@@ -125,7 +125,7 @@ export default function MobileCheckinLanding() {
                   Upload passport photo &rarr; auto-fill guest info
                 </p>
                 <p className="text-indigo-300 text-xs font-semibold mt-0.5">
-                  ไม่บันทึกรูป — เก็บแค่ข้อมูลตัวอักษร
+                  ไม่Saveรูป — เก็บแค่ข้อมูลตัวอักษร
                 </p>
               </div>
             </div>

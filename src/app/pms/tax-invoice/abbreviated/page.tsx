@@ -9,8 +9,8 @@ export default function AbbreviatedDashboardPage() {
   const [selectedMonth, setSelectedMonth] = useState(() => new Date().getMonth() + 1);
 
   const MONTHS = [
-    "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-    "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม",
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
   ];
 
   const yearOptions = [];
@@ -28,9 +28,9 @@ export default function AbbreviatedDashboardPage() {
             Tax Invoice
           </Link>
           <span className="text-[var(--text-muted)]">/</span>
-          <h1 className="text-2xl font-bold text-[var(--text-primary)]">ใบกำกับภาษีอย่างย่อ (รายวัน)</h1>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)]">Abbreviated Tax Invoice (รายDays)</h1>
         </div>
-        <p className="text-[var(--text-secondary)]">ออกใบกำกับภาษีอย่างย่อสำหรับการปรับเข้า ภพ.30 ประจำเดือน</p>
+        <p className="text-[var(--text-secondary)]">ออกAbbreviated Tax InvoiceสำหReceiveการปReceiveเข้า ภพ.30 ประจำเดือน</p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -41,8 +41,8 @@ export default function AbbreviatedDashboardPage() {
               <Table className="h-5 w-5" />
             </div>
             <div>
-              <h2 className="font-semibold text-[var(--text-primary)]">เลือกเดือนเพื่อตรวจสอบ</h2>
-              <p className="text-xs text-[var(--text-muted)]">พิมพ์หรือสรุปยอดรายเดือนที่ Monthly Audit แล้ว</p>
+              <h2 className="font-semibold text-[var(--text-primary)]">Selectเดือนเพื่อตรวจสอบ</h2>
+              <p className="text-xs text-[var(--text-muted)]">Printหรือสรุปยอดรายเดือนที่ Monthly Audit แล้ว</p>
             </div>
           </div>
           
@@ -75,7 +75,7 @@ export default function AbbreviatedDashboardPage() {
             href={`/pms/tax-invoice/abbreviated/preview/${selectedYear}/${selectedMonth}`}
             className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-700 transition"
           >
-            เปิดตาราง Live Preview
+            เCloseตาราง Live Preview
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -84,13 +84,13 @@ export default function AbbreviatedDashboardPage() {
         <div className="rounded-xl bg-orange-50/50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-900/30 p-6 flex flex-col gap-3">
           <h3 className="font-semibold text-orange-900 dark:text-orange-300 flex items-center gap-2">
             <FileText className="h-4 w-4" />
-            ข้อมูลการนำส่ง ภพ.30
+            ข้อมูลการนำSend ภพ.30
           </h3>
           <ul className="list-disc pl-4 space-y-1.5 text-xs text-orange-800 dark:text-orange-200/80 leading-relaxed">
-            <li>ยอดใบกำกับภาษีอย่างย่อถูกผูกผูกติดมากับ <Link href="/pms/audit/monthly" className="underline font-medium hover:text-orange-600">Monthly Audit</Link> เสมอ</li>
+            <li>ยอดAbbreviated Tax Invoiceถูกผูกผูกติดมากับ <Link href="/pms/audit/monthly" className="underline font-medium hover:text-orange-600">Monthly Audit</Link> เสมอ</li>
             <li>รายการที่ปรากฎคือรายการที่ Check-out และชำระเงินแล้วเท่านั้น</li>
-            <li>Folio ที่มี <b>Full Tax Invoice (ใบกำกับฯ เต็มรูป)</b> หรือ Folio ประเภท <b>POS / Day Use (Phase 71)</b> จะถูกหักออกให้โดยอัตโนมัติ ไม่นับซ้ำ</li>
-            <li>ยอดค้างชำระ (Outstanding &gt; 0) ระบบจะ <span className="font-semibold underline">ยกยอด</span> ข้ามไปเดือนหน้าให้เป็น default (สามารถแก้ไข Override manual แบบ per-night ได้ในหน้า Preview)</li>
+            <li>Folio ที่มี <b>Full Tax Invoice (ใบกำกับฯ เต็มรูป)</b> หรือ Folio Category <b>POS / Day Use (Phase 71)</b> จะถูกหักออกให้โดยอัตโนมัติ ไม่นับซ้ำ</li>
+            <li>ยอดPending (Outstanding &gt; 0) ระบบจะ <span className="font-semibold underline">ยกยอด</span> ข้ามไปเดือนหน้าให้เป็น default (สามารถEdit Override manual แบบ per-night ได้ในหน้า Preview)</li>
           </ul>
         </div>
       </div>

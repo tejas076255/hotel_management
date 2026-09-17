@@ -183,24 +183,24 @@ export function renderAbbreviatedA4Html(data: AbbreviatedRenderData): string {
         <div class="seller">
           <div class="seller-main">${sellerName}${branchText}</div>
           <div class="seller-line">${address}</div>
-          <div class="seller-line">เลขประจำตัวผู้เสียภาษี ${taxId}${branchAfterTax}</div>
+          <div class="seller-line">เลขประจำตัวผู้เสียTax ${taxId}${branchAfterTax}</div>
           ${phoneBlock}
         </div>
         <div class="doc-title">
-          <div class="th">ใบกำกับภาษีอย่างย่อ<br/>ใบเสร็จรับเงิน</div>
+          <div class="th">Abbreviated Tax Invoice<br/>Receipt</div>
         </div>
       </div>
 
       <div class="party-row">
         <div class="party">
-          <div style="margin-bottom: 0.8mm;"><b>ชื่อลูกค้า</b> &nbsp;&nbsp;&nbsp;เงินสด</div>
-          <div style="margin-bottom: 0.8mm;"><b>ที่อยู่</b> &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>เลขประจำตัวผู้เสียภาษี</b> &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>โทร</b> &nbsp;&nbsp;&nbsp;-</div>
-          <div><b>เข้าพักวันที่</b> ${esc(fmtDate(sheet.stay_date_from, "th"))} <b>ถึงวันที่</b> ${esc(fmtDate(sheet.stay_date_to, "th"))}</div>
+          <div style="margin-bottom: 0.8mm;"><b>ชื่อCustomer</b> &nbsp;&nbsp;&nbsp;Cash</div>
+          <div style="margin-bottom: 0.8mm;"><b>Address</b> &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>เลขประจำตัวผู้เสียTax</b> &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>โทร</b> &nbsp;&nbsp;&nbsp;-</div>
+          <div><b>เข้าพักDate</b> ${esc(fmtDate(sheet.stay_date_from, "th"))} <b>ถึงDate</b> ${esc(fmtDate(sheet.stay_date_to, "th"))}</div>
         </div>
         <div class="meta">
           <div><span>เล่มที่</span><b>${esc(String(sheet.book_no))}</b></div>
           <div><span>เลขที่</span><b>${esc(sheet.invoice_no)}</b></div>
-          <div><span>วันที่</span><b>${esc(fmtDate(sheet.issue_date, "th"))}</b></div>
+          <div><span>Date</span><b>${esc(fmtDate(sheet.issue_date, "th"))}</b></div>
         </div>
       </div>
 
@@ -209,7 +209,7 @@ export function renderAbbreviatedA4Html(data: AbbreviatedRenderData): string {
           <tr>
             <th class="w-no">ลำดับ</th>
             <th>รายการ</th>
-            <th class="w-qty">จำนวน</th>
+            <th class="w-qty">Quantity</th>
             <th class="w-price">หน่วยละ</th>
             <th class="w-amt">รวมเงิน</th>
           </tr>
@@ -224,7 +224,7 @@ export function renderAbbreviatedA4Html(data: AbbreviatedRenderData): string {
         <div class="bottom-right">
           <table class="summary" cellspacing="0" cellpadding="0">
             <tbody>
-              <tr class="total"><td>รวมเป็นเงิน</td><td class="num">${fmtMoney(sheet.subtotal_inc_vat)}</td><td class="baht">บาท</td></tr>
+              <tr class="total"><td>รวมเป็นเงิน</td><td class="num">${fmtMoney(sheet.subtotal_inc_vat)}</td><td class="baht">THB</td></tr>
             </tbody>
           </table>
         </div>

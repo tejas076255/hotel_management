@@ -243,7 +243,7 @@ export function mockStockSnapshotTxTimeline(productId: string): StockSnapshotTxE
         from_location: null,
         to_location: "floor_2",
         performed_by: "FO Niran",
-        note: "แม่บ้านกด [สบู่] เกิน 5 ชิ้น",
+        note: "Maidกด [Soap] เกิน 5 ชิ้น",
       },
     ];
   }
@@ -291,7 +291,7 @@ export function mockAmenityAuditSessionList(): AmenityAuditSessionListRow[] {
       total_overclick: 5,
       total_underclick: 0,
       total_refill: 40,
-      session_note: "เติมให้พอ 3 วัน",
+      session_note: "เติมให้พอ 3 Days",
       created_at: now(60 * 24),
     },
     {
@@ -323,7 +323,7 @@ export function mockAmenityAuditSessionDetail(sessionId: string): AmenityAuditSe
     total_overclick: 5,
     total_underclick: 0,
     total_refill: 40,
-    session_note: "เติมให้พอ 3 วัน",
+    session_note: "เติมให้พอ 3 Days",
     created_at: now(60 * 24),
     items: [
       {
@@ -336,7 +336,7 @@ export function mockAmenityAuditSessionDetail(sessionId: string): AmenityAuditSe
         refill_delta: 40,
         system_adjust_delta: 45,
         needs_note: true,
-        item_note: "แม่บ้านกด [สบู่] เกิน 5 ชิ้น",
+        item_note: "Maidกด [Soap] เกิน 5 ชิ้น",
         correction_tx_id: "tx-3",
         refill_main_tx_id: "tx-4",
         refill_floor_tx_id: "tx-5",
@@ -427,7 +427,7 @@ export function mockStockReconcileAllClean(businessDate = todayBangkok()): Stock
     {
       key: "amenity_prepare",
       label_en: "Amenity Prepare (Water / Coffee)",
-      label_th: "Amenity Prepare (น้ำ / กาแฟ)",
+      label_th: "Amenity Prepare (น้ำ / Coffee)",
       variance_count: 0,
       total_count: 2,
       status: "clean",
@@ -435,7 +435,7 @@ export function mockStockReconcileAllClean(businessDate = todayBangkok()): Stock
     {
       key: "amenity_direct",
       label_en: "Amenity Direct (Soap / Shampoo)",
-      label_th: "Amenity Direct (สบู่ / แชมพู)",
+      label_th: "Amenity Direct (Soap / Shampoo)",
       variance_count: 0,
       total_count: 6,
       status: "clean",
@@ -466,7 +466,7 @@ export function mockStockReconcileVarianceAckPending(
     {
       key: "amenity_prepare",
       label_en: "Amenity Prepare (Water / Coffee)",
-      label_th: "Amenity Prepare (น้ำ / กาแฟ)",
+      label_th: "Amenity Prepare (น้ำ / Coffee)",
       variance_count: 0,
       total_count: 2,
       status: "clean",
@@ -474,7 +474,7 @@ export function mockStockReconcileVarianceAckPending(
     {
       key: "amenity_direct",
       label_en: "Amenity Direct (Soap / Shampoo)",
-      label_th: "Amenity Direct (สบู่ / แชมพู)",
+      label_th: "Amenity Direct (Soap / Shampoo)",
       variance_count: 1,
       total_count: 6,
       status: "acknowledged",

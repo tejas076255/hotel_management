@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
     // In-house can only fill accompanying guests
     if (isInHouse && target === "main") {
       throw new MobileCheckinError(
-        "แขก Check-in แล้ว แก้ Main Guest ได้จาก Desktop เท่านั้น",
+        "Guest Check-in แล้ว แก้ Main Guest ได้จาก Desktop เท่านั้น",
         409,
         "INHOUSE_MAIN_BLOCKED"
       );

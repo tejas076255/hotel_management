@@ -385,9 +385,9 @@ export async function buildLineItemsForReservations(
 
       return {
         kind: "room_charge",
-        description: `ค่าห้องพัก (${dateLabel})`,
+        description: `ค่าRoom (${dateLabel})`,
         quantity,
-        unit: "คืน",
+        unit: "Return",
         unit_price: round2(unitPrice),
         amount: round2(amount),
         stay_dates: sortedDates,
@@ -543,7 +543,7 @@ export function sanitizeLineItems(items: unknown): TaxInvoiceLineItem[] {
         kind,
         description,
         quantity: round2(quantity),
-        unit: String(row.unit ?? "").trim() || (kind === "room_charge" ? "คืน" : "รายการ"),
+        unit: String(row.unit ?? "").trim() || (kind === "room_charge" ? "Return" : "รายการ"),
         unit_price: round2(unitPrice),
         amount: round2(amount),
         gross_amount: grossAmount !== undefined ? round2(grossAmount) : undefined,

@@ -52,7 +52,7 @@ export default function BugReportsPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-xl font-bold text-[var(--text-primary)]">Bug Reports</h1>
-          <p className="text-sm text-[var(--text-secondary)] mt-1">รายงานปัญหาจากพนักงาน</p>
+          <p className="text-sm text-[var(--text-secondary)] mt-1">ReportปัญหาจากStaff</p>
         </div>
         <div className="flex gap-1.5">
           {["open", "in_progress", "resolved", "wontfix", "all"].map((s) => (
@@ -72,7 +72,7 @@ export default function BugReportsPage() {
       </div>
 
       {loading ? (
-        <div className="text-sm text-[var(--text-muted)]">กำลังโหลด...</div>
+        <div className="text-sm text-[var(--text-muted)]">Loading...</div>
       ) : reports.length === 0 ? (
         <div className="text-center py-16 text-[var(--text-muted)]">
           <p className="text-3xl mb-3">🎉</p>
@@ -121,7 +121,7 @@ export default function BugReportsPage() {
           {selected && (
             <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-xl p-5 space-y-4">
               <div className="flex items-start justify-between gap-3">
-                <h3 className="text-sm font-semibold text-[var(--text-primary)]">รายละเอียด</h3>
+                <h3 className="text-sm font-semibold text-[var(--text-primary)]">Details</h3>
                 <span className={`text-[10px] px-2 py-0.5 rounded font-medium ${STATUS_LABELS[selected.status]?.color ?? "bg-[var(--bg-surface-hover)] text-[var(--text-muted)]"}`}>
                   {STATUS_LABELS[selected.status]?.label ?? selected.status}
                 </span>
@@ -144,8 +144,8 @@ export default function BugReportsPage() {
 
               <div className="text-xs text-[var(--text-secondary)] space-y-1">
                 <p><span className="font-medium">หน้า:</span> <span className="font-mono">{selected.page_url.replace(/^https?:\/\/[^/]+/, "")}</span></p>
-                {selected.reporter_email && <p><span className="font-medium">รายงานโดย:</span> {selected.reporter_email}</p>}
-                <p><span className="font-medium">เวลา:</span> {new Date(selected.created_at).toLocaleString("th-TH")}</p>
+                {selected.reporter_email && <p><span className="font-medium">Reportโดย:</span> {selected.reporter_email}</p>}
+                <p><span className="font-medium">Time:</span> {new Date(selected.created_at).toLocaleString("th-TH")}</p>
                 {selected.browser_info?.userAgent && (
                   <p className="font-mono text-[10px] text-[var(--text-muted)] truncate">{selected.browser_info.userAgent}</p>
                 )}

@@ -64,10 +64,10 @@ export function AbbreviatedInvoicePreviewCard({ draft, variant, onShiftRow }: Pr
         <thead>
           <tr className="border-b border-[var(--border)] text-[var(--text-muted)] text-left bg-[var(--bg-surface)] dark:border-white/10">
             {variant === "room" && <th className="p-2 font-medium w-[40px] text-center">Group</th>}
-            <th className="p-2 font-medium">รายการ</th>
-            <th className="p-2 font-medium text-right">จำนวน</th>
-            <th className="p-2 font-medium text-right">ราคา/หน่วย</th>
-            <th className="p-2 font-medium text-right">ยอดรวม (Inc.VAT)</th>
+            <th className="p-2 font-medium">Description</th>
+            <th className="p-2 font-medium text-right">Qty</th>
+            <th className="p-2 font-medium text-right">Unit Price</th>
+            <th className="p-2 font-medium text-right">Total (Inc. VAT)</th>
             {variant === "room" && <th className="p-2 font-medium w-[40px]"></th>}
           </tr>
         </thead>

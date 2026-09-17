@@ -401,7 +401,7 @@ export default function RatePlanModal({ mode, ratePlan, onClose, onSuccess }: Ra
               className="form-input"
               value={form.name_th}
               onChange={(e) => setField("name_th", e.target.value)}
-              placeholder="ราคาปกติ"
+              placeholder="Priceปกติ"
             />
           </div>
           <div>

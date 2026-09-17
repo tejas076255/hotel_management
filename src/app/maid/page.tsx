@@ -674,7 +674,7 @@ export default function MaidPage() {
         body: JSON.stringify({
           maid_name: maidName,
           note: selectedChecklistRoom.is_no_service
-            ? pendingNsFinishNote || selectedChecklistRoom.no_service_note || "ดำเนินการห้องงดทำแล้ว"
+            ? pendingNsFinishNote || selectedChecklistRoom.no_service_note || "ดำเนินการRoomงดทำแล้ว"
             : undefined,
           checklist,
           maintenance_assignment_ids: (selectedChecklistRoom.maintenance_assignments ?? []).map(
@@ -974,7 +974,7 @@ export default function MaidPage() {
                   <select
                     value={maidName}
                     onChange={(e) => setMaidName(e.target.value)}
-                    aria-label="เลือกแม่บ้าน"
+                    aria-label="SelectMaid"
                     className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base font-black text-slate-900 outline-none transition focus:border-slate-400 dark:border-white/10 dark:bg-slate-900 dark:text-white dark:focus:border-white/20"
                   >
                     {maidLaneNames.map((name) => (
@@ -1011,13 +1011,13 @@ export default function MaidPage() {
         <div className="mx-auto max-w-screen-2xl px-4 py-4">
           <div className="mb-6 flex gap-2 overflow-x-auto">
             <TabButton active={activeTab === "all"} onClick={() => setActiveTab("all")}>
-              ทั้งหมด
+              All
             </TabButton>
             <TabButton active={activeTab === "dirty"} onClick={() => setActiveTab("dirty")}>
               รอทำ
             </TabButton>
             <TabButton active={activeTab === "in_progress"} onClick={() => setActiveTab("in_progress")}>
-              กำลังทำ
+              In Progress
             </TabButton>
             <TabButton active={activeTab === "done"} onClick={() => setActiveTab("done")}>
               เสร็จแล้ว
@@ -1029,7 +1029,7 @@ export default function MaidPage() {
               <span className="h-10 w-10 animate-spin rounded-full border-4 border-slate-300 border-t-slate-900 dark:border-slate-700 dark:border-t-white" />
             </div>
           ) : !hasVisibleItems ? (
-            <EmptyState message="ไม่มีรายการในหมวดนี้" />
+            <EmptyState message="No ItemsในChapterนี้" />
           ) : (
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
               {visibleLaneItems.map((item) => {

@@ -53,14 +53,14 @@ export function MobileDayUseSection({
                         </p>
                         {selectedCount > 0 && (
                             <p className="mt-1 text-xs font-black text-emerald-600 dark:text-emerald-300">
-                                เลือกส่งแล้ว {selectedCount} ชิ้น
+                                SelectSendแล้ว {selectedCount} ชิ้น
                             </p>
                         )}
                     </button>
                     <div className="flex items-center gap-2">
                         {isReady && (
                             <span className="rounded-full bg-amber-500 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white">
-                                พร้อมส่ง
+                                พร้อมSend
                             </span>
                         )}
                         <button
@@ -83,7 +83,7 @@ export function MobileDayUseSection({
                             : "bg-slate-200 text-slate-700 active:scale-[0.99] dark:bg-slate-800 dark:text-slate-200"
                     }`}
                 >
-                    {hasSendableItems ? `ส่งผ้าเก่าเลย ${sendableCount} ชิ้น` : "เปิดกรอกส่งผ้าเก่าเอง"}
+                    {hasSendableItems ? `Sendผ้าเก่าเลย ${sendableCount} ชิ้น` : "เCloseกรอกSendผ้าเก่าเอง"}
                 </button>
             </div>
 
@@ -91,7 +91,7 @@ export function MobileDayUseSection({
                 <div className="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300 mt-4">
                     <div className="p-4 bg-amber-50 dark:bg-amber-500/5 rounded-2xl border border-amber-100 dark:border-amber-500/20 mb-4">
                         <p className="text-xs text-amber-700 dark:text-amber-500 font-thai leading-relaxed">
-                            <span className="font-bold">💡 ข้อมูล:</span> ระบบสะสมผ้าเก่าจากการใช้วันนี้ 
+                            <span className="font-bold">💡 ข้อมูล:</span> ระบบสะสมผ้าเก่าจากการใช้Daysนี้ 
                             ผ้าขนหนูสะสมแล้ว <span className="font-black text-sm">{towelCount}</span> / {threshold} ผืน
                         </p>
                     </div>

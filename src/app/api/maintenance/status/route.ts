@@ -56,7 +56,7 @@ function isRenovationRoom(meta: { is_sellable: boolean; closure_reason: string |
   if (!meta) return false;
   if (meta.is_sellable === false) return true;
   const reason = String(meta.closure_reason ?? "").toLowerCase();
-  return /reno|renovat|ปรับปรุง|ซ่อม/.test(reason);
+  return /reno|renovat|ปReceiveปรุง|ซ่อม/.test(reason);
 }
 
 export async function GET(request: NextRequest) {

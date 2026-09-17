@@ -11,18 +11,18 @@ type RR3PrintData = {
 };
 
 const MONTHS_TH = [
-  "มกราคม",
-  "กุมภาพันธ์",
-  "มีนาคม",
-  "เมษายน",
-  "พฤษภาคม",
-  "มิถุนายน",
-  "กรกฎาคม",
-  "สิงหาคม",
-  "กันยายน",
-  "ตุลาคม",
-  "พฤศจิกายน",
-  "ธันวาคม",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 const ROWS_PER_PAGE = 22;
@@ -263,17 +263,17 @@ export function renderRR3LandscapeHtml(data: RR3PrintData): string {
             </colgroup>
             <thead>
                 <th>เลขลำดับ</th>
-                <th>วันเวลาพัก</th>
-                <th>ห้องพัก</th>
+                <th>DaysTimeพัก</th>
+                <th>Room</th>
                 <th>ชื่อตัวและชื่อสกุล</th>
                 <th>สัญชาติ</th>
                 <th>เลขประจำตัวประชาชน<br/>หรือ ใบสำคัญประจำตัว<br/>คนต่างด้าว หรือ<br/>หนังสือเดินทาง</th>
-                <th>ที่อยู่ปัจจุบัน ตำบล อำเภอ จังหวัด หรือ ประเทศใด</th>
+                <th>Addressปัจจุบัน ตำบล อำเภอ จังหวัด หรือ ประเทศใด</th>
                 <th>อาชีพ</th>
                 <th>มาจาก ตำบล อำเภอ จังหวัด หรือ ประเทศใด</th>
                 <th>จะไปที่ ตำบล อำเภอ จังหวัด หรือ ประเทศใด</th>
-                <th>วัน เวลาออก</th>
-                <th>หมายเหตุ</th>
+                <th>Days Timeออก</th>
+                <th>Notes</th>
             </thead>
             <tbody>
               ${renderRows(pageRows)}
@@ -283,7 +283,7 @@ export function renderRR3LandscapeHtml(data: RR3PrintData): string {
           <div class="footer">
             <div class="page-no">หน้า ${pageIndex + 1} / ${pages.length}</div>
             <div class="cert">
-              <div>ขอรับรองว่าเป็นความจริงทุกประการ</div>
+              <div>ขอReceiveรองว่าเป็นความจริงทุกประการ</div>
               <div class="signature-line">
                 ลงชื่อ....................................................ผู้จัดการ
               </div>

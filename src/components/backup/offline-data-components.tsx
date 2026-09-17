@@ -62,7 +62,7 @@ function shouldHideRoomCard(room: any, hkStatus?: string | null) {
   const reason = String(room?.closure_reason ?? "").toLowerCase();
   const housekeeping = String(hkStatus ?? room?.housekeeping_status ?? "").toLowerCase();
   const roomType = String(room?.room_type ?? "").toLowerCase();
-  return /block|reno|renovat|ปรับปรุง|ซ่อม/.test(reason) || housekeeping === "closed" || /closed room|close room/.test(roomType);
+  return /block|reno|renovat|ปReceiveปรุง|ซ่อม/.test(reason) || housekeeping === "closed" || /closed room|close room/.test(roomType);
 }
 
 export function OfflineArrivals({ data }: OfflineSectionProps) {

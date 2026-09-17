@@ -168,7 +168,7 @@ export default function PaymentStep() {
           <div className="bg-sky-50 dark:bg-sky-950/30 border border-sky-200 dark:border-sky-800 rounded-2xl p-4 flex items-start gap-3 animate-in fade-in slide-in-from-top-2">
             <div className="text-xl shrink-0">ℹ️</div>
             <p className="text-sm font-medium text-sky-800 dark:text-sky-300 leading-relaxed">
-              ระบบจะบันทึกยอดนี้เป็น Transfer ใน Folio <br/>
+              ระบบจะSaveยอดนี้เป็น Transfer ใน Folio <br/>
               โดยไม่สร้าง SCB QR จาก Mobile Check-in
             </p>
           </div>

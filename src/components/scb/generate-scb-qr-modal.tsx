@@ -254,7 +254,7 @@ export function GenerateScbQrModal({
      if (step === "mode") {
         return (
           <div className="space-y-6 py-4">
-             <p className="text-sm font-semibold text-[var(--text-secondary)]">เลือกยอดที่ต้องการเรียกเก็บ:</p>
+             <p className="text-sm font-semibold text-[var(--text-secondary)]">Selectยอดที่ต้องการเรียกเก็บ:</p>
              <div className="grid grid-cols-2 gap-4">
                 <button
                   type="button"
@@ -282,7 +282,7 @@ export function GenerateScbQrModal({
                     onChange={e => setIncludeDeposit(e.target.checked)}
                     className="w-5 h-5 rounded border-gray-300 text-brand-600 focus:ring-brand-500"
                   />
-                  <span className="text-sm font-bold">รวมค่ามัดจำในการโอนด้วย (฿{depositHeld.toLocaleString()})</span>
+                  <span className="text-sm font-bold">รวมค่าDepositในการTransferด้วย (฿{depositHeld.toLocaleString()})</span>
                </label>
              )}
           </div>
@@ -294,7 +294,7 @@ export function GenerateScbQrModal({
           <div className="space-y-6 py-4">
              <div className="space-y-4">
                 <div>
-                   <label className="text-xs font-black uppercase text-[var(--text-muted)] tracking-widest mb-1 block">ค่าห้อง</label>
+                   <label className="text-xs font-black uppercase text-[var(--text-muted)] tracking-widest mb-1 block">ค่าRoom</label>
                    <div className="relative">
                       <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-[var(--text-muted)]">฿</span>
                       <input 
@@ -304,12 +304,12 @@ export function GenerateScbQrModal({
                         className={`form-input pl-10 h-12 w-full font-bold text-lg ${roomAmount > outstandingAmount ? "border-rose-500" : ""}`}
                       />
                    </div>
-                   <p className="text-[10px] text-[var(--text-muted)] mt-1 ml-1">ค้างชำระ: ฿{outstandingAmount.toLocaleString()}</p>
+                   <p className="text-[10px] text-[var(--text-muted)] mt-1 ml-1">Pending: ฿{outstandingAmount.toLocaleString()}</p>
                 </div>
 
                 {includeDeposit && (
                   <div>
-                    <label className="text-xs font-black uppercase text-[var(--text-muted)] tracking-widest mb-1 block">มัดจำ</label>
+                    <label className="text-xs font-black uppercase text-[var(--text-muted)] tracking-widest mb-1 block">Deposit</label>
                     <div className="relative">
                         <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-[var(--text-muted)]">฿</span>
                         <input 
@@ -330,7 +330,7 @@ export function GenerateScbQrModal({
 
              {roomAmount > outstandingAmount && (
                <p className="text-xs text-rose-500 font-bold flex items-center gap-1 bg-rose-50 p-2 rounded-lg">
-                  <AlertTriangle className="w-3 h-3" /> ยอดชำระค่าห้องห้ามเกินยอดค้างชำระ (฿{outstandingAmount.toLocaleString()})
+                  <AlertTriangle className="w-3 h-3" /> ยอดชำระค่าRoomห้ามเกินยอดPending (฿{outstandingAmount.toLocaleString()})
                </p>
              )}
           </div>
@@ -378,7 +378,7 @@ export function GenerateScbQrModal({
               ฿{request.request_amount_total.toLocaleString()}
             </p>
             <p className="text-xs text-[var(--text-muted)] font-medium">
-               ค่าห้อง: ฿{request.room_amount.toLocaleString()} · มัดจำ: ฿{request.deposit_amount.toLocaleString()}
+               ค่าRoom: ฿{request.room_amount.toLocaleString()} · Deposit: ฿{request.deposit_amount.toLocaleString()}
             </p>
          </div>
 
@@ -395,13 +395,13 @@ export function GenerateScbQrModal({
             {isPaid && (
               <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 p-3 rounded-xl flex items-center gap-3 text-sm font-bold">
                  <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                 ชำระเงินสำเร็จแล้ว
+                 ชำระเงินSuccessแล้ว
               </div>
             )}
 
             {(isExpired || status === "cancelled" || status === "failed") && (
               <div className="bg-rose-50 border border-rose-200 text-rose-800 p-4 rounded-xl text-sm font-bold text-center space-y-2">
-                 <p>{isExpired ? "QR หมดอายุแล้ว" : "รายการถูกยกเลิก"}</p>
+                 <p>{isExpired ? "QR หมดอายุแล้ว" : "รายการถูกCancel"}</p>
                        <button type="button" onClick={() => setStep("mode")} className="text-xs underline text-rose-600 hover:text-rose-700 font-black uppercase tracking-widest">สร้างใหม่</button>
               </div>
             )}
@@ -418,7 +418,7 @@ export function GenerateScbQrModal({
         <div className="px-6 py-4 border-b border-[var(--border-default)] flex justify-between items-center bg-[var(--bg-body)]">
            <div className="flex flex-col">
               <h3 className="font-black text-[var(--text-primary)] text-lg leading-tight">
-                 {step === "qr" ? "QR ชำระเงิน" : "สร้าง SCB QR รับเงิน"}
+                 {step === "qr" ? "QR ชำระเงิน" : "สร้าง SCB QR Receiveเงิน"}
               </h3>
               <p className="text-[10px] text-[var(--text-muted)] font-black uppercase tracking-widest mt-0.5">
                  Reservation ID: {reservationId}
@@ -434,7 +434,7 @@ export function GenerateScbQrModal({
            {loading ? (
              <div className="py-20 flex flex-col items-center gap-4 text-[var(--text-muted)]">
                 <Loader2 className="w-10 h-10 animate-spin" />
-                <p className="font-bold text-sm tracking-widest uppercase">กำลังส่งข้อมูลไป SCB...</p>
+                <p className="font-bold text-sm tracking-widest uppercase">กำลังSendข้อมูลไป SCB...</p>
              </div>
            ) : error ? (
              <div className="py-12 flex flex-col items-center gap-4 text-center">
@@ -451,7 +451,7 @@ export function GenerateScbQrModal({
         <div className="px-6 py-4 border-t border-[var(--border-default)] flex justify-between items-center bg-[var(--bg-body)] min-h-[72px]">
            {step === "mode" && !loading && !error && (
              <>
-               <button type="button" onClick={onClose} className="btn btn-ghost px-6 shadow-none">ยกเลิก</button>
+               <button type="button" onClick={onClose} className="btn btn-ghost px-6 shadow-none">Cancel</button>
                <button 
                  type="button"
                  onClick={() => setStep("amount")} 
@@ -484,7 +484,7 @@ export function GenerateScbQrModal({
                    {status === "pending" && (
                      <>
                        <button type="button" onClick={handleSaveImage} className="btn btn-secondary px-4 py-2 text-xs flex items-center gap-1.5 h-10">
-                          <Save className="w-4 h-4" /> บันทึกรูป
+                          <Save className="w-4 h-4" /> Saveรูป
                        </button>
                        <button type="button" onClick={handleCheckPaymentNow} className="btn btn-secondary px-4 py-2 text-xs flex items-center gap-1.5 h-10">
                           <CheckCircle2 className="w-4 h-4" /> ตรวจสอบการชำระ
@@ -506,7 +506,7 @@ export function GenerateScbQrModal({
                   onClick={onClose} 
                   className={`btn h-11 px-8 font-black uppercase tracking-widest ${status === "paid" ? "btn-primary" : "btn-ghost"}`}
                 >
-                  {status === "paid" ? "ปิด (ชำระแล้ว)" : "ปิด"}
+                  {status === "paid" ? "Close (ชำระแล้ว)" : "Close"}
                 </button>
               </>
            )}

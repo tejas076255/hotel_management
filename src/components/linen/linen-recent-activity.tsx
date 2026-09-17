@@ -18,7 +18,7 @@ export function LinenRecentActivity({ batches, edits, rewash, isLoading }: Linen
 
     const tabs = [
         { id: 'batches', label: '10 Batch ล่าสุด', icon: History },
-        { id: 'edits', label: 'การแก้ไขล่าสุด', icon: Edit3 },
+        { id: 'edits', label: 'การEditล่าสุด', icon: Edit3 },
         { id: 'rewash', label: 'Rewash ล่าสุด', icon: RefreshCw },
     ] as const;
 
@@ -26,7 +26,7 @@ export function LinenRecentActivity({ batches, edits, rewash, isLoading }: Linen
         if (isLoading) {
             return (
                 <div className="py-20 text-center text-slate-400 animate-pulse font-thai">
-                    กำลังโหลดข้อมูลกิจกรรม...
+                    กำลังLoading data...กิจกรรม...
                 </div>
             );
         }
@@ -48,7 +48,7 @@ export function LinenRecentActivity({ batches, edits, rewash, isLoading }: Linen
                                         </div>
                                         <div>
                                             <p className="text-sm font-bold text-slate-800 dark:text-slate-200 font-thai">
-                                                วันที่ {format(new Date(batch.business_date), 'dd/MM/yyyy')} รอบที่ {batch.pickup_round}
+                                                Date {format(new Date(batch.business_date), 'dd/MM/yyyy')} รอบที่ {batch.pickup_round}
                                             </p>
                                             <div className="flex items-center gap-2 mt-1">
                                                 <StatusBadge status={batch.status} />
@@ -62,7 +62,7 @@ export function LinenRecentActivity({ batches, edits, rewash, isLoading }: Linen
                                 </Link>
                             ))
                         ) : (
-                            <div className="py-12 text-center text-slate-400 font-thai">ไม่มีรายการ Batch</div>
+                            <div className="py-12 text-center text-slate-400 font-thai">No Items Batch</div>
                         )}
                     </div>
                 );
@@ -88,7 +88,7 @@ export function LinenRecentActivity({ batches, edits, rewash, isLoading }: Linen
                                         <div className="flex-1">
                                             <div className="flex items-center justify-between mb-1">
                                                 <p className="text-xs font-bold text-slate-800 dark:text-slate-200 font-thai">
-                                                    แก้ไข Batch #{batchId ? batchId.substring(0, 8) : "-"}
+                                                    Edit Batch #{batchId ? batchId.substring(0, 8) : "-"}
                                                 </p>
                                                 <span className="text-[10px] text-slate-400 font-medium">
                                                     {format(new Date(edit.edited_at), 'HH:mm • d MMM', { locale: th })}
@@ -111,7 +111,7 @@ export function LinenRecentActivity({ batches, edits, rewash, isLoading }: Linen
                                 );
                             })
                         ) : (
-                            <div className="py-12 text-center text-slate-400 font-thai">ไม่มีประวัติการแก้ไข</div>
+                            <div className="py-12 text-center text-slate-400 font-thai">ไม่มีHistoryการEdit</div>
                         )}
                     </div>
                 );
@@ -151,7 +151,7 @@ export function LinenRecentActivity({ batches, edits, rewash, isLoading }: Linen
                                                     {rw.status}
                                                 </span>
                                                 <p className="text-[11px] text-slate-500 font-thai">
-                                                    ส่งจากรอบ {format(new Date(rw.sent_batch_business_date), 'dd/MM')} R{rw.sent_batch_pickup_round}
+                                                    Sendจากรอบ {format(new Date(rw.sent_batch_business_date), 'dd/MM')} R{rw.sent_batch_pickup_round}
                                                 </p>
                                             </div>
                                         </div>
@@ -166,7 +166,7 @@ export function LinenRecentActivity({ batches, edits, rewash, isLoading }: Linen
                                 );
                             })
                         ) : (
-                            <div className="py-12 text-center text-slate-400 font-thai">ไม่มีรายการ Rewash</div>
+                            <div className="py-12 text-center text-slate-400 font-thai">No Items Rewash</div>
                         )}
                     </div>
                 );
@@ -199,10 +199,10 @@ export function LinenRecentActivity({ batches, edits, rewash, isLoading }: Linen
 function StatusBadge({ status }: { status: string }) {
     const map: Record<string, {label: string, color: string}> = {
         'draft': { label: 'ร่าง', color: 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400' },
-        'fo_dirty_counted': { label: 'รอนับคืน', color: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400' },
+        'fo_dirty_counted': { label: 'รอนับReturn', color: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400' },
         'fo_return_counted': { label: 'รอร้านเซ็น', color: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400' },
         'vendor_signed': { label: 'ร้านเซ็นแล้ว', color: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' },
-        'fo_return_signed': { label: 'ส่งงานให้ร้าน', color: 'bg-emerald-100 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400' },
+        'fo_return_signed': { label: 'Sendงานให้ร้าน', color: 'bg-emerald-100 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400' },
         'closed': { label: 'เสร็จสมบูรณ์', color: 'bg-emerald-100 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400' },
         'disputed': { label: 'ยอดไม่ตรง', color: 'bg-rose-100 dark:bg-rose-950/30 text-rose-700 dark:text-rose-400' },
     };

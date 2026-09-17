@@ -105,7 +105,7 @@ export function ScbNotificationBell() {
               <div className="text-xs text-[var(--text-muted)]">{unreadCount} unread</div>
             </div>
             <button className="text-xs font-semibold text-brand-600 hover:underline" onClick={handleReadAll}>
-              อ่านทั้งหมด
+              อ่านAll
             </button>
           </div>
           <div className="max-h-[360px] overflow-auto">

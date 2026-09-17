@@ -307,7 +307,7 @@ function EditGuestProfileModal({
               className="form-input disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed dark:disabled:bg-slate-800 dark:disabled:text-slate-500"
               value={form.id_card_number || form.id_number}
               disabled={isMasked}
-              placeholder={isMasked ? "ข้อมูลถูกซ่อน — Admin เท่านั้นที่แก้ไขได้" : ""}
+              placeholder={isMasked ? "ข้อมูลถูกซ่อน — Admin เท่านั้นที่Editได้" : ""}
               onChange={(e) => onChange({ id_number: e.target.value, id_card_number: e.target.value })}
             />
           </div>
@@ -318,7 +318,7 @@ function EditGuestProfileModal({
               className="form-input disabled:bg-slate-100 disabled:text-slate-500 disabled:cursor-not-allowed dark:disabled:bg-slate-800 dark:disabled:text-slate-500"
               value={form.passport_no}
               disabled={isMasked}
-              placeholder={isMasked ? "ข้อมูลถูกซ่อน — Admin เท่านั้นที่แก้ไขได้" : ""}
+              placeholder={isMasked ? "ข้อมูลถูกซ่อน — Admin เท่านั้นที่Editได้" : ""}
               onChange={(e) => onChange({ passport_no: e.target.value })}
             />
           </div>

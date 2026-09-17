@@ -32,9 +32,9 @@ export function CloseMonthDialog({ summary, onClose }: CloseMonthDialogProps) {
 
   const getErrorMessage = (err: string) => {
     switch (err) {
-      case "dispute_exists": return "ยังมีรายการที่มีสถานะ 'ยอดไม่ตรง' (Disputed) อยู่ในเดือนนี้";
-      case "pending_exists": return "ยังมีรายการค้างส่งจากเดือนนี้ที่ยังไม่ได้รับการจัดการ";
-      case "open_batch_exists": return "ยังมี Batch ที่ยังเปิดอยู่ (ยังไม่ปิดหรือปิดบางส่วน)";
+      case "dispute_exists": return "ยังมีรายการที่มีStatus 'ยอดไม่ตรง' (Disputed) อยู่ในเดือนนี้";
+      case "pending_exists": return "ยังมีรายการค้างSendจากเดือนนี้ที่ยังไม่ได้Receiveการจัดการ";
+      case "open_batch_exists": return "ยังมี Batch ที่ยังเCloseอยู่ (ยังไม่CloseหรือCloseบางส่วน)";
       default: return err;
     }
   };
@@ -51,15 +51,15 @@ export function CloseMonthDialog({ summary, onClose }: CloseMonthDialogProps) {
         }`}
       >
         <Lock size={16} />
-        {summary?.closed ? "ปิดเดือนแล้ว" : "ปิดรอบเดือน"}
+        {summary?.closed ? "Closeเดือนแล้ว" : "Closeรอบเดือน"}
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>ปิดรอบเดือน {summary?.month}/{summary?.year}</DialogTitle>
+            <DialogTitle>Closeรอบเดือน {summary?.month}/{summary?.year}</DialogTitle>
             <DialogDescription>
-              การปิดเดือนจะทำการ Freeze ข้อมูลทั้งหมดในเดือนนี้ ไม่สามารถแก้ไข Batch หรือราคาได้อีก
+              การCloseเดือนจะทำการ Freeze ข้อมูลAllในเดือนนี้ ไม่สามารถEdit Batch หรือPriceได้อีก
             </DialogDescription>
           </DialogHeader>
 
@@ -79,14 +79,14 @@ export function CloseMonthDialog({ summary, onClose }: CloseMonthDialogProps) {
             {canClose ? (
               <div className="flex items-start gap-3 p-3 bg-emerald-50 dark:bg-emerald-950/20 rounded-lg text-emerald-700 dark:text-emerald-400 text-sm">
                 <CheckCircle2 size={18} className="shrink-0 mt-0.5" />
-                <p>ข้อมูลพร้อมสำหรับการปิดเดือน ระบบตรวจสอบแล้วไม่พบรายการค้างหรือข้อพิพาท</p>
+                <p>ข้อมูลพร้อมสำหReceiveการCloseเดือน ระบบVerifiedไม่พบรายการค้างหรือข้อพิพาท</p>
               </div>
             ) : (
               <div className="space-y-3">
                 <div className="flex items-start gap-3 p-3 bg-rose-50 dark:bg-rose-950/20 rounded-lg text-rose-700 dark:text-rose-400 text-sm">
                   <AlertCircle size={18} className="shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-bold mb-1">ไม่สามารถปิดเดือนได้</p>
+                    <p className="font-bold mb-1">ไม่สามารถCloseเดือนได้</p>
                     <ul className="list-disc list-inside space-y-1 text-xs opacity-90">
                       {validationErrors.map((err, idx) => (
                         <li key={idx}>{getErrorMessage(err)}</li>
@@ -100,14 +100,14 @@ export function CloseMonthDialog({ summary, onClose }: CloseMonthDialogProps) {
 
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsOpen(false)} disabled={isClosing}>
-              ยกเลิก
+              Cancel
             </Button>
             <Button
               onClick={handleCloseMonth}
               disabled={!canClose || isClosing}
               className="bg-rose-600 hover:bg-rose-700 text-white min-w-[100px]"
             >
-              {isClosing ? <Loader2 className="animate-spin" size={18} /> : "ยืนยันปิดเดือน"}
+              {isClosing ? <Loader2 className="animate-spin" size={18} /> : "ConfirmCloseเดือน"}
             </Button>
           </DialogFooter>
         </DialogContent>

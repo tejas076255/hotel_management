@@ -2050,7 +2050,7 @@ export interface LinenVendorView {
     source?: "normal" | "pending_resolved";
   }[];
   pending_items: LaundryPendingItem[];
-  today_received_total: number;        // ผ้าวันนี้ที่เพิ่งรับ (คืนรอบถัดไป)
+  today_received_total: number;        // ผ้าDaysนี้ที่เพิ่งReceive (Returnรอบถัดไป)
   status: LaundryBatchStatus;
   hotel_name: string;
   monthly_vendor?: {
@@ -2142,7 +2142,7 @@ export interface LinenMonthlySummaryRow {
 }
 
 export interface LinenMonthlyExtra {
-  item_name: string;                    // e.g. "ขนหนูเพิ่ม", "ปลอกหมอนเพิ่ม"
+  item_name: string;                    // e.g. "ขนหนูAdd", "PillowcaseAdd"
   linen_item_id: number;
   qty: number;
 }
@@ -2290,7 +2290,7 @@ export interface LaundryRewashPendingResponse {
 
 export type LinenMonthlyColumnKind = "N" | "O" | "RW";
 // N = Normal (ผ้าปกติจาก checkout/stayover)
-// O = Old Dayuse (ผ้า day use ค้างส่งวันเดียวกัน)
+// O = Old Dayuse (ผ้า day use ค้างSendDaysเดียวกัน)
 // RW = Rewash (ผ้าซักใหม่ — free, not counted in billing)
 
 export interface LinenMonthlyColumn {

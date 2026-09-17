@@ -39,7 +39,7 @@ function filteredLabel(filters: RR3FilterParams) {
   if (filters.sources.includes("walkin")) parts.push("Walk-in");
   if (filters.sources.includes("direct")) parts.push("Direct");
   if (filters.tax_invoice_only) parts.push("Tax invoice");
-  return parts.length > 0 ? `ตาม Filter: ${parts.join(" + ")}` : "ทั้งหมด";
+  return parts.length > 0 ? `ตาม Filter: ${parts.join(" + ")}` : "All";
 }
 
 export async function GET(request: NextRequest) {

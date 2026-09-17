@@ -905,7 +905,7 @@ function shouldHideOfflineRoom(row: { is_sellable?: unknown; closure_reason?: un
   if (row.is_sellable === false) return true;
   const reason = String(row.closure_reason ?? "").toLowerCase();
   const roomTypeName = String((row as any).room_types?.name_en ?? (row as any).room_type ?? "").toLowerCase();
-  return /block|reno|renovat|ปรับปรุง|ซ่อม/.test(reason) || /closed room|close room/.test(roomTypeName);
+  return /block|reno|renovat|ปReceiveปรุง|ซ่อม/.test(reason) || /closed room|close room/.test(roomTypeName);
 }
 
 async function buildOfflineSnapshotData(supabase: SupabaseServerClient): Promise<{

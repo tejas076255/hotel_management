@@ -662,7 +662,7 @@ function DiaryBoard({
     <section className="overflow-hidden rounded-lg border border-[#e4ded0] bg-white shadow-sm dark:border-white/10 dark:bg-[#10231f]">
       <div className="grid grid-cols-[200px_1fr_120px] items-center border-b border-[#e4ded0] bg-[#fbf7ef] px-0 dark:border-white/10 dark:bg-[#0b1d19]">
         <div className="px-5 py-3 font-serif text-sm font-semibold text-[#2b2721] dark:text-[#f8f1e5]">
-          Room <span className="font-sans text-xs font-normal text-[#b9883a]">ห้อง</span>
+          Room <span className="font-sans text-xs font-normal text-[#b9883a]">Room</span>
         </div>
         <HourScale />
         <div className="px-5 py-3 text-right font-serif text-sm font-semibold text-[#2b2721] dark:text-[#f8f1e5]">Revenue · Guest</div>

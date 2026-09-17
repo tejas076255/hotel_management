@@ -77,8 +77,8 @@ function normalizeSpaces(s: string) {
 
 function sanitizeBranchAddressLine(s: string) {
   let out = normalizeSpaces(s);
-  out = out.replace(/ห้องเลขที่\s*-\s*/g, "");
-  out = out.replace(/ชั้นที่\s*-\s*/g, "");
+  out = out.replace(/Roomเลขที่\s*-\s*/g, "");
+  out = out.replace(/Floorที่\s*-\s*/g, "");
   out = out.replace(/ตรอก\/ซอย\s*-\s*/g, "");
   out = out.replace(/\s-\s/g, " ");
   out = out.replace(/\s{2,}/g, " ").trim();

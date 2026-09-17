@@ -112,8 +112,8 @@ function normalizeIsoDate(value: unknown): string | null {
 function normalizeGender(value: unknown): "M" | "F" | "Other" | null {
   const raw = String(value ?? "").trim().toUpperCase();
   if (!raw) return null;
-  if (raw === "M" || raw === "MALE" || raw === "1" || raw === "ชาย") return "M";
-  if (raw === "F" || raw === "FEMALE" || raw === "2" || raw === "หญิง") return "F";
+  if (raw === "M" || raw === "MALE" || raw === "1" || raw === "Male") return "M";
+  if (raw === "F" || raw === "FEMALE" || raw === "2" || raw === "Female") return "F";
   if (raw === "X" || raw === "OTHER" || raw === "3") return "Other";
   return null;
 }
@@ -261,9 +261,9 @@ function firstLastConfidence(a: string, b: string): number {
 
 /**
  * Smart Name Confidence — Multi-Strategy (เอาคะแนนสูงสุดจาก 3 วิธี):
- * 1. Levenshtein (char-by-char) — ดีสำหรับ typo
- * 2. Token Subset — ดีสำหรับชื่อจองไม่ครบ / มี middle name
- * 3. First+Last — ดีสำหรับชื่อยาวมาก แต่ชื่อ-นามสกุลตรง
+ * 1. Levenshtein (char-by-char) — ดีสำหReceive typo
+ * 2. Token Subset — ดีสำหReceiveชื่อจองไม่ครบ / มี middle name
+ * 3. First+Last — ดีสำหReceiveชื่อยาวมาก แต่ชื่อ-นามสกุลตรง
  */
 export function smartNameConfidence(a: string, b: string): number {
   const lev = levenshteinRatioPercent(a, b);

@@ -488,7 +488,7 @@ async function loadRoomGroupMap(supabase: SupabaseLike): Promise<Map<string, Roo
     map.set(str(row.room_type_code).toUpperCase(), {
       room_type_code: str(row.room_type_code).toUpperCase(),
       tax_group: row.tax_group,
-      label_th: str(row.label_th) || `ห้องพักแบบ ${row.tax_group}`,
+      label_th: str(row.label_th) || `Roomแบบ ${row.tax_group}`,
       sort_order: Number(row.sort_order ?? 999),
     });
   }

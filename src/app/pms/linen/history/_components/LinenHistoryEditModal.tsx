@@ -65,7 +65,7 @@ export function LinenHistoryEditModal({ batchId, onClose, onSuccess }: LinenHist
 
     const handleSubmit = async () => {
         if (!reason.trim()) {
-            alert("โปรดระบุเหตุผลในการแก้ไข (Mandatory Reason)");
+            alert("โปรดระบุเหตุผลในการEdit (Mandatory Reason)");
             return;
         }
 
@@ -137,7 +137,7 @@ export function LinenHistoryEditModal({ batchId, onClose, onSuccess }: LinenHist
             onSuccess();
         } catch (err: any) {
             console.error(err);
-            alert(`เกิดข้อผิดพลาด: ${err.message}`);
+            alert(`เกิดข้อError: ${err.message}`);
         } finally {
             setIsSaving(false);
         }
@@ -165,7 +165,7 @@ export function LinenHistoryEditModal({ batchId, onClose, onSuccess }: LinenHist
                         </div>
                         <div>
                             <h2 className="text-2xl font-black text-slate-900 dark:text-slate-100 font-thai uppercase tracking-tight">Audit & Edit Batch</h2>
-                            <p className="text-sm text-slate-500 font-thai italic">Batch: #{batchId.substring(0, 8)} • แก้ไขจำนวนที่ได้รับ-ส่งจริง</p>
+                            <p className="text-sm text-slate-500 font-thai italic">Batch: #{batchId.substring(0, 8)} • EditQuantityที่ได้Receive-Sendจริง</p>
                         </div>
                     </div>
                     <button onClick={onClose} className="p-2 hover:bg-white dark:hover:bg-slate-700 rounded-full transition-colors text-slate-400">
@@ -178,8 +178,8 @@ export function LinenHistoryEditModal({ batchId, onClose, onSuccess }: LinenHist
                     <div className="bg-rose-50 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/50 rounded-2xl p-4 flex gap-4 items-start">
                         <AlertTriangle className="text-rose-500 shrink-0 mt-1" size={20} />
                         <p className="text-xs text-rose-700 dark:text-rose-300 font-thai leading-relaxed">
-                            <span className="font-bold">CAUTION:</span> การแก้ไขข้อมูลในขั้นตอนนี้จะถูกบันทึกใน <strong>Linen Audit Log</strong> ทั้งหมด 
-                            รวมถึงยอดเงินใน Monthly Report จะถูกคำนวณใหม่ตามยอดที่ท่านแก้ไข โปรดระบุเหตุผลที่ชัดเจน
+                            <span className="font-bold">CAUTION:</span> การEditข้อมูลในขั้นตอนนี้จะถูกSaveใน <strong>Linen Audit Log</strong> All 
+                            รวมถึงAmountใน Monthly Report จะถูกคำนวณใหม่ตามยอดที่ท่านEdit โปรดระบุเหตุผลที่ชัดเจน
                         </p>
                     </div>
 
@@ -187,8 +187,8 @@ export function LinenHistoryEditModal({ batchId, onClose, onSuccess }: LinenHist
                         <thead>
                             <tr className="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-left">
                                 <th className="px-4">Items</th>
-                                <th className="px-4 text-center w-32 font-black text-blue-600">Dirty (ส่ง)</th>
-                                <th className="px-4 text-center w-32 font-black text-emerald-600">Return (คืน)</th>
+                                <th className="px-4 text-center w-32 font-black text-blue-600">Dirty (Send)</th>
+                                <th className="px-4 text-center w-32 font-black text-emerald-600">Return (Return)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -260,7 +260,7 @@ export function LinenHistoryEditModal({ batchId, onClose, onSuccess }: LinenHist
                                                         value={rewashEdits[itemId]?.note ?? ""}
                                                         onChange={(e) => handleRewashChange(itemId, 'note', e.target.value)}
                                                         className="w-full bg-white dark:bg-slate-700 border-none rounded-xl px-4 py-2 text-sm text-slate-700 dark:text-slate-200 shadow-sm focus:ring-2 focus:ring-purple-500/20 transition-all"
-                                                        placeholder="หมายเหตุ..."
+                                                        placeholder="Notes..."
                                                     />
                                                 </td>
                                             </tr>
@@ -277,7 +277,7 @@ export function LinenHistoryEditModal({ batchId, onClose, onSuccess }: LinenHist
                         <textarea
                             value={reason}
                             onChange={(e) => setReason(e.target.value)}
-                            placeholder="ระบุเหตุผลในการแก้ไข เช่น 'นับข้ามจำนวนผ้าห่ม' หรือ 'ร้านค้าแจ้งยอดตกหล่นคืนมาภายหลัง'..."
+                            placeholder="ระบุเหตุผลในการEdit เช่น 'นับข้ามQuantityผ้าห่ม' หรือ 'ร้านค้าแจ้งยอดตกหล่นReturnมาภายหลัง'..."
                             className="w-full h-24 bg-slate-50 dark:bg-slate-800 border-none rounded-3xl p-6 text-sm font-thai focus:ring-2 focus:ring-emerald-500/20 transition-all resize-none shadow-inner"
                         />
                     </div>
@@ -289,7 +289,7 @@ export function LinenHistoryEditModal({ batchId, onClose, onSuccess }: LinenHist
                         onClick={onClose}
                         className="px-8 py-3 bg-white dark:bg-slate-700 text-slate-500 font-bold rounded-2xl hover:bg-slate-100 transition-all font-thai border border-slate-200 dark:border-slate-600"
                     >
-                        ยกเลิก
+                        Cancel
                     </button>
                     <button
                         onClick={handleSubmit}

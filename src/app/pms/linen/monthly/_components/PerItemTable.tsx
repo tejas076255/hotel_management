@@ -29,9 +29,9 @@ export function PerItemTable({ summary, varianceData }: PerItemTableProps) {
             <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800">
               <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center w-12 sticky top-0 bg-slate-50 dark:bg-slate-800/50">#</th>
               <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest sticky top-0 bg-slate-50 dark:bg-slate-800/50">รายการ</th>
-              <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-right sticky top-0 bg-slate-50 dark:bg-slate-800/50">ราคา</th>
-              <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center sticky top-0 bg-slate-50 dark:bg-slate-800/50">ส่ง</th>
-              <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center sticky top-0 bg-slate-50 dark:bg-slate-800/50">คืน</th>
+              <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-right sticky top-0 bg-slate-50 dark:bg-slate-800/50">Price</th>
+              <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center sticky top-0 bg-slate-50 dark:bg-slate-800/50">Send</th>
+              <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center sticky top-0 bg-slate-50 dark:bg-slate-800/50">Return</th>
               <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center sticky top-0 bg-slate-50 dark:bg-slate-800/50">ค้าง</th>
               <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-right sticky top-0 bg-slate-50 dark:bg-slate-800/50">รวมเงิน</th>
               <th className="p-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest text-right sticky top-0 bg-slate-50 dark:bg-slate-800/50">Expected</th>

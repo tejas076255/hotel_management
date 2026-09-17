@@ -32,7 +32,7 @@ export function PerDayGrid({ dailyData, summaryItems }: PerDayGridProps) {
         <table className="w-full text-left border-collapse table-fixed">
           <thead>
             <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800">
-              <th className="p-3 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest w-40 sticky left-0 bg-slate-50 dark:bg-slate-800 z-10">รายการ / วันที่</th>
+              <th className="p-3 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest w-40 sticky left-0 bg-slate-50 dark:bg-slate-800 z-10">รายการ / Date</th>
               {days.map(day => (
                 <th key={day} className="p-2 text-[10px] font-bold text-slate-400 dark:text-slate-500 text-center w-10">
                   {day}
@@ -54,7 +54,7 @@ export function PerDayGrid({ dailyData, summaryItems }: PerDayGridProps) {
                     <td 
                       key={day} 
                       className={`p-1 text-center text-[10px] font-bold transition-all hover:scale-110 cursor-pointer ${getHeatmapClass(qty)}`}
-                      title={`${item.name_th} วันที่ ${day}: ${qty} ชิ้น`}
+                      title={`${item.name_th} Date ${day}: ${qty} ชิ้น`}
                       onClick={() => console.log(`Drill down for ${item.name_th} day ${day}`)}
                     >
                       {qty || ""}

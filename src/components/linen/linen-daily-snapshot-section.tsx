@@ -24,34 +24,34 @@ type SnapshotSection = {
 const SECTIONS: SnapshotSection[] = [
   {
     key: "sent",
-    title: "Section 1 · ผ้าส่งวันนี้",
+    title: "Section 1 · ผ้าSendDaysนี้",
     subtitle: "แยกผ้าปกติ, Rewash, และผ้าเก่า Day use",
-    emptyText: "วันนี้ไม่มีรายการส่งผ้า",
+    emptyText: "Daysนี้No ItemsSendผ้า",
     columns: [
-      { key: "sent_normal", label: "ส่งปกติ" },
-      { key: "sent_rewash", label: "ส่ง Rewash" },
-      { key: "sent_old_dayuse", label: "ส่งผ้าเก่า" },
+      { key: "sent_normal", label: "Sendปกติ" },
+      { key: "sent_rewash", label: "Send Rewash" },
+      { key: "sent_old_dayuse", label: "Sendผ้าเก่า" },
     ],
   },
   {
     key: "received",
-    title: "Section 2 · ผ้ารับวันนี้",
-    subtitle: "รับปกติ, รับ Rewash, รับผ้าค้าง และรับผ้าเก่า",
-    emptyText: "วันนี้ไม่มีรายการรับคืน",
+    title: "Section 2 · ผ้าReceiveDaysนี้",
+    subtitle: "Receiveปกติ, Receive Rewash, Receiveผ้าค้าง และReceiveผ้าเก่า",
+    emptyText: "Daysนี้No ItemsReceiveReturn",
     columns: [
-      { key: "received_normal", label: "รับปกติ" },
-      { key: "received_rewash", label: "รับ Rewash" },
-      { key: "received_pending", label: "รับผ้าค้าง" },
-      { key: "received_old_dayuse", label: "รับผ้าเก่า" },
+      { key: "received_normal", label: "Receiveปกติ" },
+      { key: "received_rewash", label: "Receive Rewash" },
+      { key: "received_pending", label: "Receiveผ้าค้าง" },
+      { key: "received_old_dayuse", label: "Receiveผ้าเก่า" },
     ],
   },
   {
     key: "balance",
     title: "Section 3 · ผ้าคงเหลือที่ Vendor",
-    subtitle: "ยอดหลังหักรับคืนวันนี้แล้ว แยกที่มาให้ตรวจยอดต่อได้",
+    subtitle: "ยอดหลังหักReceiveReturnDaysนี้แล้ว แยกที่มาให้ตรวจยอดต่อได้",
     emptyText: "ไม่มีผ้าคงเหลือที่ Vendor",
     columns: [
-      { key: "balance_normal_today", label: "ปกติวันนี้" },
+      { key: "balance_normal_today", label: "ปกติDaysนี้" },
       { key: "balance_old_dayuse", label: "ผ้าเก่า" },
       { key: "balance_pending_old", label: "ค้างเดิม" },
       { key: "balance_rewash", label: "Rewash" },
@@ -154,7 +154,7 @@ export function LinenDailySnapshotSection() {
 
   const handleRecompute = async () => {
     const reason = snapshot
-      ? window.prompt("เหตุผลในการ recompute snapshot วันนี้", "แก้ไขย้อนหลัง / ตรวจยอดใหม่")
+      ? window.prompt("เหตุผลในการ recompute snapshot Daysนี้", "Editย้อนหลัง / ตรวจยอดใหม่")
       : "Create first snapshot";
     if (reason === null) return;
     setBusy(true);
@@ -185,7 +185,7 @@ export function LinenDailySnapshotSection() {
           <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[var(--text-muted)]">Frozen Daily Ledger</p>
           <h2 className="mt-1 font-thai text-xl font-black text-[var(--text-primary)]">Daily Linen Snapshot</h2>
           <p className="mt-1 max-w-2xl font-thai text-sm text-[var(--text-secondary)]">
-            ยอดรายวันแบบ Freeze แยกผ้าส่ง, ผ้ารับ และยอดคงเหลือที่ Vendor
+            ยอดรายDaysแบบ Freeze แยกผ้าSend, ผ้าReceive และยอดคงเหลือที่ Vendor
           </p>
         </div>
 
@@ -219,11 +219,11 @@ export function LinenDailySnapshotSection() {
 
       <div className="grid grid-cols-1 divide-y divide-[var(--border-default)] border-b border-[var(--border-default)] md:grid-cols-3 md:divide-x md:divide-y-0">
         <div className="px-5 py-4">
-          <p className="text-xs font-bold text-[var(--text-secondary)]">ผ้าส่งวันนี้</p>
+          <p className="text-xs font-bold text-[var(--text-secondary)]">ผ้าSendDaysนี้</p>
           <p className="mt-1 text-3xl font-black tabular-nums text-[var(--text-primary)]">{formatNumber(totals.sent)}</p>
         </div>
         <div className="px-5 py-4">
-          <p className="text-xs font-bold text-[var(--text-secondary)]">ผ้ารับวันนี้</p>
+          <p className="text-xs font-bold text-[var(--text-secondary)]">ผ้าReceiveDaysนี้</p>
           <p className="mt-1 text-3xl font-black tabular-nums text-[var(--text-primary)]">{formatNumber(totals.received)}</p>
         </div>
         <div className="px-5 py-4">
@@ -237,7 +237,7 @@ export function LinenDailySnapshotSection() {
           {isLoading || isValidating ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <RefreshCw className="h-3.5 w-3.5" />}
           {snapshot
             ? `Computed ${new Date(snapshot.computed_at).toLocaleString("th-TH")} · recomputed ${snapshot.recomputed_count} time(s)`
-            : "ยังไม่มี snapshot สำหรับวันนี้"}
+            : "ยังไม่มี snapshot สำหReceiveDaysนี้"}
         </div>
         {message && <p className="font-semibold text-[var(--text-primary)]">{message}</p>}
         {error && <p className="font-semibold text-rose-600 dark:text-rose-400">{error.message}</p>}
@@ -251,7 +251,7 @@ export function LinenDailySnapshotSection() {
         </div>
       ) : (
         <div className="px-5 py-12 text-center">
-          <p className="font-thai text-base font-bold text-[var(--text-primary)]">ยังไม่มี Snapshot ของวันที่เลือก</p>
+          <p className="font-thai text-base font-bold text-[var(--text-primary)]">ยังไม่มี Snapshot ของDateSelect</p>
           <p className="mt-1 font-thai text-sm text-[var(--text-secondary)]">
             ระบบจะสร้างอัตโนมัติตอน EOD หรือให้ Admin/Supervisor กด Create Snapshot ได้ทันที
           </p>

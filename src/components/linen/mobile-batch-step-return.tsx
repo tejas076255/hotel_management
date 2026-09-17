@@ -124,7 +124,7 @@ export function MobileBatchStepReturn({ batchId, returnSources, initialReturnQty
                     <MobileItemRow
                         key={key}
                         label={`${source.name_th ?? `Item ${source.linen_item_id}`}${source.is_dayuse ? " (Day Use)" : ""}`}
-                        subLabel={`ส่งไป: ${source.remaining_qty}`}
+                        subLabel={`Sendไป: ${source.remaining_qty}`}
                         value={returnQtys[key] ?? ""}
                         onChange={(val) => handleQtyChange(key, val)}
                         max={source.remaining_qty}
@@ -178,7 +178,7 @@ export function MobileBatchStepReturn({ batchId, returnSources, initialReturnQty
         } catch (error) {
             console.error(error);
             const message = error instanceof Error ? error.message : "Unknown error";
-            alert(`เกิดข้อผิดพลาดในการบันทึก: ${message}`);
+            alert(`เกิดข้อErrorในการSave: ${message}`);
         } finally {
             setIsSubmitting(false);
         }
@@ -192,7 +192,7 @@ export function MobileBatchStepReturn({ batchId, returnSources, initialReturnQty
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
                     </svg>
                 </div>
-                <h3 className="text-xl font-bold text-slate-800 font-thai mb-2">ไม่มีผ้ารอรับคืน</h3>
+                <h3 className="text-xl font-bold text-slate-800 font-thai mb-2">ไม่มีผ้ารอReceiveReturn</h3>
                 <p className="text-sm text-slate-500 font-thai mb-8">ข้ามขั้นตอนนี้เพื่อไปหน้าถัดไป</p>
                 <div className="grid w-full grid-cols-2 gap-3">
                     <button
@@ -208,7 +208,7 @@ export function MobileBatchStepReturn({ batchId, returnSources, initialReturnQty
                         disabled={isSubmitting}
                         className="py-4 bg-[#1B4038] text-white font-bold rounded-2xl shadow-lg active:scale-95 transition-all"
                     >
-                        {isSubmitting ? "กำลังบันทึก..." : "ถัดไป"}
+                        {isSubmitting ? "กำลังSave..." : "ถัดไป"}
                     </button>
                 </div>
             </div>
@@ -219,8 +219,8 @@ export function MobileBatchStepReturn({ batchId, returnSources, initialReturnQty
         <div className="flex flex-col h-full bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden mb-24">
             <div className="p-5 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
                 <div>
-                    <h2 className="text-2xl font-bold text-slate-900 font-thai">2. นับผ้ารับคืน</h2>
-                    <p className="text-sm text-slate-500 font-thai">รับคืนจากร้านซักรีด</p>
+                    <h2 className="text-2xl font-bold text-slate-900 font-thai">2. นับผ้าReceiveReturn</h2>
+                    <p className="text-sm text-slate-500 font-thai">ReceiveReturnจากร้านซักรีด</p>
                 </div>
             </div>
 
@@ -232,7 +232,7 @@ export function MobileBatchStepReturn({ batchId, returnSources, initialReturnQty
                                 <div>
                                     <p className="text-[11px] font-black uppercase tracking-[0.18em] text-slate-400">รอบล่าสุด</p>
                                     <h3 className="mt-1 text-lg font-black text-slate-900 font-thai">
-                                        คืนจาก {latestSources[0]?.source_business_date} รอบ {latestSources[0]?.source_pickup_round}
+                                        Returnจาก {latestSources[0]?.source_business_date} รอบ {latestSources[0]?.source_pickup_round}
                                     </h3>
                                 </div>
                                 <div className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-[#1B4038]">
@@ -251,7 +251,7 @@ export function MobileBatchStepReturn({ batchId, returnSources, initialReturnQty
                                 className="flex w-full items-center justify-between rounded-2xl border border-amber-200 bg-amber-50 px-4 py-4 text-left active:scale-[0.99] transition-all"
                             >
                                 <div>
-                                    <p className="text-sm font-black text-amber-900 font-thai">เลือกผ้าค้างเก่า</p>
+                                    <p className="text-sm font-black text-amber-900 font-thai">Selectผ้าค้างเก่า</p>
                                     <p className="mt-0.5 text-xs font-medium text-amber-700/70 font-thai">
                                         มี {olderSources.length} รายการจาก batch ก่อนหน้า
                                     </p>
@@ -274,7 +274,7 @@ export function MobileBatchStepReturn({ batchId, returnSources, initialReturnQty
                                             <div className="mb-2 flex items-center gap-2">
                                                 <div className="h-4 w-1 rounded-full bg-amber-400" />
                                                 <span className="text-xs font-black uppercase tracking-widest text-amber-700">
-                                                    คืนจาก {groupLabel}
+                                                    Returnจาก {groupLabel}
                                                 </span>
                                             </div>
                                             <div className="rounded-2xl bg-white px-2">
@@ -296,10 +296,10 @@ export function MobileBatchStepReturn({ batchId, returnSources, initialReturnQty
                                 className="flex w-full items-center justify-between rounded-2xl border border-purple-200 bg-purple-50 px-4 py-4 text-left active:scale-[0.99] transition-all"
                             >
                                 <div>
-                                    <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500">ค้างส่งซักใหม่</p>
-                                    <p className="mt-1 text-lg font-black text-slate-900 font-thai">ผ้า Rewash ที่รอคืน</p>
+                                    <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500">ค้างSendซักใหม่</p>
+                                    <p className="mt-1 text-lg font-black text-slate-900 font-thai">ผ้า Rewash ที่รอReturn</p>
                                     <p className="mt-0.5 text-xs font-medium text-purple-700/70 font-thai">
-                                        มี {pendingRewash.length} รายการ รอคืนจากร้านซัก
+                                        มี {pendingRewash.length} รายการ รอReturnจากร้านซัก
                                     </p>
                                 </div>
                                 <div className="flex items-center gap-3">
@@ -339,9 +339,9 @@ export function MobileBatchStepReturn({ batchId, returnSources, initialReturnQty
                                                         </div>
                                                         <div className="min-w-0">
                                                             <p className="font-bold text-slate-900 font-thai">{rw.item_name_th}</p>
-                                                            <p className="text-[10px] text-slate-500 font-thai">คงเหลือ {remainingQty} / ทั้งหมด {rw.qty} • จากรอบ {rw.sent_batch_pickup_round}</p>
+                                                            <p className="text-[10px] text-slate-500 font-thai">คงเหลือ {remainingQty} / All {rw.qty} • จากรอบ {rw.sent_batch_pickup_round}</p>
                                                             {Number(rw.resolved_qty ?? 0) > 0 && (
-                                                                <p className="text-[10px] text-purple-600 font-thai">คืนแล้วสะสม {rw.resolved_qty} ชิ้น</p>
+                                                                <p className="text-[10px] text-purple-600 font-thai">Returnแล้วสะสม {rw.resolved_qty} ชิ้น</p>
                                                             )}
                                                         </div>
                                                     </div>
@@ -382,7 +382,7 @@ export function MobileBatchStepReturn({ batchId, returnSources, initialReturnQty
                                                         </button>
                                                     </div>
                                                     <div className="flex-1 rounded-xl border border-purple-100 bg-white px-4 py-3 text-center text-xs font-bold text-purple-600">
-                                                        บันทึกเมื่อกดถัดไป
+                                                        Saveเมื่อกดถัดไป
                                                     </div>
                                                 </div>
                                             </div>

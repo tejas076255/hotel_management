@@ -201,18 +201,18 @@ function normalizeDobYmd(value: unknown): string {
         oct: 10, october: 10,
         nov: 11, november: 11,
         dec: 12, december: 12,
-        "ม.ค": 1, "มกราคม": 1,
-        "ก.พ": 2, "กุมภาพันธ์": 2,
-        "มี.ค": 3, "มีนาคม": 3,
-        "เม.ย": 4, "เมษายน": 4,
-        "พ.ค": 5, "พฤษภาคม": 5,
-        "มิ.ย": 6, "มิถุนายน": 6,
-        "ก.ค": 7, "กรกฎาคม": 7,
-        "ส.ค": 8, "สิงหาคม": 8,
-        "ก.ย": 9, "กันยายน": 9,
-        "ต.ค": 10, "ตุลาคม": 10,
-        "พ.ย": 11, "พฤศจิกายน": 11,
-        "ธ.ค": 12, "ธันวาคม": 12,
+        "ม.ค": 1, "January": 1,
+        "ก.พ": 2, "February": 2,
+        "มี.ค": 3, "March": 3,
+        "เม.ย": 4, "April": 4,
+        "พ.ค": 5, "May": 5,
+        "มิ.ย": 6, "June": 6,
+        "ก.ค": 7, "July": 7,
+        "ส.ค": 8, "August": 8,
+        "ก.ย": 9, "September": 9,
+        "ต.ค": 10, "October": 10,
+        "พ.ย": 11, "November": 11,
+        "ธ.ค": 12, "December": 12,
     };
     const normalizedWords = rawAsciiDigits
         .toLowerCase()
@@ -671,12 +671,12 @@ const THAI_NAME_PREFIXES = [
     "ส.อ.", "ส.ท.", "ส.ต.",
     "จ.อ.", "จ.ท.", "จ.ต.",
     "น.ส.", "ด.ช.", "ด.ญ.", "นส", "ดช", "ดญ",
-    "นาย", "นางสาว", "นาง", "เด็กชาย", "เด็กหญิง",
+    "นาย", "นางสาว", "นาง", "เด็กMale", "เด็กFemale",
     "ดร.", "ศ.", "รศ.", "ผศ.", "นพ.", "พญ.",
 ];
 
 const THAI_NAME_PREFIX_PATTERN = new RegExp(
-    `^(?:${THAI_NAME_PREFIXES.sort((a, b) => b.length - a.length).map(escapeRegExp).join("|")})(?:\\s*หญิง)?(?:\\s+|$)`,
+    `^(?:${THAI_NAME_PREFIXES.sort((a, b) => b.length - a.length).map(escapeRegExp).join("|")})(?:\\s*Female)?(?:\\s+|$)`,
     "u"
 );
 
@@ -1749,14 +1749,14 @@ export default function ReservationDetailPage({
                 notices.push({
                     severity: "warning",
                     kind: "under18",
-                    message: `⚠️ ${label} อายุต่ำกว่า 18 ปี (ยังขาดอีก ${missing.years} ปี ${missing.months} เดือน ${missing.days} วัน)`,
+                    message: `⚠️ ${label} อายุต่ำกว่า 18 ปี (ยังขาดอีก ${missing.years} ปี ${missing.months} เดือน ${missing.days} Days)`,
                 });
             } else if (showOver18) {
                 const ageNow = diffDateParts(birthDate, today);
                 notices.push({
                     severity: "success",
                     kind: "over18",
-                    message: `✅ ${label} อายุเกิน 18 ปีแล้ว (${ageNow.years} ปี ${ageNow.months} เดือน ${ageNow.days} วัน)`,
+                    message: `✅ ${label} อายุเกิน 18 ปีแล้ว (${ageNow.years} ปี ${ageNow.months} เดือน ${ageNow.days} Days)`,
                 });
             }
 
@@ -1768,12 +1768,12 @@ export default function ReservationDetailPage({
                     nearBirthday.relation === "during_stay"
                         ? "เกิดช่วงอยู่กับเรา"
                         : nearBirthday.relation === "before_checkin"
-                            ? `เกิดก่อนเข้าพัก ${nearBirthday.distanceDays} วัน`
-                            : `เกิดหลังเช็กเอาต์ ${nearBirthday.distanceDays} วัน`;
+                            ? `เกิดก่อนเข้าพัก ${nearBirthday.distanceDays} Days`
+                            : `เกิดหลังเช็กเอาต์ ${nearBirthday.distanceDays} Days`;
                 notices.push({
                     severity: "warning",
                     kind: "birthday",
-                    message: `🎂 Birthday alert (${label}) วันที่ ${nearBirthday.birthdayDateYmd} — ${detail} (ช่วงแจ้งเตือน ±3 วัน)`,
+                    message: `🎂 Birthday alert (${label}) Date ${nearBirthday.birthdayDateYmd} — ${detail} (ช่วงแจ้งเตือน ±3 Days)`,
                 });
             }
         }
@@ -1781,7 +1781,7 @@ export default function ReservationDetailPage({
             notices.push({
                 severity: "warning",
                 kind: "under18",
-                message: `⚠️ ${label} ไม่สามารถตีความวันเกิดจากข้อมูลที่อ่านได้ (${rawDob}) กรุณาตรวจสอบวันเกิดก่อนบันทึก`,
+                message: `⚠️ ${label} ไม่สามารถตีความDaysเกิดจากข้อมูลที่อ่านได้ (${rawDob}) กรุณาตรวจสอบDaysเกิดก่อนSave`,
             });
         }
 
@@ -1801,7 +1801,7 @@ export default function ReservationDetailPage({
             "",
             ...notices.map((notice) => `• ${notice.message}`),
             "",
-            "กด OK เพื่อรับทราบและดำเนินการต่อ",
+            "กด OK เพื่อReceiveทราบและดำเนินการต่อ",
         ].join("\n");
         return window.confirm(body);
     }, []);
@@ -5877,7 +5877,7 @@ export default function ReservationDetailPage({
                                                                 void autoResolveMainGuestThaiId(profileIdNumber);
                                                             }}
                                                             disabled={isReadonly || isProfileMasked}
-                                                            placeholder={isProfileMasked ? "ข้อมูลถูกซ่อน — Admin เท่านั้นที่แก้ไขได้" : (profileIdType === "thai_id" ? "Thai ID (13 digits)" : "ID / Passport Number")}
+                                                            placeholder={isProfileMasked ? "ข้อมูลถูกซ่อน — Admin เท่านั้นที่Editได้" : (profileIdType === "thai_id" ? "Thai ID (13 digits)" : "ID / Passport Number")}
                                                         />
                                                         {profileIdType === "thai_id" && !isProfileMasked && (
                                                             <p className={`mt-1 text-[11px] ${hasInvalidThaiId(profileIdNumber, false) ? "text-rose-600" : "text-emerald-700"}`}>
@@ -5996,7 +5996,7 @@ export default function ReservationDetailPage({
                                                             onChange={(e) => setProfileProvince(e.target.value)}
                                                             disabled={isReadonly}
                                                             list={isThaiNationality ? "thai-province-list" : undefined}
-                                                            placeholder={isThaiNationality ? "จังหวัด (จำเป็นสำหรับสัญชาติไทย)" : "Province"}
+                                                            placeholder={isThaiNationality ? "จังหวัด (จำเป็นสำหReceiveสัญชาติไทย)" : "Province"}
                                                         />
                                                         {isThaiNationality ? (
                                                             <>
@@ -6007,7 +6007,7 @@ export default function ReservationDetailPage({
                                                                 </datalist>
                                                                 {profileProvince.trim().length > 0 && profileProvince.trim().length < 2 ? (
                                                                     <p className="mt-1 text-[11px] text-[var(--text-muted)]">
-                                                                        พิมพ์อย่างน้อย 2 ตัวอักษรเพื่อค้นหาจังหวัด
+                                                                        Printอย่างน้อย 2 ตัวอักษรเพื่อSearchจังหวัด
                                                                     </p>
                                                                 ) : null}
                                                             </>
@@ -6934,7 +6934,7 @@ export default function ReservationDetailPage({
                     <DialogHeader>
                         <DialogTitle>Reverse No-Show</DialogTitle>
                         <DialogDescription>
-                            ลูกค้ามาถึงแล้ว ต้องการยกเลิก No-Show?
+                            Customerมาถึงแล้ว ต้องการCancel No-Show?
                         </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-3 text-sm text-[var(--text-secondary)]">

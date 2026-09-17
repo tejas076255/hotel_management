@@ -79,7 +79,7 @@ export function BatchStepVendorSign({ batchId, items, rewashEvents = [], returnS
             onNext();
         } catch (error) {
             console.error(error);
-            alert("เกิดข้อผิดพลาดในการบันทึกเซ็นรับ กรุณาลองใหม่");
+            alert("เกิดข้อErrorในการSaveเซ็นReceive กรุณาลองใหม่");
         } finally {
             setIsSubmitting(false);
         }
@@ -91,7 +91,7 @@ export function BatchStepVendorSign({ batchId, items, rewashEvents = [], returnS
                 <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 flex items-center justify-between">
                     <div>
                         <h3 className="font-semibold text-slate-800 dark:text-slate-100 text-lg flex items-center gap-2">
-                            <span>🤝 ใบรับ-ส่งผ้าซักรีด</span>
+                            <span>🤝 ใบReceive-Sendผ้าซักรีด</span>
                             <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold uppercase transition-colors">Step 3/4</span>
                         </h3>
                     </div>
@@ -102,7 +102,7 @@ export function BatchStepVendorSign({ batchId, items, rewashEvents = [], returnS
                         <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-3">
                             <h4 className="font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2 text-sm">
                                 <div className="w-2 h-2 bg-blue-500 rounded-full" />
-                                ผ้าเปื้อนรับเข้าร้านวันนี้
+                                ผ้าเปื้อนReceiveเข้าร้านDaysนี้
                             </h4>
                             <span className="font-bold text-lg text-blue-700 dark:text-blue-400">{dirtyTotal} ชิ้น</span>
                         </div>
@@ -111,7 +111,7 @@ export function BatchStepVendorSign({ batchId, items, rewashEvents = [], returnS
                             <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-3">
                                 <h4 className="font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2 text-sm">
                                     <div className="w-2 h-2 bg-amber-500 rounded-full" />
-                                    ผ้าเก่ารับเข้าร้าน (Day Use)
+                                    ผ้าเก่าReceiveเข้าร้าน (Day Use)
                                 </h4>
                                 <span className="font-bold text-lg text-amber-700 dark:text-amber-400">{dayuseTotal} ชิ้น</span>
                             </div>
@@ -122,7 +122,7 @@ export function BatchStepVendorSign({ batchId, items, rewashEvents = [], returnS
                                 <div className="flex items-center justify-between">
                                     <h4 className="font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2 text-sm">
                                         <div className="w-2 h-2 bg-purple-500 rounded-full" />
-                                        ผ้าซักใหม่รับเข้าร้าน
+                                        ผ้าซักใหม่Receiveเข้าร้าน
                                     </h4>
                                     <span className="font-bold text-lg text-purple-700 dark:text-purple-400">{rewashTotal} ชิ้น</span>
                                 </div>
@@ -140,7 +140,7 @@ export function BatchStepVendorSign({ batchId, items, rewashEvents = [], returnS
                         <div className="flex items-center justify-between pb-1">
                             <h4 className="font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2 text-sm">
                                 <div className="w-2 h-2 bg-emerald-500 rounded-full" />
-                                ผ้าซักปกติที่ส่งคืนโรงแรมวันนี้
+                                ผ้าซักปกติที่SendReturnโรงแรมDaysนี้
                             </h4>
                             <span className="font-bold text-lg text-emerald-700 dark:text-emerald-400">{returnTotal} ชิ้น</span>
                         </div>
@@ -160,7 +160,7 @@ export function BatchStepVendorSign({ batchId, items, rewashEvents = [], returnS
                                 <div className="flex items-center justify-between">
                                     <h4 className="font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2 text-sm">
                                         <div className="w-2 h-2 bg-amber-500 rounded-full" />
-                                        รับคืนผ้าค้างเก่า
+                                        ReceiveReturnผ้าค้างเก่า
                                     </h4>
                                     <span className="font-bold text-lg text-amber-700 dark:text-amber-400">{pendingReturnTotal} ชิ้น</span>
                                 </div>
@@ -180,7 +180,7 @@ export function BatchStepVendorSign({ batchId, items, rewashEvents = [], returnS
                                 <div className="flex items-center justify-between">
                                     <h4 className="font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2 text-sm">
                                         <div className="w-2 h-2 bg-fuchsia-500 rounded-full" />
-                                        รับคืนผ้าซักใหม่
+                                        ReceiveReturnผ้าซักใหม่
                                     </h4>
                                     <span className="font-bold text-lg text-fuchsia-700 dark:text-fuchsia-400">{rewashReturnTotal} ชิ้น</span>
                                 </div>
@@ -199,28 +199,28 @@ export function BatchStepVendorSign({ batchId, items, rewashEvents = [], returnS
                             <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900 rounded-lg flex items-start gap-3">
                                 <span className="text-xl">⚠️</span>
                                 <div>
-                                    <h4 className="font-bold text-amber-800 dark:text-amber-400 text-[11px] uppercase tracking-tight">ยังคงมีผ้าค้างส่งคืนรวม {pendingItems.length} รายการ</h4>
-                                    <p className="text-[10px] text-amber-700 dark:text-amber-500 mt-0.5">โปรดตรวจสอบรายละเอียดบนเว็บ Vendor อีกครั้ง</p>
+                                    <h4 className="font-bold text-amber-800 dark:text-amber-400 text-[11px] uppercase tracking-tight">ยังคงมีผ้าค้างSendReturnรวม {pendingItems.length} รายการ</h4>
+                                    <p className="text-[10px] text-amber-700 dark:text-amber-500 mt-0.5">โปรดตรวจสอบDetailsบนเว็บ Vendor อีกครั้ง</p>
                                 </div>
                             </div>
                         )}
                     </div>
 
                     <div className="bg-blue-50/50 dark:bg-slate-800/30 border border-blue-100 dark:border-slate-800 rounded-xl p-4 flex flex-col items-center">
-                        <h4 className="font-bold text-slate-800 dark:text-slate-100 mb-4 text-center text-sm">ลายเซ็นผู้รับผ้า (ร้านซักรีด)</h4>
+                        <h4 className="font-bold text-slate-800 dark:text-slate-100 mb-4 text-center text-sm">ลายเซ็นผู้Receiveผ้า (ร้านซักรีด)</h4>
                         
                         <SignatureCanvas onSign={setSignatureBlob} width={300} height={150} />
                         
                         <div className="w-full max-w-[300px] mt-5">
                             <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1 uppercase tracking-widest">
-                                ชื่อผู้รับผ้า (ตัวพิมพ์)
+                                ชื่อผู้Receiveผ้า (ตัวPrint)
                             </label>
                             <input
                                 type="text"
                                 value={vendorName}
                                 onChange={(e) => setVendorName(e.target.value)}
                                 className="w-full h-11 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-lg px-3 font-bold text-slate-800 dark:text-slate-100 transition-all focus:border-[#1B4038] focus:ring-4 focus:ring-[#1B4038]/10 outline-none"
-                                placeholder="พิมพ์ชื่อ-นามสกุล หรือชื่อเล่น..."
+                                placeholder="Printชื่อ-นามสกุล หรือชื่อเล่น..."
                             />
                         </div>
                     </div>
@@ -239,12 +239,12 @@ export function BatchStepVendorSign({ batchId, items, rewashEvents = [], returnS
                         {isSubmitting ? (
                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                         ) : (
-                           <>ร้านค้ายืนยันการรับ-ส่ง <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></>
+                           <>ร้านค้าConfirmการReceive-Send <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></>
                         )}
                     </button>
                     {(!signatureBlob || !vendorName.trim()) && (
                         <p className="text-center text-[10px] text-rose-500 dark:text-rose-400 font-bold mt-3 uppercase tracking-tighter">
-                            * ร้านค้าต้องเซ็นลายเซ็น และพิมพ์ชื่อให้ครบถ้วน
+                            * ร้านค้าต้องเซ็นลายเซ็น และPrintชื่อให้ครบถ้วน
                         </p>
                     )}
                 </div>

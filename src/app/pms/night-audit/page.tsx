@@ -268,7 +268,7 @@ export default function NightAuditPage() {
                             </div>
                             <h2 className="text-xl font-bold text-[var(--text-primary)]">Close Day {businessDate}?</h2>
                             <p className="mt-2 text-sm text-[var(--text-secondary)] mb-8 px-4 leading-relaxed">
-                                หลังจากกดยืนยัน จะไม่สามารถแก้ไขข้อมูลยอดเงิน ใบแจ้งหนี้ของวันที่ <strong className="text-[var(--text-primary)]">{businessDate}</strong> ได้อีก ระบบจะจัดเก็บข้อมูลลง Snapshot และเริ่มวันทำงานใหม่ทันที
+                                หลังจากกดConfirm จะไม่สามารถEditข้อมูลAmount ใบแจ้งหนี้ของDate <strong className="text-[var(--text-primary)]">{businessDate}</strong> ได้อีก ระบบจะจัดเก็บข้อมูลลง Snapshot และเริ่มDaysทำงานใหม่ทันที
                             </p>
 
                             {runError && (

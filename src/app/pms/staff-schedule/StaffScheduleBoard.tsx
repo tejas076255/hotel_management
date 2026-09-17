@@ -364,7 +364,7 @@ function WeekView({
               {filteredStaff.length === 0 ? (
                 <tr>
                   <td colSpan={weekDays.length + 1} className="px-4 py-10 text-center text-sm font-semibold text-slate-500 dark:text-slate-400">
-                    ไม่พบพนักงานตาม filter ที่เลือก
+                    ไม่พบStaffตาม filter ที่Select
                   </td>
                 </tr>
               ) : (
@@ -458,7 +458,7 @@ export function StaffScheduleBoard({ data, selectedMonthKey, loading = false, on
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Read-only roster</p>
           <h1 className="mt-1 text-2xl font-black tracking-tight text-slate-950 dark:text-slate-100">Staff Schedule</h1>
           <p className="mt-1 text-sm font-medium text-slate-600 dark:text-slate-400">
-            ตารางเวรสำหรับพนักงานทุกคน แสดงเฉพาะเดือนปัจจุบันและเดือนถัดไป
+            ตารางเวรสำหReceiveStaffทุกคน แสดงเฉพาะเดือนปัจจุบันและเดือนถัดไป
           </p>
         </div>
 
@@ -522,7 +522,7 @@ export function StaffScheduleBoard({ data, selectedMonthKey, loading = false, on
 
       {!hasAnyShift ? (
         <div className="rounded-lg border border-dashed border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
-          ยังไม่มีตารางเวรสำหรับเดือนนี้
+          ยังไม่มีตารางเวรสำหReceiveเดือนนี้
         </div>
       ) : null}
 

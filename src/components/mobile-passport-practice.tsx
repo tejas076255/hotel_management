@@ -169,14 +169,14 @@ function evaluatePracticeVerdict(result: PassportOcrResult | null, meta: Passpor
     return {
       tone: "amber" as const,
       title: "Needs Manual Check",
-      message: "อ่านได้บางส่วน แต่ยังควรเช็กชื่อ เลข passport หรือวันเกิดอีกครั้ง",
+      message: "อ่านได้บางส่วน แต่ยังควรเช็กชื่อ เลข passport หรือDaysเกิดอีกครั้ง",
     };
   }
 
   return {
     tone: "rose" as const,
     title: "Retake Recommended",
-    message: "ภาพยังไม่ชัดพอสำหรับ MRZ ลองถ่ายใกล้ขึ้น ตรงขึ้น และให้แสงสม่ำเสมอ",
+    message: "ภาพยังไม่ชัดพอสำหReceive MRZ ลองถ่ายใกล้ขึ้น ตรงขึ้น และให้แสงสม่ำเสมอ",
   };
 }
 
@@ -326,7 +326,7 @@ export default function MobilePassportPractice() {
         <section className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-4 shadow-sm">
           <p className="text-sm font-semibold text-[var(--text-primary)]">โหมดฝึกถ่าย</p>
           <p className="mt-1 text-xs text-[var(--text-muted)]">
-            ใช้กล้องถ่ายสดอย่างเดียว แล้วดูภาพ MRZ ที่ระบบส่งเข้า OCR จริงหลังสแกนแต่ละรอบ
+            ใช้กล้องถ่ายสดอย่างเดียว แล้วดูภาพ MRZ ที่ระบบSendเข้า OCR จริงหลังสแกนแต่ละรอบ
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <label className="btn btn-primary cursor-pointer">
@@ -361,13 +361,13 @@ export default function MobilePassportPractice() {
         </section>
 
         <section className="rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-3 shadow-sm">
-          <p className="text-sm font-semibold text-[var(--text-primary)]">ภาพที่ส่งเข้า OCR (MRZ)</p>
+          <p className="text-sm font-semibold text-[var(--text-primary)]">ภาพที่Sendเข้า OCR (MRZ)</p>
           <div className="mt-3 flex min-h-[220px] items-center justify-center rounded-xl border border-[var(--border-default)] bg-[var(--bg-body)]">
             {mrzPreviewUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={mrzPreviewUrl} alt="Passport MRZ preview" className="max-h-[360px] w-full rounded-xl object-contain" />
             ) : (
-              <p className="px-5 text-center text-sm text-[var(--text-muted)]">หลังสแกน ระบบจะแสดงภาพ MRZ ที่ถูกส่งเข้า OCR จริงตรงนี้</p>
+              <p className="px-5 text-center text-sm text-[var(--text-muted)]">หลังสแกน ระบบจะแสดงภาพ MRZ ที่ถูกSendเข้า OCR จริงตรงนี้</p>
             )}
           </div>
         </section>
@@ -414,7 +414,7 @@ export default function MobilePassportPractice() {
           <ul className="mt-3 space-y-2 text-sm text-[var(--text-secondary)]">
             <li>ให้ passport อยู่เต็มเฟรม โดยเฉพาะแถบ MRZ ด้านล่างต้องติดมาครบ</li>
             <li>หลีกเลี่ยงแสงสะท้อนตรงโซน MRZ ถ้าเส้นหรืออักษรซีด ให้ถ่ายใหม่</li>
-            <li>ดูภาพ MRZ ที่ส่งเข้า OCR ว่าระบบ crop โดนเฉพาะส่วนที่ต้องอ่านจริงหรือไม่</li>
+            <li>ดูภาพ MRZ ที่Sendเข้า OCR ว่าระบบ crop โดนเฉพาะส่วนที่ต้องอ่านจริงหรือไม่</li>
             <li>ถ้าผลไม่ขึ้นว่า `OK` ให้กด `เริ่มฝึกใหม่` แล้วลองถ่ายใหม่ได้ทันที</li>
           </ul>
         </section>

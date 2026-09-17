@@ -141,7 +141,7 @@ export default function FillOcrRoomSelect() {
                   In House ({inHouseRooms.length})
                 </h3>
                 <p className="text-xs font-semibold text-amber-600 dark:text-amber-400 mb-3">
-                  Check-in แล้ว — เพิ่มได้แค่ Accompanying Guest
+                  Check-in แล้ว — Addได้แค่ Accompanying Guest
                 </p>
                 <div className="space-y-2">
                   {inHouseRooms.map((room) => (

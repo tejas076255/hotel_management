@@ -84,7 +84,7 @@ export function BatchStepFoSign({ batchId, items, rewashEvents = [], returnSumma
             onDone(tokenData.data.token, tokenData.data.monthly_vendor?.url);
         } catch (error) {
             console.error(error);
-            alert("เกิดข้อผิดพลาดในการบันทึกเซ็นรับ กรุณาลองใหม่");
+            alert("เกิดข้อErrorในการSaveเซ็นReceive กรุณาลองใหม่");
         } finally {
             setIsSubmitting(false);
         }
@@ -96,7 +96,7 @@ export function BatchStepFoSign({ batchId, items, rewashEvents = [], returnSumma
                 <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 flex items-center justify-between">
                     <div>
                         <h3 className="font-semibold text-slate-800 dark:text-slate-100 text-lg flex items-center gap-2">
-                            <span>✅ สรุปรับ-ส่งผ้า</span>
+                            <span>✅ สรุปReceive-Sendผ้า</span>
                             <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold uppercase transition-colors">Step 4/4</span>
                         </h3>
                     </div>
@@ -111,12 +111,12 @@ export function BatchStepFoSign({ batchId, items, rewashEvents = [], returnSumma
                         
                         <div className="inline-block text-left text-sm text-slate-600 dark:text-slate-400 space-y-2 mt-2 bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-700 w-full max-w-[280px]">
                             <div className="flex justify-between border-b border-slate-100 dark:border-slate-700 pb-2">
-                                <span>ผ้าเปื้อนส่งซัก</span>
+                                <span>ผ้าเปื้อนSendซัก</span>
                                 <span className="font-bold text-blue-700 dark:text-blue-400">{dirtyTotal} ชิ้น</span>
                             </div>
                             {dayuseTotal > 0 && (
                                 <div className="flex justify-between border-b border-slate-100 dark:border-slate-700 pb-2">
-                                    <span>ผ้าเก่าส่งซัก</span>
+                                    <span>ผ้าเก่าSendซัก</span>
                                     <span className="font-bold text-amber-600 dark:text-amber-400">{dayuseTotal} ชิ้น</span>
                                 </div>
                             )}
@@ -137,7 +137,7 @@ export function BatchStepFoSign({ batchId, items, rewashEvents = [], returnSumma
                                 </div>
                             )}
                             <div className="flex justify-between pt-1">
-                                <span>ผ้าซักปกติรับคืนจากร้าน</span>
+                                <span>ผ้าซักปกติReceiveReturnจากร้าน</span>
                                 <span className="font-bold text-emerald-700 dark:text-emerald-400">{returnTotal} ชิ้น</span>
                             </div>
                             {returnRows.length > 0 && (
@@ -153,7 +153,7 @@ export function BatchStepFoSign({ batchId, items, rewashEvents = [], returnSumma
                             {pendingReturnTotal > 0 && (
                                 <div className="border-t border-slate-100 dark:border-slate-700 pt-2">
                                     <div className="flex justify-between">
-                                        <span>รับคืนผ้าค้างเก่า</span>
+                                        <span>ReceiveReturnผ้าค้างเก่า</span>
                                         <span className="font-bold text-amber-600 dark:text-amber-400">{pendingReturnTotal} ชิ้น</span>
                                     </div>
                                     <div className="mt-2 space-y-1 text-xs text-slate-500 dark:text-slate-400">
@@ -169,7 +169,7 @@ export function BatchStepFoSign({ batchId, items, rewashEvents = [], returnSumma
                             {rewashReturnTotal > 0 && (
                                 <div className="border-t border-slate-100 dark:border-slate-700 pt-2">
                                     <div className="flex justify-between">
-                                        <span>รับคืนผ้าซักใหม่</span>
+                                        <span>ReceiveReturnผ้าซักใหม่</span>
                                         <span className="font-bold text-fuchsia-600 dark:text-fuchsia-400">{rewashReturnTotal} ชิ้น</span>
                                     </div>
                                     <div className="mt-2 space-y-1 text-xs text-slate-500 dark:text-slate-400">
@@ -186,7 +186,7 @@ export function BatchStepFoSign({ batchId, items, rewashEvents = [], returnSumma
                     </div>
 
                     <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col items-center">
-                        <h4 className="font-bold text-slate-800 dark:text-slate-100 mb-4 text-center text-sm">ลายเซ็นพนักงานโรงแรม (FO)</h4>
+                        <h4 className="font-bold text-slate-800 dark:text-slate-100 mb-4 text-center text-sm">ลายเซ็นStaffโรงแรม (FO)</h4>
                         <SignatureCanvas onSign={setSignatureBlob} width={300} height={150} />
                     </div>
                 </div>
@@ -204,12 +204,12 @@ export function BatchStepFoSign({ batchId, items, rewashEvents = [], returnSumma
                         {isSubmitting ? (
                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                         ) : (
-                           <>ยืนยัน ปิดรายการ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M5 12l5 5L20 7"/></svg></>
+                           <>Confirm Closeรายการ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5"><path d="M5 12l5 5L20 7"/></svg></>
                         )}
                     </button>
                     {!signatureBlob && (
                         <p className="text-center text-[10px] text-rose-500 dark:text-rose-400 font-bold mt-3 uppercase tracking-tighter">
-                            * พนักงาน FO ต้องเซ็นลายเซ็นกำกับก่อนปิดรายการ
+                            * Staff FO ต้องเซ็นลายเซ็นกำกับก่อนCloseรายการ
                         </p>
                     )}
                 </div>

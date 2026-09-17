@@ -291,7 +291,7 @@ export default function TaxInvoiceListPage() {
       setCancelReuseMode("continue");
       fetchData(); // reload list
     } catch (err: any) {
-      setCancelError(err.message || "เกิดข้อผิดพลาด");
+      setCancelError(err.message || "เกิดข้อError");
     } finally {
       setCancelLoading(false);
     }
@@ -349,7 +349,7 @@ export default function TaxInvoiceListPage() {
                 checked={showCancelled}
                 onChange={(e) => setShowCancelled(e.target.checked)}
               />
-              แสดงรายการที่ยกเลิกแล้ว
+              แสดงรายการที่Cancelแล้ว
             </label>
           )}
           <input 
@@ -575,14 +575,14 @@ export default function TaxInvoiceListPage() {
             <div className="bg-rose-50 dark:bg-rose-500/10 p-6 flex items-center gap-4 border-b border-rose-100 dark:border-rose-500/20">
               <div className="w-12 h-12 rounded-full bg-rose-100 dark:bg-rose-500/20 flex items-center justify-center text-2xl">🗑️</div>
               <div>
-                <h3 className="text-lg font-bold text-rose-900 dark:text-rose-400">ยกเลิก Invoice</h3>
+                <h3 className="text-lg font-bold text-rose-900 dark:text-rose-400">Cancel Invoice</h3>
                 <p className="text-xs text-rose-700/70 dark:text-rose-400/60 mt-0.5 font-mono">{cancelTarget.invoiceNo}</p>
               </div>
             </div>
             <div className="p-6 space-y-4">
               <div className="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-xl p-3 text-xs text-amber-800 dark:text-amber-400 leading-relaxed">
                 {cancelTarget.canReuseInvoiceNo
-                  ? <>⚠️ ใบนี้เป็นเลขล่าสุด คุณเลือกได้ว่าจะให้เลข <strong>{cancelTarget.invoiceNo}</strong> ถูกรันต่อไป หรือเก็บเลขนี้ไว้ใช้กับใบใหม่ใบถัดไปเพื่อคง Audit Trail</>
+                  ? <>⚠️ ใบนี้เป็นเลขล่าสุด คุณSelectได้ว่าจะให้เลข <strong>{cancelTarget.invoiceNo}</strong> ถูกรันต่อไป หรือเก็บเลขนี้ไว้ใช้กับใบใหม่ใบถัดไปเพื่อคง Audit Trail</>
                   : <>⚠️ เลข Invoice <strong>{cancelTarget.invoiceNo}</strong> จะถูกขีดฆ่าและเลขถัดไปจะรันต่อเนื่อง เพื่อคง Audit Trail</>}
               </div>
               {cancelTarget.canReuseInvoiceNo && (
@@ -616,12 +616,12 @@ export default function TaxInvoiceListPage() {
               )}
               <div>
                 <label className="block text-sm font-bold text-[var(--text-primary)] mb-2">
-                  เหตุผลการยกเลิก <span className="text-rose-500">*</span>
+                  เหตุผลการCancel <span className="text-rose-500">*</span>
                 </label>
                 <textarea
                   value={cancelReason}
                   onChange={(e) => { setCancelReason(e.target.value); setCancelError(""); }}
-                  placeholder="ระบุเหตุผล เช่น ออกเลขผิด, ลูกค้าเปลี่ยนใจ..."
+                  placeholder="ระบุเหตุผล เช่น ออกเลขผิด, Customerเปลี่ยนใจ..."
                   rows={3}
                   className="form-input w-full resize-none"
                 />
@@ -634,7 +634,7 @@ export default function TaxInvoiceListPage() {
                 disabled={cancelLoading}
                 className="px-6 py-2 rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] text-sm font-bold text-[var(--text-secondary)] hover:bg-[var(--bg-body)] transition"
               >
-                ยกเลิก
+                Cancel
               </button>
               <button
                 onClick={handleCancelConfirm}
@@ -642,7 +642,7 @@ export default function TaxInvoiceListPage() {
                 className="px-8 py-2 rounded-xl bg-rose-600 text-white text-sm font-extrabold shadow-lg hover:bg-rose-700 transition flex items-center gap-2 disabled:opacity-50"
               >
                 {cancelLoading && <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
-                ยืนยันยกเลิก
+                ConfirmCancel
               </button>
             </div>
           </div>

@@ -8,7 +8,7 @@ export default function LinenSettingsPage() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black text-slate-900 dark:text-slate-100 uppercase tracking-tight">Linen Setting</h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ตั้งค่าราคา Vendor และเกณฑ์ Variance สำหรับ Linen & Laundry</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">ตั้งค่าPrice Vendor และเกณฑ์ Variance สำหReceive Linen & Laundry</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">

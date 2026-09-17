@@ -26,7 +26,7 @@ export function LinenHistoryFilterBar({ filters, setFilters }: LinenHistoryFilte
                         name="search"
                         value={filters.search || ""}
                         onChange={handleChange}
-                        placeholder="ค้นหา Batch ID หรือหมายเหตุ..."
+                        placeholder="Search Batch ID หรือNotes..."
                         className="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border-none rounded-xl text-sm focus:ring-2 focus:ring-emerald-500/20 transition-all font-thai"
                     />
                 </div>
@@ -63,9 +63,9 @@ export function LinenHistoryFilterBar({ filters, setFilters }: LinenHistoryFilte
                         onChange={handleChange}
                         className="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border-none rounded-xl text-sm focus:ring-2 focus:ring-emerald-500/20 transition-all font-thai appearance-none"
                     >
-                        <option value="">สถานะทั้งหมด</option>
+                        <option value="">StatusAll</option>
                         <option value="draft">ร่าง (Draft)</option>
-                        <option value="pending">รอร้านรับ/คืน (Pending)</option>
+                        <option value="pending">รอร้านReceive/Return (Pending)</option>
                         <option value="closed">เสร็จสมบูรณ์ (Closed)</option>
                         <option value="disputed">ยอดไม่ตรง (Disputed)</option>
                     </select>
@@ -108,7 +108,7 @@ export function LinenHistoryFilterBar({ filters, setFilters }: LinenHistoryFilte
                         className="w-4 h-4 rounded border-slate-300 text-purple-600 focus:ring-purple-500 transition-all"
                     />
                     <span className="text-xs font-bold text-slate-500 group-hover:text-purple-600 transition-colors flex items-center gap-1 font-thai">
-                        <ClipboardList className="w-3 h-3" /> มีรายการแก้ไข
+                        <ClipboardList className="w-3 h-3" /> มีรายการEdit
                     </span>
                 </label>
             </div>

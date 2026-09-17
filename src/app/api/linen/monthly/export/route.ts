@@ -42,8 +42,8 @@ export async function GET(request: NextRequest) {
     const dayHeaders = Array.from({ length: daily.days_in_month }, (_, index) => index + 1);
     const rows: unknown[][] = [[
       "",
-      "รายการ/วันที่",
-      "ราคา",
+      "รายการ/Date",
+      "Price",
       "รวม",
       "รวมเงิน",
       "ตามจริง",

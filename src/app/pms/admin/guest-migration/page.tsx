@@ -184,7 +184,7 @@ export default function GuestMigrationPage() {
             <h2 className="text-lg font-bold text-rose-800">Clean Test Data</h2>
           </div>
           <p className="text-sm text-rose-700/80 mb-6">
-            ลบข้อมูลทดสอบทั้งหมด (Guest, Booking, Payment, Audit Logs, Passport Scans) ในระบบทิ้ง เพื่อเตรียมเปิดใช้งานจริงแบบคลีนๆ
+            Deleteข้อมูลทดสอบAll (Guest, Booking, Payment, Audit Logs, Passport Scans) ในระบบทิ้ง เพื่อเตรียมเCloseใช้งานจริงแบบคลีนๆ
           </p>
 
           <div className="space-y-4 flex-1">

@@ -152,7 +152,7 @@ function shortenBookingCode(bookingCode: string) {
 }
 
 function noteBadgeClass(note: string) {
-    return note.startsWith("โอน ")
+    return note.startsWith("Transfer ")
         ? "bg-sky-50 text-sky-700 border border-sky-200 dark:bg-sky-500/15 dark:text-sky-300 dark:border-sky-500/30"
         : note === "Cancelled"
         ? "bg-rose-100 text-rose-700 border border-rose-200 dark:bg-rose-500/20 dark:text-rose-300 dark:border-rose-500/30"
@@ -427,15 +427,15 @@ function GroupReviewHeader<T extends GroupReviewRow>({ section, colSpan }: { sec
                     </div>
                     <div className="ml-auto grid grid-cols-1 gap-2 text-xs sm:grid-cols-3">
                         <div className="rounded border border-fuchsia-200 bg-white/70 px-3 py-1.5 text-right dark:border-pink-400/30 dark:bg-pink-500/10 hc:border-black hc:bg-white">
-                            <div className="text-[9px] font-black uppercase tracking-wider text-fuchsia-700 dark:text-pink-300 hc:text-black">Prepayment ก่อนวันนี้</div>
+                            <div className="text-[9px] font-black uppercase tracking-wider text-fuchsia-700 dark:text-pink-300 hc:text-black">Prepayment ก่อนDaysนี้</div>
                             <div className="text-sm font-black text-fuchsia-900 dark:text-pink-200 hc:text-black">{fmtMoney(section.priorTotal)}</div>
                         </div>
                         <div className="rounded border border-brand-200 bg-white/70 px-3 py-1.5 text-right dark:border-brand-400/30 dark:bg-brand-500/10 hc:border-black hc:bg-white">
-                            <div className="text-[9px] font-black uppercase tracking-wider text-brand-700 dark:text-brand-300 hc:text-black">จ่ายวันนี้</div>
+                            <div className="text-[9px] font-black uppercase tracking-wider text-brand-700 dark:text-brand-300 hc:text-black">จ่ายDaysนี้</div>
                             <div className="text-sm font-black text-brand-900 dark:text-brand-200 hc:text-black">{fmtMoney(section.todayTotal)}</div>
                         </div>
                         <div className="rounded border border-[var(--border-default)] bg-white px-3 py-1.5 text-right dark:bg-white/5 hc:border-black hc:bg-white">
-                            <div className="text-[9px] font-black uppercase tracking-wider text-[var(--text-secondary)]">รวมรับแล้ว</div>
+                            <div className="text-[9px] font-black uppercase tracking-wider text-[var(--text-secondary)]">รวมReceiveแล้ว</div>
                             <div className="text-sm font-black text-[var(--text-primary)]">{fmtMoney(section.combinedTotal)}</div>
                         </div>
                     </div>
@@ -713,7 +713,7 @@ export default function PaymentDailyPage() {
                                     <tr>
                                         <td colSpan={tableColumnCount} className="px-5 py-3 bg-[var(--bg-body)] border-b-2 border-[var(--border-default)]">
                                             <span className="font-bold text-[var(--text-primary)] uppercase tracking-wider text-sm">Business Date Rooms</span>
-                                            <span className="text-[var(--text-secondary)] text-xs font-normal ml-3">ยอดชำระสำหรับห้องใน business date นี้</span>
+                                            <span className="text-[var(--text-secondary)] text-xs font-normal ml-3">ยอดชำระสำหReceiveRoomใน business date นี้</span>
                                         </td>
                                     </tr>
 
@@ -968,7 +968,7 @@ export default function PaymentDailyPage() {
                                             <tr className="bg-[var(--bg-body)] border-y-2 border-[var(--border-default)]">
                                                 <td colSpan={tableColumnCount} className="px-5 py-3">
                                                     <span className="font-bold text-[var(--text-primary)] uppercase tracking-wider text-sm">Advance Payments</span>
-                                                    <span className="text-[var(--text-secondary)] text-xs font-normal ml-3">ยอดรับล่วงหน้า Booking/Reservation อนาคต</span>
+                                                    <span className="text-[var(--text-secondary)] text-xs font-normal ml-3">ยอดReceiveล่วงหน้า Booking/Reservation อนาคต</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -1005,7 +1005,7 @@ export default function PaymentDailyPage() {
                                                                 <td className="px-3 py-2.5 align-middle text-xs text-[var(--text-secondary)]">
                                                                     <div className="flex items-center gap-1.5 overflow-hidden whitespace-nowrap">
                                                                         <span className="shrink-0 font-semibold text-[var(--text-secondary)]">CI: {adv.checkin_date.split("-").slice(1).reverse().join("/")}</span>
-                                                                        {adv.payment_status === "deposit" && <InlineBadge className="bg-indigo-100 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-400">มัดจำ</InlineBadge>}
+                                                                        {adv.payment_status === "deposit" && <InlineBadge className="bg-indigo-100 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-400">Deposit</InlineBadge>}
                                                                         {adv.payment_status === "partial" && <InlineBadge className="bg-teal-100 text-teal-700 dark:bg-teal-500/20 dark:text-teal-400">บางส่วน</InlineBadge>}
                                                                         {adv.payment_status === "full" && <InlineBadge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400">เต็ม</InlineBadge>}
                                                                         <NoteCapsules notes={adv.notes} empty={null} />
@@ -1038,7 +1038,7 @@ export default function PaymentDailyPage() {
                                                     <td className="px-3 py-2.5 align-middle text-xs text-[var(--text-secondary)]">
                                                         <div className="flex items-center gap-1.5 overflow-hidden whitespace-nowrap">
                                                             <span className="shrink-0 font-semibold text-[var(--text-secondary)]">CI: {adv.checkin_date.split("-").slice(1).reverse().join("/")}</span>
-                                                            {adv.payment_status === "deposit" && <InlineBadge className="bg-indigo-100 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-400">มัดจำ</InlineBadge>}
+                                                            {adv.payment_status === "deposit" && <InlineBadge className="bg-indigo-100 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-400">Deposit</InlineBadge>}
                                                             {adv.payment_status === "partial" && <InlineBadge className="bg-teal-100 text-teal-700 dark:bg-teal-500/20 dark:text-teal-400">บางส่วน</InlineBadge>}
                                                             {adv.payment_status === "full" && <InlineBadge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400">เต็ม</InlineBadge>}
                                                             <NoteCapsules notes={adv.notes} empty={null} />
@@ -1106,7 +1106,7 @@ export default function PaymentDailyPage() {
                         <div className="p-5 flex flex-col md:flex-row gap-12 items-start justify-start">
                             <div>
                                 <h3 className="font-bold text-[var(--text-primary)] mb-1 text-sm uppercase tracking-wider">Cash Reconciliation</h3>
-                                <p className="text-[var(--text-secondary)] text-xs max-w-sm">ยอดเงินสดที่ควรมีในลิ้นชักสำหรับวันนี้</p>
+                                <p className="text-[var(--text-secondary)] text-xs max-w-sm">ยอดCashที่ควรมีในลิ้นชักสำหReceiveDaysนี้</p>
                             </div>
                             <div className="bg-[var(--bg-body)] rounded-lg border border-[var(--border-default)] p-4 min-w-[280px]">
                                 <div className="flex justify-between items-center py-1.5">

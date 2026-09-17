@@ -300,12 +300,12 @@ export async function getLineStaffSchedule(
     month: targetMonth,
     today,
     is_next_month: Boolean(params.nextMonth),
-    range_label: period === "week" ? "7 วันนี้" : targetMonth.label,
+    range_label: period === "week" ? "7 Daysนี้" : targetMonth.label,
     empty_label: period === "week"
-      ? "ยังไม่มีเวรใน 7 วันนี้"
+      ? "ยังไม่มีเวรใน 7 Daysนี้"
       : params.nextMonth
-        ? "ยังไม่มีตารางเวรสำหรับเดือนหน้า"
-        : "ยังไม่มีเวรตั้งแต่วันนี้ถึงสิ้นเดือน",
+        ? "ยังไม่มีตารางเวรสำหReceiveเดือนหน้า"
+        : "ยังไม่มีเวรตั้งแต่Daysนี้ถึงสิ้นเดือน",
     shifts: (shiftRows ?? []).map((row: any): StaffScheduleShift => ({
       id: String(row.id),
       staff_id: String(row.staff_id),
@@ -317,7 +317,7 @@ export async function getLineStaffSchedule(
 }
 
 export function formatLineStaffScheduleReply(result: Extract<LineStaffScheduleResult, { ok: true }>): string {
-  const displayName = result.staff.nickname || result.staff.display_name || "พนักงาน";
+  const displayName = result.staff.nickname || result.staff.display_name || "Staff";
   const title = result.is_next_month
     ? `ตารางเวร ${displayName} เดือนหน้า (${result.month.label})`
     : `ตารางเวร ${displayName} (${result.range_label})`;

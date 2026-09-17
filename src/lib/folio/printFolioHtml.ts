@@ -50,10 +50,10 @@ function fmtThaiDate(value: string | null): string {
 function statusLabel(value: string | null): string {
   const normalized = String(value ?? "").trim().toLowerCase();
   if (!normalized) return "-";
-  if (normalized === "active") return "ยืนยันแล้ว";
-  if (normalized === "draft_checkin") return "รอเช็คอิน";
-  if (normalized === "checked_out") return "เช็คเอาท์แล้ว";
-  if (normalized === "cancelled") return "ยกเลิก";
+  if (normalized === "active") return "Confirmแล้ว";
+  if (normalized === "draft_checkin") return "รอCheck-in";
+  if (normalized === "checked_out") return "Check-outแล้ว";
+  if (normalized === "cancelled") return "Cancel";
   if (normalized === "no_show") return "ไม่เข้าพัก";
   return valueOrDash(value);
 }
@@ -285,17 +285,17 @@ export function renderFolioA4Html(data: FolioPrintData): string {
 
             <div class="booking-meta">
               <div><b>หมายเลขการจอง:</b> ${esc(valueOrDash(reservation.booking_code))}</div>
-              <div><b>สถานะการจอง:</b> ${esc(statusLabel(reservation.status))}</div>
+              <div><b>Statusการจอง:</b> ${esc(statusLabel(reservation.status))}</div>
             </div>
 
             <div class="stay-meta">
-              <div><b>เช็คอินวันที่:</b> ${esc(checkin)} <b>เช็คเอาท์วันที่:</b> ${esc(checkout)}</div>
-              <div><b>จำนวนคืน:</b> ${esc(nights)} <b>ห้องพักเลขที่ :</b> ${esc(valueOrDash(reservation.room_number))}</div>
+              <div><b>Check-inDate:</b> ${esc(checkin)} <b>Check-outDate:</b> ${esc(checkout)}</div>
+              <div><b>QuantityReturn:</b> ${esc(nights)} <b>Roomเลขที่ :</b> ${esc(valueOrDash(reservation.room_number))}</div>
             </div>
 
             <div class="guest-block">
               <div><b>รายชื่อผู้เข้าพัก:</b> ${esc(valueOrDash(reservation.guest_name))}</div>
-              <div><b>ที่อยู่ :</b> ${esc(valueOrDash(reservation.guest_address))}</div>
+              <div><b>Address :</b> ${esc(valueOrDash(reservation.guest_address))}</div>
               <div><b>โทร :</b> ${esc(valueOrDash(reservation.guest_phone))} &nbsp; <b>E-mail :</b> ${esc(valueOrDash(reservation.guest_email))}</div>
             </div>
           </div>
@@ -323,7 +323,7 @@ export function renderFolioA4Html(data: FolioPrintData): string {
             <tr>
               <th class="col-no">NO.</th>
               <th class="col-date">DATE</th>
-              <th class="col-desc" colspan="2">DESCRIPTION (รายละเอียด)</th>
+              <th class="col-desc" colspan="2">DESCRIPTION (Details)</th>
               <th class="col-amount">AMOUNT</th>
             </tr>
           </thead>
@@ -331,7 +331,7 @@ export function renderFolioA4Html(data: FolioPrintData): string {
             ${renderRows(data.ledger_rows)}
             <tr class="summary-row">
               <td colspan="3" style="border: none;"></td>
-              <td class="total-label">ยอดรวมค่าใช้จ่ายทั้งหมด</td>
+              <td class="total-label">Totalค่าใช้จ่ายAll</td>
               <td class="total-amount">${esc(fmtMoney(data.total_charges))}</td>
             </tr>
             <tr class="summary-row">
@@ -341,23 +341,23 @@ export function renderFolioA4Html(data: FolioPrintData): string {
             </tr>
             <tr class="summary-row">
               <td colspan="3" style="border: none;"></td>
-              <td class="total-label">ยอดเงินที่ยังไม่ได้ชำระ</td>
+              <td class="total-label">Amountที่ยังไม่ได้ชำระ</td>
               <td class="total-amount">${esc(fmtMoney(data.balance_due))}</td>
             </tr>
           </tbody>
         </table>
 
         <section class="policy">
-          <div class="policy-title">นโยบายการชำระเงิน และ เงินมัดจำ</div>
-          <p>• โรงแรมขอสงวนสิทธิ์ในการเรียกเก็บเงิน 100% ของยอดเงินรวม ในช่วงเทศกาล หรือ 50% ในช่วงปกติ ล่วงหน้า 3 วัน</p>
-          <p>• หากต้องการยกเลิกการจอง ต้องแจ้งล่วงหน้า 3 วัน หากน้อยกว่า 3 วัน การคืนเงินจะพิจารณาตามนโยบายของโรงแรม</p>
-          <p>• เงินมัดจำกุญแจ 200 บาท/ห้อง จะได้รับคืน ตอนเช็คเอาท์</p>
+          <div class="policy-title">นโยบายการชำระเงิน และ เงินDeposit</div>
+          <p>• โรงแรมขอสงวนPermissionsในการเรียกเก็บเงิน 100% ของAmountรวม ในช่วงเทศกาล หรือ 50% ในช่วงปกติ ล่วงหน้า 3 Days</p>
+          <p>• หากต้องการCancel Reservation ต้องแจ้งล่วงหน้า 3 Days หากน้อยกว่า 3 Days การReturnเงินจะพิจารณาตามนโยบายของโรงแรม</p>
+          <p>• เงินDepositกุญแจ 200 THB/Room จะได้ReceiveReturn ตอนCheck-out</p>
         </section>
 
         <section class="closing">
           <div class="responsibility">
-            ข้าพเจ้ายอมรับและตกลงว่าข้าพเจ้าจะเป็นผู้รับผิดชอบต่อค่าบริการทั้งหมดตามที่ระบุไว้และยินยอมรับผิดชอบ<br />
-            เป็นการส่วนตัวในกรณีที่บุคคล บริษัท หรือองค์กรที่ระบุ ไม่ชำระค่าบริการทั้งหมดหรือบางส่วน
+            ข้าพเจ้ายอมReceiveและConfirmว่าข้าพเจ้าจะเป็นผู้Receiveผิดชอบต่อค่าบริการAllตามที่ระบุไว้และยินยอมReceiveผิดชอบ<br />
+            เป็นการส่วนตัวในกรณีที่บุคคล บริษัท หรือองค์กรที่ระบุ ไม่ชำระค่าบริการAllหรือบางส่วน
           </div>
           <div class="signature">ลายเซนต์</div>
         </section>

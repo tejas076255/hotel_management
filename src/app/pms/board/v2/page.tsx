@@ -900,7 +900,7 @@ export default function LiveBoardV2Page() {
         <main className="flex min-w-0 flex-col">
           <PmsCommandTopbar
             title="Live Board"
-            thaiTitle="บอร์ดห้องพัก · Real data read-only"
+            thaiTitle="Room Board · Real data read-only"
             searchValue={searchValue}
             onSearchChange={setSearchValue}
             hasUnreadAlerts={(model?.rooms ?? []).some((room) => room.flags.alert)}

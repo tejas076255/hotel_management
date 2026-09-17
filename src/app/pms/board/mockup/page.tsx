@@ -896,7 +896,7 @@ export default function LiveBoardV2MockupPage() {
         <main className="flex min-w-0 flex-col">
           <PmsCommandTopbar
             title="Live Board"
-            thaiTitle="บอร์ดห้องพัก · Diary view"
+            thaiTitle="Room Board · Diary view"
             searchReadOnly
             hasUnreadAlerts
             avatarLabel="NA"
